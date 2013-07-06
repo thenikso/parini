@@ -3,7 +3,11 @@
 // Setup
 function parini_setup() {
 
+	// This theme uses wp_nav_menu() in one location.
+	register_nav_menu( 'primary', __( 'Primary Menu' ) );
+
 	// See http://justintadlock.com/archives/2010/04/29/custom-post-types-in-wordpress
+	// Custom post for Works
 	register_post_type( 'lavori',
 		array(
 			'labels' => array(

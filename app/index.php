@@ -38,11 +38,11 @@
 					</ul>
 
 					<section class="top-bar-section">
-						<!-- Left Nav Section -->
-						<ul class="left">
-							<li class="active"><a href="#">Main Item 1</a></li>
-							<li><a href="#">Main Item 2</a></li>
-						</ul>
+						<?php wp_nav_menu( array(
+							'container' => false,
+							'theme_location' => 'primary',
+							'menu_class' => 'left'
+						) ); ?>
 					</section>
 				</nav>
 			</header>
