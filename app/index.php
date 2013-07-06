@@ -1,6 +1,6 @@
 <!doctype html>
-<!--[if lt IE 9]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if lte IE 8]>      <html id="ng-app" ng-app="App" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html ng-app="App" class="no-js"> <!--<![endif]-->
 	<head>
 		<title><?php wp_title( '|', true, 'right' ); ?></title>
 
@@ -11,16 +11,19 @@
 
 		<script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
 
-		<!--[if lt IE 9]>
+		<!--[if lte IE 8]>
 		<style type="text/css" src="<?php echo get_template_directory_uri(); ?>/styles/ie.css"></style>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/json3/3.2.4/json3.min.js"></script>
+		<script type="text/javascript">
+		document.createElement('ng-view');
+		</script>
 		<![endif]-->
 
 		<?php wp_head(); ?>
 </head>
-	<body ng-app="App">
-		<!--[if lt IE 7]>
+	<body ng-controller="MainCtrl">
+		<!--[if lt IE 8]>
 			<p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
 		<![endif]-->
 
