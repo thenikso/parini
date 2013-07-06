@@ -11,6 +11,11 @@ wordpressApi = ($resource, $q) ->
 			lang: null
 			slug: '@post.slug'
 		}
+	Page = $resource '/:lang/api/get_page',
+		{
+			lang: null
+			slug: '@page.slug'
+		}
 	return {
 		get_posts : (opts, callback) ->
 			Posts.get opts, callback
@@ -26,6 +31,8 @@ wordpressApi = ($resource, $q) ->
 					# TODO check status
 					callback data, headers
 			data
+		get_page: (opts, callback) ->
+			Page.get opts, callback
 	}
 wordpressApi.$inject = ['$resource', '$q']
 
