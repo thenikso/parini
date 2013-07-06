@@ -29,11 +29,9 @@
 			<header id="site-header">
 				<nav class="top-bar">
 					<ul class="title-area">
-						<!-- Title Area -->
 						<li class="name">
-							<h1><a href="#">Top Bar Title </a></h1>
+							<h1 id="site-title"><a href="/" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 						</li>
-						<!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
 						<li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
 					</ul>
 
@@ -49,11 +47,10 @@
 
 			<div id="site-content" ng-view></div>
 
-			<footer id="site-footer">
-				footer
-			</footer>
 		</div>
-
+		<footer id="site-footer">
+			footer
+		</footer>
 
 		<script type="text/javascript">
 		window.wordpress = {

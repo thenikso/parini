@@ -19,3 +19,8 @@ This theme is build to work with Wordpress JSON API and use AngularJS in the fro
 @import "compass";
 
 @import "layout";
+
+html, body {
+	width: 100%;
+	height: 100%;
+}
