@@ -1,5 +1,24 @@
 <?php
 
+// Setup
+function parini_setup() {
+
+	// See http://justintadlock.com/archives/2010/04/29/custom-post-types-in-wordpress
+	register_post_type( 'lavori',
+		array(
+			'labels' => array(
+				'name' => __( 'Lavori' ),
+				'singular_name' => __( 'Lavoro' )
+			),
+			'rewrite' => array(
+				'with_front' => false
+			),
+			'public' => true,
+		)
+	);
+}
+add_action( 'init', 'parini_setup' );
+
 // Output data only if JSON API plugin is installed and active
 if (class_exists("JSON_API_Post")) {
 
