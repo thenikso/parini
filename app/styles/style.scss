@@ -1,0 +1,23 @@
+/*
+Theme Name: AngularJS Theme
+Theme URI: http://nikso.net/
+Description: AngularJS enabled theme
+Author: Nicola Peduzzi
+Author URI: http://nikso.net/
+Version: 1.0
+Tags: angularjs
+
+License:
+License URI:
+
+This theme is build to work with Wordpress JSON API and use AngularJS in the frontend.
+*/
+
+@import "settings";
+@import "foundation/scss/normalize";
+@import "foundation/scss/foundation";
+@import "compass";
+
+body {
+	background: white;
+}

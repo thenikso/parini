@@ -1,0 +1,1 @@
+dist/script.js
