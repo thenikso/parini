@@ -2,8 +2,9 @@
 
 angular.module('App')
 	.controller 'MainCtrl', ($scope) ->
-		$scope.awesomeThings = [
-			'HTML5 Boilerplate',
-			'AngularJS YEAH',
-			'Karma'
-		]
+		# Loading control
+		$scope.loading = yes
+		$scope.$on '$routeChangeStart', ->
+			$scope.loading = yes
+		$scope.$on '$viewContentLoaded', ->
+			$scope.loading = no
