@@ -7,22 +7,21 @@
     <meta name="viewport" content="width=device-width">
 
     <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css">
-
     <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
-    <link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_uri(); ?>" />
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+    <!--[if lt IE 9]>
+    <style type="text/css" src="<?php echo get_template_directory_uri(); ?>/styles/ie.css"></style>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/json3/3.2.4/json3.min.js"></script>
+    <![endif]-->
 
     <?php wp_head(); ?>
 </head>
   <body ng-app="App">
     <!--[if lt IE 7]>
       <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
-    <![endif]-->
-
-    <!--[if lt IE 9]>
-      <script src="bower_components/es5-shim/es5-shim.js"></script>
-      <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
 
     <div class="container" ng-view=""></div>

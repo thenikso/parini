@@ -175,8 +175,7 @@ module.exports = function (grunt) {
             '<%= yeoman.app %>/scripts/{,*/}*.js'
           ],
           '<%= yeoman.dist %>/style.css': [
-            '.tmp/{,*/}*.css',
-            '<%= yeoman.app %>/styles/{,*/}*.css'
+            '.tmp/{,*/}*.css'
           ]
         }
       }
@@ -223,7 +222,8 @@ module.exports = function (grunt) {
           src: [
             '*.{ico,png,txt,php}',
             'images/{,*/}*.{gif,webp,svg}',
-            'styles/fonts/*'
+            'styles/fonts/*',
+            'styles/{,*/}*.css'
           ]
         }, {
           expand: true,
