@@ -10,3 +10,6 @@ angular.module('App', ['ngRoute'])
 				redirectTo: '/'
 
 		$locationProvider.html5Mode(yes).hashPrefix('!')
+
+# Run foundation
+$(document).foundation()
