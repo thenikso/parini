@@ -32,6 +32,7 @@ function ng_current_page_data() {
 	// Get single page
 	if ( is_page() ) {
 		$data = array(
+			'status' => 'ok',
 			'page' => new JSON_API_Post($post)
 		);
 	}
@@ -41,6 +42,7 @@ function ng_current_page_data() {
 		$previous = get_adjacent_post(false, '', true);
 		$next = get_adjacent_post(false, '', false);
 		$data = array(
+			'status' => 'ok',
 			'post' => new JSON_API_Post($post)
 		);
 		if ($previous) {
