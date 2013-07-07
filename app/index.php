@@ -22,7 +22,7 @@
 
 		<?php wp_head(); ?>
 </head>
-	<body ng-controller="MainCtrl">
+	<body ng-controller="MainCtrl" wp-href-lang="lang">
 		<!--[if lt IE 8]>
 			<p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
 		<![endif]-->
@@ -33,7 +33,7 @@
 				<nav class="top-bar">
 					<ul class="title-area">
 						<li class="name">
-							<h1 id="site-title"><a ng-href="{{lang.href('/')}}" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+							<h1 id="site-title"><a wp-href="/" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 						</li>
 						<li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
 					</ul>
@@ -51,7 +51,7 @@
 
 							foreach ( (array) $menu_items as $key => $menu_item ) {
 								$url = $menu_item->url;
-								$menu_list .= '<li ng-class="siteMenu.activeClass(\'' . $url . '\')"><a ng-href="{{lang.href(\'' . $url . '\')}}">' . $menu_item->title . '</a></li>';
+								$menu_list .= '<li ng-class="siteMenu.activeClass(\'' . $url . '\')"><a wp-href="' . $url . '">' . $menu_item->title . '</a></li>';
 							}
 							$menu_list .= '</ul>';
 						} else {
