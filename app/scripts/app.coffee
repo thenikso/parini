@@ -24,10 +24,10 @@ angular.module('App', ['ngRoute', 'ngResource'])
 				templateUrl: "#{wordpress.templateUrl}/views/post.html"
 				controller: 'PostCtrl'
 
-			.when '/:pageSlug',
+			.when '/:pageSlug/',
 				templateUrl: "#{wordpress.templateUrl}/views/page.html"
 				controller: 'PageCtrl'
-			.when '/:lang/:pageSlug',
+			.when '/:lang/:pageSlug/',
 				templateUrl: "#{wordpress.templateUrl}/views/page.html"
 				controller: 'PageCtrl'
 
