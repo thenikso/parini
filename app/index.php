@@ -64,7 +64,20 @@
 				</nav>
 			</header>
 
-			<div id="site-content" ng-view></div>
+			<div id="site-loader" ng-show="loader.loading" ng-animate="'loader-animation'">
+				<center style="margin-top:100px">
+					<div class="loader rspin">
+						<span class="c"></span>
+						<span class="d spin"><span class="e"></span></span>
+						<span class="r r1"></span>
+						<span class="r r2"></span>
+						<span class="r r3"></span>
+						<span class="r r4"></span>
+					</div>
+				</center>
+			</div>
+
+			<div id="site-content" ng-view ng-animate="'view-animation'"></div>
 
 		</div>
 		<footer id="site-footer">

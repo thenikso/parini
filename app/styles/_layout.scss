@@ -3,7 +3,28 @@
 ////////////////////////////////////////////////////////////////////////////////
 #site {
 	min-height: 100%;
+	background: $body-bg;
 }
+
+#site-loader {
+	background: $body-bg;
+	height: 100%;
+	position: fixed;
+	width: 100%;
+	z-index: 90;
+}
+
+.loader-animation-hide {
+	@include transition-property(top);
+	@include transition-duration(1.5s);
+	top: 0%;
+
+	&.loader-animation-hide-active {
+		top: 100%;
+	}
+}
+
+@import "spinner";
 
 ////////////////////////////////////////////////////////////////////////////////
 // Header
@@ -21,3 +42,23 @@
 		}
 	}
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// Site content
+////////////////////////////////////////////////////////////////////////////////
+#site-content {
+	min-height: 100%;
+}
+
+.view-animation-leave-wrapper {
+	background: $body-bg;
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding-top: $topbar-height;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	z-index: 95;
+}
+
