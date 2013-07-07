@@ -33,7 +33,7 @@
 				<nav class="top-bar">
 					<ul class="title-area">
 						<li class="name">
-							<h1 id="site-title"><a href="/" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+							<h1 id="site-title"><a ng-href="{{lang.href('/')}}" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 						</li>
 						<li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
 					</ul>
@@ -51,7 +51,7 @@
 
 							foreach ( (array) $menu_items as $key => $menu_item ) {
 								$url = $menu_item->url;
-								$menu_list .= '<li ng-class="siteMenu.activeClass(\'' . $url . '\')"><a href="' . $url . '">' . $menu_item->title . '</a></li>';
+								$menu_list .= '<li ng-class="siteMenu.activeClass(\'' . $url . '\')"><a ng-href="{{lang.href(\'' . $url . '\')}}">' . $menu_item->title . '</a></li>';
 							}
 							$menu_list .= '</ul>';
 						} else {
@@ -88,7 +88,7 @@
 		window.wordpress = {
 			templateUrl: "<?php echo get_template_directory_uri() ?>",
 			rewriteRules: <?php echo ng_rewrite_rules(); ?>,
-			languages: <?php echo ng_sitepress_languages(); ?>,
+			language: <?php echo ng_sitepress_languages(); ?>,
 			data: <?php echo ng_current_page_data(); ?>
 		};
 		</script>

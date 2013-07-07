@@ -2,6 +2,21 @@
 
 angular.module('App')
 	.controller 'MainCtrl', ($scope, $location) ->
+		# Language
+		urlRegExp = /^([^#]*?:\/\/.*?)(\/.*)?$/
+		urlRegExp.compile?(urlRegExp)
+		$scope.lang =
+			code: null
+			href: (ref) ->
+				return ref unless $scope.lang.code
+				return "#{r[1]}/#{$scope.lang.code}#{r[2] ? ''}" if r = urlRegExp.exec(ref)
+				"/#{$scope.lang.code}#{ref}"
+		$scope.$on '$routeChangeSuccess', ->
+			if (lang = $location.path().substr(1,2)) in wordpress?.language?.others
+				$scope.lang.code = lang
+			else
+				$scope.lang.code = null
+
 		# Loading control
 		$scope.loader = {}
 		$scope.loader.loading = yes

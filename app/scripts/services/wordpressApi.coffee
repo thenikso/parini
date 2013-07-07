@@ -2,38 +2,41 @@
 
 # AngularJS will instantiate a singleton by calling "new" on this function
 wordpressApi = ($resource, $q) ->
-	Posts = $resource '/:lang/api/get_posts',
-		{
-			lang: null
-		}
-	Post = $resource '/:lang/api/get_post',
-		{
-			lang: null
-			slug: '@post.slug'
-		}
-	Page = $resource '/:lang/api/get_page',
-		{
-			lang: null
-			slug: '@page.slug'
-		}
+	# API resources
+	Posts = $resource '/:lang/api/get_posts', lang: null
+	Post = $resource '/:lang/api/get_post', lang: null
+	Page = $resource '/:lang/api/get_page', lang: null
+
+	# Utility function to generate promises methods
+	getPromiseFactory = (Api, dataTrans, check=->yes) -> (opts) ->
+		deferred = $q.defer()
+		if (data = wordpress?.data)? and (data = dataTrans(data))? and check(data, opts)
+			console.log 'cached'
+			wordpress.data = null
+			deferred.resolve data
+		else
+			console.log 'fetched'
+			Api.get opts
+			, (data) ->
+				if (data = dataTrans(data))?
+					deferred.resolve data
+				else
+					deferred.resolve null
+			, ->
+				deferred.resolve null
+		return deferred.promise
+
+	# Service interface
 	return {
-		get_posts : (opts, callback) ->
-			Posts.get opts, callback
-		get_post: (opts, callback) ->
-			data = {}
-			if (data = wordpress?.data)? and data.post?.slug is opts.slug
-				deferred = $q.defer()
-				wordpress.data = null
-				deferred.promise.then -> callback data, null
-				deferred.resolve data
-			else
-				data = Post.get opts, (data, headers) ->
-					# TODO check status
-					callback data, headers
-			data
-		get_page: (opts, callback) ->
-			Page.get opts, callback
+		getPosts : Posts.get
+		getPost: Post.get
+		getPage: Page.get
+
+		getPostsPromise: getPromiseFactory Posts, ((data) -> data?.posts)
+		getPostPromise: getPromiseFactory Post, ((data) -> data?.post), ((post, opts) -> post.slug is opts.slug)
+		getPagePromise: getPromiseFactory Page, ((data) -> data?.page), ((page, opts) -> page.slug is opts.slug)
 	}
 wordpressApi.$inject = ['$resource', '$q']
+
 
 angular.module('App').service 'wordpressApi', wordpressApi

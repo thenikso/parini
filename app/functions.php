@@ -52,11 +52,16 @@ function ng_sitepress_languages() {
 	if (!$sitepress) {
 		return 'null';
 	}
+	$default = $sitepress->get_default_language();
 	$languages = array();
 	foreach ($sitepress->get_active_languages() as $lang) {
+		if ($lang['code'] == $default) continue;
 		$languages[] = $lang['code'];
 	}
-	return json_encode($languages);
+	return json_encode(array(
+		'default' => $default,
+		'others' => $languages
+	));
 }
 
 // Output data only if JSON API plugin is installed and active
