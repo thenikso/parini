@@ -29,7 +29,7 @@
 
 		<div id="site">
 
-			<header id="site-header">
+			<header id="site-header" class="fixed">
 				<nav class="top-bar">
 					<ul class="title-area">
 						<li class="name">
@@ -39,11 +39,27 @@
 					</ul>
 
 					<section class="top-bar-section">
-						<?php wp_nav_menu( array(
-							'container' => false,
-							'theme_location' => 'primary',
-							'menu_class' => 'left'
-						) ); ?>
+					<?php
+						$menu_name = 'primary';
+
+						if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[ $menu_name ] ) ) {
+							$menu = wp_get_nav_menu_object( $locations[ $menu_name ] );
+
+							$menu_items = wp_get_nav_menu_items($menu->term_id);
+
+							$menu_list = '<ul id="menu-' . $menu_name . '" class="left">';
+
+							foreach ( (array) $menu_items as $key => $menu_item ) {
+								$url = $menu_item->url;
+								$menu_list .= '<li ng-class="siteMenu.activeClass(\'' . $url . '\')"><a href="' . $url . '">' . $menu_item->title . '</a></li>';
+							}
+							$menu_list .= '</ul>';
+						} else {
+							$menu_list = '<ul class="left"><li>Menu "' . $menu_name . '" non definito.</li></ul>';
+						}
+
+						echo $menu_list;
+					?>
 					</section>
 				</nav>
 			</header>
