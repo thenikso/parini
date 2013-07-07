@@ -1,7 +1,7 @@
 'use strict';
 
 # AngularJS will instantiate a singleton by calling "new" on this function
-wordpressApi = ($resource, $q) ->
+wordpressApi = ($resource, $q, wordpress) ->
 	# API resources
 	Posts = $resource '/:lang/api/get_posts', lang: null
 	Post = $resource '/:lang/api/get_post', lang: null
@@ -10,7 +10,7 @@ wordpressApi = ($resource, $q) ->
 	# Utility function to generate promises methods
 	getPromiseFactory = (Api, dataTrans, check=->yes) -> (opts) ->
 		deferred = $q.defer()
-		if (data = wordpress?.data)? and (data = dataTrans(data))? and check(data, opts)
+		if (data = wordpress.data)? and (data = dataTrans(data))? and check(data, opts)
 			console.log 'cached'
 			wordpress.data = null
 			deferred.resolve data
@@ -36,7 +36,7 @@ wordpressApi = ($resource, $q) ->
 		getPostPromise: getPromiseFactory Post, ((data) -> data?.post), ((post, opts) -> post.slug is opts.slug)
 		getPagePromise: getPromiseFactory Page, ((data) -> data?.page), ((page, opts) -> page.slug is opts.slug)
 	}
-wordpressApi.$inject = ['$resource', '$q']
+wordpressApi.$inject = ['$resource', '$q', 'wordpress']
 
 
 angular.module('App').service 'wordpressApi', wordpressApi

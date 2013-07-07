@@ -84,17 +84,17 @@
 			footer
 		</footer>
 
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/foundation/4.1.6/js/foundation.min.js"></script>
+		<script src="<?php echo get_template_directory_uri(); ?>/script.js"></script>
 		<script type="text/javascript">
-		window.wordpress = {
+		angular.module('App').constant('wordpress', {
 			templateUrl: "<?php echo get_template_directory_uri() ?>",
 			rewriteRules: <?php echo ng_rewrite_rules(); ?>,
 			language: <?php echo ng_sitepress_languages(); ?>,
 			data: <?php echo ng_current_page_data(); ?>
-		};
+		});
 		</script>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/foundation/4.1.6/js/foundation.min.js"></script>
-		<script src="<?php echo get_template_directory_uri(); ?>/script.js"></script>
 
 		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 		<script>

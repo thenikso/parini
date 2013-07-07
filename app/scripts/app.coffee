@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('App', ['ngRoute', 'ngResource'])
-	.config ($routeProvider, $locationProvider) ->
+	.config ($routeProvider, $locationProvider, wordpress) ->
 		$routeProvider.when '/',
 			templateUrl: "#{wordpress.templateUrl}/views/home.html"
 			controller: 'HomeCtrl'
@@ -10,7 +10,7 @@ angular.module('App', ['ngRoute', 'ngResource'])
 					wordpressApi.getPostsPromise {}
 
 		# Account for different languages
-		if wordpress?.language?.others? then for l in wordpress?.language?.others
+		if wordpress.language?.others? then for l in wordpress.language.others
 			$routeProvider.when "/#{l}",
 				templateUrl: "#{wordpress.templateUrl}/views/home.html"
 				controller: 'HomeCtrl'
@@ -21,7 +21,7 @@ angular.module('App', ['ngRoute', 'ngResource'])
 
 		# Custom post types will have a $routeParams.postname parameter
 		# The post will be injected as `post`
-		if wordpress?.rewriteRules?.postTypes?
+		if wordpress.rewriteRules?.postTypes?
 			for k, postType of wordpress.rewriteRules.postTypes
 				$routeProvider.when postType,
 					templateUrl: "#{wordpress.templateUrl}/views/post.html"
@@ -30,7 +30,7 @@ angular.module('App', ['ngRoute', 'ngResource'])
 						post: ($route, wordpressApi) ->
 							wordpressApi.getPostPromise
 								slug: $route.current.params.postname
-				if wordpress?.language?.others? then for l in wordpress?.language?.others
+				if wordpress.language?.others? then for l in wordpress.language.others
 					$routeProvider.when "/#{l}#{postType}",
 						templateUrl: "#{wordpress.templateUrl}/views/post.html"
 						controller: 'PostCtrl'
@@ -41,7 +41,7 @@ angular.module('App', ['ngRoute', 'ngResource'])
 									slug: $route.current.params.postname
 
 		# Post will have a $routeParams.postname parameter
-		$routeProvider.when (wordpress?.rewriteRules?.post or '/post/:postname'),
+		$routeProvider.when (wordpress.rewriteRules?.post or '/post/:postname'),
 			templateUrl: "#{wordpress.templateUrl}/views/post.html"
 			controller: 'PostCtrl'
 			resolve:
@@ -49,8 +49,8 @@ angular.module('App', ['ngRoute', 'ngResource'])
 					wordpressApi.getPostPromise
 						slug: $route.current.params.postname
 
-		if wordpress?.language?.others? then for l in wordpress?.language?.others
-			$routeProvider.when "/#{l}" + (wordpress?.rewriteRules?.post or '/post/:postname'),
+		if wordpress.language?.others? then for l in wordpress.language.others
+			$routeProvider.when "/#{l}" + (wordpress.rewriteRules?.post or '/post/:postname'),
 				templateUrl: "#{wordpress.templateUrl}/views/post.html"
 				controller: 'PostCtrl'
 				resolve:
@@ -60,8 +60,8 @@ angular.module('App', ['ngRoute', 'ngResource'])
 							slug: $route.current.params.postname
 
 		# Pages will have a $routeParams.pagename parameter
-		if wordpress?.language?.others? then for l in wordpress?.language?.others
-			$routeProvider.when "/#{l}" + (wordpress?.rewriteRules?.page or '/:pagename/'),
+		if wordpress.language?.others? then for l in wordpress.language.others
+			$routeProvider.when "/#{l}" + (wordpress.rewriteRules?.page or '/:pagename/'),
 				templateUrl: "#{wordpress.templateUrl}/views/page.html"
 				controller: 'PageCtrl'
 				resolve:
@@ -70,7 +70,7 @@ angular.module('App', ['ngRoute', 'ngResource'])
 							lang: l
 							slug: $route.current.params.pagename
 
-		$routeProvider.when (wordpress?.rewriteRules?.page or '/:pagename/'),
+		$routeProvider.when (wordpress.rewriteRules?.page or '/:pagename/'),
 			templateUrl: "#{wordpress.templateUrl}/views/page.html"
 			controller: 'PageCtrl'
 			resolve:

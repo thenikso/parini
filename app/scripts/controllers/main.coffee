@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('App')
-	.controller 'MainCtrl', ($scope, $location) ->
+	.controller 'MainCtrl', ($scope, $location, wordpress) ->
 		# Language
 		urlRegExp = /^([^#]*?:\/\/.*?)(\/.*)?$/
 		urlRegExp.compile?(urlRegExp)
@@ -12,7 +12,7 @@ angular.module('App')
 				return "#{r[1]}/#{$scope.lang.code}#{r[2] ? ''}" if r = urlRegExp.exec(ref)
 				"/#{$scope.lang.code}#{ref}"
 		$scope.$on '$routeChangeSuccess', ->
-			if (lang = $location.path().substr(1,2)) in wordpress?.language?.others
+			if (lang = $location.path().substr(1,2)) in wordpress.language?.others
 				$scope.lang.code = lang
 			else
 				$scope.lang.code = null
