@@ -23,6 +23,42 @@ function parini_setup() {
 }
 add_action( 'init', 'parini_setup' );
 
+// Rewrite rules to build angular routing
+function ng_rewrite_rules() {
+	global $wp_rewrite;
+	$rules = array();
+	$paramRegexp = '/%([a-z\-]+)%/i';
+	$paramReplace = ':$1';
+	function addLeadingSlash($value) {
+		if (substr($value, 0, 1) != '/') $value = '/' . $value;
+		return $value;
+	}
+	// Post
+	$rules['post'] = addLeadingSlash(preg_replace($paramRegexp, $paramReplace, get_option('permalink_structure')));
+	// Page
+	$rules['page'] = addLeadingSlash(preg_replace($paramRegexp, $paramReplace, $wp_rewrite->get_page_permastruct()));
+	// Custom post types
+	$postType = array();
+	foreach (get_post_types(array('_builtin' => false)) as $post_type) {
+		$postType[$post_type] = addLeadingSlash(preg_replace($paramRegexp, ':postname', $wp_rewrite->get_extra_permastruct($post_type)));
+	}
+	if (count($postType)) $rules['postTypes'] = $postType;
+	return json_encode($rules);
+}
+
+//
+function ng_sitepress_languages() {
+	global $sitepress;
+	if (!$sitepress) {
+		return 'null';
+	}
+	$languages = array();
+	foreach ($sitepress->get_active_languages() as $lang) {
+		$languages[] = $lang['code'];
+	}
+	return json_encode($languages);
+}
+
 // Output data only if JSON API plugin is installed and active
 if (class_exists("JSON_API_Post")) {
 

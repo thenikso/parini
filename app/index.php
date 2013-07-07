@@ -87,6 +87,8 @@
 		<script type="text/javascript">
 		window.wordpress = {
 			templateUrl: "<?php echo get_template_directory_uri() ?>",
+			rewriteRules: <?php echo ng_rewrite_rules(); ?>,
+			languages: <?php echo ng_sitepress_languages(); ?>,
 			data: <?php echo ng_current_page_data(); ?>
 		};
 		</script>
