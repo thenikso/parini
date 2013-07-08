@@ -18,11 +18,6 @@ angular.module('App')
 		$scope.$on '$viewContentLoaded', ->
 			$scope.loader.loading = no
 
-		# Menu functions
-		$scope.siteMenu =
-			activeClass: (url) ->
-				'active' if $location.absUrl().indexOf(url) >= 0
-
 	.animation 'view-animation-leave', ->
 		setup: (el) ->
 			scrollTop = $(document).scrollTop()

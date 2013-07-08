@@ -51,7 +51,7 @@
 
 							foreach ( (array) $menu_items as $key => $menu_item ) {
 								$url = $menu_item->url;
-								$menu_list .= '<li ng-class="siteMenu.activeClass(\'' . $url . '\')"><a wp-href="' . $url . '">' . $menu_item->title . '</a></li>';
+								$menu_list .= '<li wp-href-active-class><a wp-href="' . $url . '">' . $menu_item->title . '</a></li>';
 							}
 							$menu_list .= '</ul>';
 						} else {
