@@ -6,7 +6,7 @@ angular.module('App', ['ngRoute', 'ngResource'])
 			templateUrl: "#{wordpress.templateUrl}/views/home.html"
 			controller: 'HomeCtrl'
 			resolve:
-				posts: (wordpressApi) ->
+				wordpressData: (wordpressApi) ->
 					wordpressApi.getPostsPromise {}
 
 		# Account for different languages
@@ -15,7 +15,7 @@ angular.module('App', ['ngRoute', 'ngResource'])
 				templateUrl: "#{wordpress.templateUrl}/views/home.html"
 				controller: 'HomeCtrl'
 				resolve:
-					posts: (wordpressApi) ->
+					wordpressData: (wordpressApi) ->
 						wordpressApi.getPostsPromise
 							lang: l
 
@@ -27,7 +27,7 @@ angular.module('App', ['ngRoute', 'ngResource'])
 					templateUrl: "#{wordpress.templateUrl}/views/post.html"
 					controller: 'PostCtrl'
 					resolve:
-						post: ($route, wordpressApi) ->
+						wordpressData: ($route, wordpressApi) ->
 							wordpressApi.getPostPromise
 								slug: $route.current.params.postname
 				if wordpress.language?.others? then for l in wordpress.language.others
@@ -35,7 +35,7 @@ angular.module('App', ['ngRoute', 'ngResource'])
 						templateUrl: "#{wordpress.templateUrl}/views/post.html"
 						controller: 'PostCtrl'
 						resolve:
-							post: ($route, wordpressApi) ->
+							wordpressData: ($route, wordpressApi) ->
 								wordpressApi.getPostPromise
 									lang: l
 									slug: $route.current.params.postname
@@ -45,7 +45,7 @@ angular.module('App', ['ngRoute', 'ngResource'])
 			templateUrl: "#{wordpress.templateUrl}/views/post.html"
 			controller: 'PostCtrl'
 			resolve:
-				post: ($route, wordpressApi) ->
+				wordpressData: ($route, wordpressApi) ->
 					wordpressApi.getPostPromise
 						slug: $route.current.params.postname
 
@@ -54,7 +54,7 @@ angular.module('App', ['ngRoute', 'ngResource'])
 				templateUrl: "#{wordpress.templateUrl}/views/post.html"
 				controller: 'PostCtrl'
 				resolve:
-					post: ($route, wordpressApi) ->
+					wordpressData: ($route, wordpressApi) ->
 						wordpressApi.getPostPromise
 							lang: l
 							slug: $route.current.params.postname
@@ -65,7 +65,7 @@ angular.module('App', ['ngRoute', 'ngResource'])
 				templateUrl: "#{wordpress.templateUrl}/views/page.html"
 				controller: 'PageCtrl'
 				resolve:
-					page: ($route, wordpressApi) ->
+					wordpressData: ($route, wordpressApi) ->
 						wordpressApi.getPagePromise
 							lang: l
 							slug: $route.current.params.pagename
@@ -74,7 +74,7 @@ angular.module('App', ['ngRoute', 'ngResource'])
 			templateUrl: "#{wordpress.templateUrl}/views/page.html"
 			controller: 'PageCtrl'
 			resolve:
-				page: ($route, wordpressApi) ->
+				wordpressData: ($route, wordpressApi) ->
 					wordpressApi.getPagePromise
 						slug: $route.current.params.pagename
 

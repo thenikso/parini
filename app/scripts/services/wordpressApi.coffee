@@ -8,9 +8,9 @@ wordpressApi = ($resource, $q, wordpress) ->
 	Page = $resource '/:lang/api/get_page', lang: null
 
 	# Utility function to generate promises methods
-	getPromiseFactory = (Api, dataTrans, check=->yes) -> (opts) ->
+	getPromiseFactory = (Api, check=->yes) -> (opts) ->
 		deferred = $q.defer()
-		if (data = wordpress.data)? and (data = dataTrans(data))? and check(data, opts)
+		if (data = wordpress.data)? and check(data, opts)
 			console.log 'cached'
 			wordpress.data = null
 			deferred.resolve data
@@ -18,7 +18,7 @@ wordpressApi = ($resource, $q, wordpress) ->
 			console.log 'fetched'
 			Api.get opts
 			, (data) ->
-				if (data = dataTrans(data))?
+				if check(data, opts)
 					deferred.resolve data
 				else
 					deferred.resolve null
@@ -32,9 +32,9 @@ wordpressApi = ($resource, $q, wordpress) ->
 		getPost: Post.get
 		getPage: Page.get
 
-		getPostsPromise: getPromiseFactory Posts, ((data) -> data?.posts)
-		getPostPromise: getPromiseFactory Post, ((data) -> data?.post), ((post, opts) -> post.slug is opts.slug)
-		getPagePromise: getPromiseFactory Page, ((data) -> data?.page), ((page, opts) -> page.slug is opts.slug)
+		getPostsPromise: getPromiseFactory Posts
+		getPostPromise: getPromiseFactory Post, (data, opts) -> data.post?.slug is opts.slug
+		getPagePromise: getPromiseFactory Page, (data, opts) -> data.page?.slug is opts.slug
 	}
 wordpressApi.$inject = ['$resource', '$q', 'wordpress']
 
