@@ -17,6 +17,7 @@
 .loader-animation-hide {
 	@include transition-property(top);
 	@include transition-duration(1.5s);
+	@include transition-timing-function(ease-in-out);
 	top: 0%;
 
 	&.loader-animation-hide-active {
