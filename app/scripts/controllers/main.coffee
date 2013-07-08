@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('App')
-	.controller 'MainCtrl', ($scope, $location, wordpress) ->
+	.controller 'MainCtrl', ($scope, $rootScope, $location, wordpress) ->
 		# Language
 		# The current language code is extrapolated from the current location path
 		# as the first 2 letters of the path component.
@@ -14,12 +14,11 @@ angular.module('App')
 				$scope.lang = null
 
 		# Loading control
-		$scope.loader = {}
-		$scope.loader.loading = yes
-		$scope.$on '$routeChangeStart', ->
-			$scope.loader.loading = yes
-		$scope.$on '$viewContentLoaded', ->
-			$scope.loader.loading = no
+		$rootScope.loading = yes
+		$rootScope.$on '$routeChangeStart', ->
+			$rootScope.loading = yes
+		$rootScope.$on '$viewContentLoaded', ->
+			$rootScope.loading = no
 
 	.animation 'view-animation-leave', ->
 		setup: (el) ->
