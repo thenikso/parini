@@ -25,16 +25,24 @@ angular.module('App')
 		restrict: 'A'
 		controller: ->
 			@lang = null
-			@refs = []
-			@updateAllRefs = ->
-				for attrs in @refs
+			@allWpHrefAttrs = []
+			@allWpHrefActiveClass = []
+			@updateAllHref = ->
+				for attrs in @allWpHrefAttrs
 					url = localizedUrl(attrs.wpHref, @lang)
 					attrs.$set 'href', url
+			@updateAllActiveClass = ->
+				for c in @allWpHrefActiveClass
+					c.checkActive()
 		link: (scope, element, attrs, controller) ->
-			scope.$watch attrs.wpHrefLang, (lang) ->
-				# Update all wpHref on lang change
+			# Update all wpHref on lang change
+			attrs.$observe 'wpHrefLang', (lang) ->
 				controller.lang = lang
-				controller.updateAllRefs()
+				controller.updateAllHref()
+				controller.updateAllActiveClass()
+			# Watch route change to update active classes
+			scope.$on '$routeChangeSuccess', ->
+				controller.updateAllActiveClass()
 
 	# If present, will add the specified CSS class (default to `active`) on the
 	# element when the current location is the localized href of the element
@@ -45,7 +53,7 @@ angular.module('App')
 			@wpHrefAttrs = null
 			@cssClass = 'active'
 			@checkActive = (url) ->
-				return unless url
+				return unless (url or= @wpHrefAttrs.wpHref)
 				currentLocation = $location.absUrl() + '/'
 				if currentLocation.indexOf(url) >= 0
 					$element.addClass(@cssClass)
@@ -53,8 +61,6 @@ angular.module('App')
 					$element.removeClass(@cssClass)
 		link: (scope, element, attrs, controller) ->
 			controller.cssClass = c if (c = attrs.wpHrefActiveClass)
-			scope.$on '$routeChangeSuccess', ->
-				controller.checkActive(controller.wpHrefAttrs.wpHref) if controller.wpHrefAttrs?
 
 	# With a wpHrefLang present, interpolate and localize the href of the element.
 	.directive 'wpHref', ->
@@ -62,8 +68,10 @@ angular.module('App')
 		require: ['^wpHrefLang', '^?wpHrefActiveClass']
 		priority: 99
 		link: (scope, element, attrs, controllers) ->
-			controllers[0].refs.push attrs
-			controllers[1]?.wpHrefAttrs = attrs
+			controllers[0].allWpHrefAttrs.push attrs
+			if controllers[1]?
+				controllers[0].allWpHrefActiveClass.push controllers[1]
+				controllers[1]?.wpHrefAttrs = attrs
 			attrs.$observe 'wpHref', (url) ->
 				# Update URL on interpolation change
 				url = localizedUrl(url, controllers[0].lang)
