@@ -64,7 +64,7 @@
 				</nav>
 			</header>
 
-			<div id="site-loader" ng-show="loader.loading" ng-animate="'loader-animation'">
+			<div id="site-loader" ng-show="loading" ng-animate="'loader-animation'">
 				<center style="margin-top:100px">
 					<div class="loader rspin">
 						<span class="c"></span>

@@ -20,6 +20,7 @@ angular.module('App')
 		$rootScope.$on '$viewContentLoaded', ->
 			$rootScope.loading = no
 
+	# Animation to give the appearance of the content to fall down
 	.animation 'view-animation-leave', ->
 		setup: (el) ->
 			scrollTop = $(document).scrollTop()
