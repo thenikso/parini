@@ -1152,12 +1152,13 @@
 
 // Background color for the top bar
 
-// $topbar-bg: #111;
+$topbar-bg: #111;
 
 // Height and margin
 
-// $topbar-height: 45px;
-// $topbar-margin-bottom: emCalc(30px);
+$topbar-height: 60px;
+$topbar-breakpoint-height: 44px;
+$topbar-margin-bottom: 0;
 
 // Input height for top bar
 
@@ -1171,9 +1172,13 @@
 // Link colors and styles for top-level nav
 
 // $topbar-link-color: #fff;
+$topbar-link-color-hover: $topbar-bg;
+$topbar-link-color-active: $topbar-bg;
 // $topbar-link-weight: bold;
 // $topbar-link-font-size: emCalc(13px);
-// $topbar-link-hover-lightness: -30% !default; // Darken by 30%
+// $topbar-link-hover-lightness: -30%; /* Darken by 30% */
+$topbar-link-bg-hover: white;
+$topbar-link-bg-active: white;
 
 // Top bar dropdown elements
 
@@ -1197,5 +1202,5 @@
 // Transitions and breakpoint styles
 
 // $topbar-transition-speed: 300ms;
-// $topbar-breakpoint: emCalc(940px); // Change to 9999px for always mobile layout
+$topbar-breakpoint: 768; // Change to 9999px for always mobile layout
 // $topbar-media-query: "only screen and (min-width: "#{$topbar-breakpoint}")";

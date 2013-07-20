@@ -43,6 +43,20 @@
 		&.expanded {
 			max-height: 600px;
 		}
+
+		@media only screen and (max-width: #{$topbar-breakpoint}px) {
+			// height: $topbar-breakpoint-height;
+			line-height: $topbar-breakpoint-height;
+			max-height: $topbar-breakpoint-height;
+
+			.name {
+				height: $topbar-breakpoint-height;
+
+				h1 {
+					line-height: $topbar-breakpoint-height;
+				}
+			}
+		}
 	}
 }
 
