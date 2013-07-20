@@ -307,9 +307,8 @@ module.exports = function (grunt) {
     'concurrent:dist',
     'concat',
     'copy',
-    'cdnify',
     'ngmin',
-    'uglify'
+    // 'uglify'
   ]);
 
   grunt.registerTask('default', [

@@ -2,9 +2,11 @@
 <!--[if lte IE 8]>      <html id="ng-app" ng-app="App" class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html ng-app="App" class="no-js"> <!--<![endif]-->
 	<head>
+		<?php if ($_SERVER['HTTP_HOST'] != 'localhost'): ?><base href="/parini/" /><?php endif; ?>
+
 		<title><?php wp_title( '|', true, 'right' ); ?></title>
 
-		<meta name="viewport" content="width=device-width;initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<?php if (is_home()): ?><meta name="fragment" content="!"><?php endif; ?>
 
 		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css">
