@@ -32,6 +32,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #site-header {
+	@extend .fixed;
+
 	.top-bar {
 		@include transition-property(max-height);
 		@include transition-duration(1s);
