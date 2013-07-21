@@ -44,7 +44,7 @@
 			max-height: 600px;
 		}
 
-		@media only screen and (max-width: #{$topbar-breakpoint}px) {
+		@media only screen and (max-width: #{$topbar-breakpoint}) {
 			// height: $topbar-breakpoint-height;
 			line-height: $topbar-breakpoint-height;
 			max-height: $topbar-breakpoint-height;
@@ -56,6 +56,15 @@
 					line-height: $topbar-breakpoint-height;
 				}
 			}
+		}
+	}
+
+	.top-bar-section li a:not(.button) {
+		@include transition-property(line-height);
+		@include transition-duration(1s);
+
+		@media only screen and (max-width: #{$topbar-breakpoint}) {
+			line-height: $topbar-breakpoint-height;
 		}
 	}
 }

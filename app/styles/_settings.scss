@@ -1152,7 +1152,7 @@
 
 // Background color for the top bar
 
-$topbar-bg: #111;
+$topbar-bg: #616161;
 
 // Height and margin
 
@@ -1202,5 +1202,5 @@ $topbar-link-bg-active: white;
 // Transitions and breakpoint styles
 
 // $topbar-transition-speed: 300ms;
-$topbar-breakpoint: 768; // Change to 9999px for always mobile layout
+$topbar-breakpoint: 768px; // Change to 9999px for always mobile layout
 // $topbar-media-query: "only screen and (min-width: "#{$topbar-breakpoint}")";
