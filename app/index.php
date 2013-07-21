@@ -50,7 +50,7 @@
 
 							$menu_items = wp_get_nav_menu_items($menu->term_id);
 
-							$menu_list = '<ul id="menu-' . $menu_name . '" class="left">';
+							$menu_list = '<ul id="' . $menu_name . '-menu" class="left">';
 
 							foreach ( (array) $menu_items as $key => $menu_item ) {
 								$url = $menu_item->url;
@@ -63,6 +63,13 @@
 
 						echo $menu_list;
 					?>
+					<ul id="secondary-menu" class="right">
+						<li><a href="" class="social-link twitter">Twitter</a></li>
+						<li><a href="" class="social-link facebook">Facebook</a></li>
+						<li><a href="" class="social-link instagram">Instagram</a></li>
+						<li><a wp-href-change lang="en" ng-if="lang!='en'">Eng</a></li>
+						<li><a wp-href-change lang="it" ng-if="lang">Ita</a></li>
+					</ul>
 					</section>
 				</nav>
 			</header>

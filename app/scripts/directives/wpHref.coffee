@@ -1,11 +1,10 @@
 'use strict'
 
-urlRegExp = /^([^#]*?:\/\/.*?)(\/.*)?$/
+urlRegExp = /^([^#]*?:\/\/.*?)(?:\/([a-z]{2})(?=\/))?(\/.*)?$/
 urlRegExp.compile?(urlRegExp)
 localizedUrl = (url, lang) ->
-	# TODO handle lang already present in url
 	return url unless lang
-	return "#{r[1]}/#{lang}#{r[2] ? ''}" if r = urlRegExp.exec(url)
+	return "#{r[1]}/#{lang}#{r[3] ? ''}" if r = urlRegExp.exec(url)
 	"/#{lang}#{url}"
 
 setWpHref = (attrs, controller, value) ->
@@ -23,10 +22,11 @@ angular.module('App')
 	# The code will be used by the other directive wpHref to localize the href.
 	.directive 'wpHrefLang', ->
 		restrict: 'A'
-		controller: ->
+		controller: ($location) ->
 			@lang = null
 			@allWpHrefAttrs = []
 			@allWpHrefActiveClass = []
+			@allWpHrefChange = []
 			@updateAllHref = ->
 				for attrs in @allWpHrefAttrs
 					url = localizedUrl(attrs.wpHref, @lang)
@@ -34,6 +34,10 @@ angular.module('App')
 			@updateAllActiveClass = ->
 				for c in @allWpHrefActiveClass
 					c.checkActive()
+			@updateAllHrefChange = ->
+				for attrs in @allWpHrefChange
+					url = localizedUrl attrs.wpHrefChange or $location.absUrl(), attrs.lang
+					attrs.$set 'href', url
 		link: (scope, element, attrs, controller) ->
 			# Update all wpHref on lang change
 			attrs.$observe 'wpHrefLang', (lang) ->
@@ -43,6 +47,7 @@ angular.module('App')
 			# Watch route change to update active classes
 			scope.$on '$routeChangeSuccess', ->
 				controller.updateAllActiveClass()
+				controller.updateAllHrefChange()
 
 	# If present, will add the specified CSS class (default to `active`) on the
 	# element when the current location is the localized href of the element
@@ -74,7 +79,20 @@ angular.module('App')
 				controllers[1]?.wpHrefAttrs = attrs
 			attrs.$observe 'wpHref', (url) ->
 				# Update URL on interpolation change
-				url = localizedUrl(url, controllers[0].lang)
+				url = localizedUrl url, controllers[0].lang
 				attrs.$set 'href', url
 				# Update active state on iterpolation change
 				controllers[1]?.checkActive(url)
+
+	.directive 'wpHrefChange', ($location) ->
+		restrict: 'A'
+		require: '^wpHrefLang'
+		priority: 99
+		link: (scope, element, attrs, controller) ->
+			return unless attrs.lang?
+			controller.allWpHrefChange.push attrs
+			attrs.$observe 'wpHrefChange', (url) ->
+				url = $location.absUrl() unless url
+				url = localizedUrl url, attrs.lang
+				attrs.$set 'href', url
+
