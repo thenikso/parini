@@ -86,5 +86,4 @@ angular.module('App', ['ngRoute', 'ngResource', 'wu.masonry'])
 		$locationProvider.html5Mode(yes).hashPrefix('!')
 
 # Run foundation
-$ ->
-	$(document).foundation()
+$(document).foundation('topbar')
