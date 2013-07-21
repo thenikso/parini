@@ -22,7 +22,7 @@
 
 // $body-bg: #fff;
 // $body-font-color: #222;
-// $body-font-family: "Lato", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$body-font-family: 'Quicksand', sans-serif;
 // $body-font-weight: 300;
 // $body-font-style: normal;
 
@@ -118,9 +118,9 @@
 
 // Heading font styles
 
-// $header-font-family: "Lato", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-// $header-font-weight: bold;
-// $header-font-style: normal;
+$header-font-family: 'Arapey', serif;
+$header-font-weight: normal;
+$header-font-style: italic;
 // $header-font-color: #222;
 // $header-line-height: 1.4;
 // $header-top-margin: .2em;
@@ -1156,8 +1156,7 @@ $topbar-bg: #616161;
 
 // Height and margin
 
-$topbar-height: 60px;
-$topbar-breakpoint-height: 44px;
+$topbar-height: 48px;
 $topbar-margin-bottom: 0;
 
 // Input height for top bar
@@ -1174,7 +1173,7 @@ $topbar-margin-bottom: 0;
 // $topbar-link-color: #fff;
 $topbar-link-color-hover: $topbar-bg;
 $topbar-link-color-active: $topbar-bg;
-// $topbar-link-weight: bold;
+$topbar-link-weight: 300;
 // $topbar-link-font-size: emCalc(13px);
 // $topbar-link-hover-lightness: -30%; /* Darken by 30% */
 $topbar-link-bg-hover: white;
