@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('App', ['ngRoute', 'ngResource'])
+angular.module('App', ['ngRoute', 'ngResource', 'wu.masonry'])
 	.config ($routeProvider, $locationProvider, wordpress) ->
 		$routeProvider.when '/',
 			templateUrl: "#{wordpress.templateUrl}/views/home.html"

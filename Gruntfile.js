@@ -169,8 +169,22 @@ module.exports = function (grunt) {
       dist: {
         files: {
           '<%= yeoman.dist %>/script.js': [
+            '<%= yeoman.app %>/bower_components/eventEmitter/EventEmitter.js',
+            '<%= yeoman.app %>/bower_components/eventie/eventie.js',
+            '<%= yeoman.app %>/bower_components/matches-selector/matches-selector.js',
+            '<%= yeoman.app %>/bower_components/doc-ready/doc-ready.js',
+            '<%= yeoman.app %>/bower_components/get-style-property/get-style-property.js',
+            '<%= yeoman.app %>/bower_components/get-size/get-size.js',
+            '<%= yeoman.app %>/bower_components/jquery-bridget/jquery.bridget.js',
+            '<%= yeoman.app %>/bower_components/outlayer/item.js',
+            '<%= yeoman.app %>/bower_components/outlayer/outlayer.js',
+            '<%= yeoman.app %>/bower_components/imagesloaded/imagesloaded.js',
+            '<%= yeoman.app %>/bower_components/masonry/masonry.js',
+
             '<%= yeoman.app %>/angular/angular.js',
             '<%= yeoman.app %>/angular/modules/{,*/}*.js',
+            '<%= yeoman.app %>/bower_components/angular-masonry/angular-masonry.js',
+
             '.tmp/scripts/{,*/}*.js',
             '<%= yeoman.app %>/scripts/{,*/}*.js'
           ],

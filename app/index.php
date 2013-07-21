@@ -1,5 +1,5 @@
 <!doctype html>
-<!--[if lte IE 8]>      <html id="ng-app" ng-app="App" class="no-js lt-ie9"> <![endif]-->
+<!--[if lte IE 8]>     <html id="ng-app" ng-app="App" class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html ng-app="App" class="no-js"> <!--<![endif]-->
 	<head>
 		<?php if ($_SERVER['HTTP_HOST'] != 'localhost'): ?><base href="/parini/" /><?php endif; ?>
