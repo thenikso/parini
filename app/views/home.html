@@ -1,1 +1,23 @@
-<p>Home</p>
+<section class="slogan" parallax-box>
+	<img class="slogan-background" src="http://lorempixel.com/600/300/city/1" parallax-multiplier="0.5">
+	<article class="slogan-content">
+		<div class="row">
+			<div class="small-12 columns">
+				<h1 class="slogan-title"><span>Parini-Associati &egrave; un'agenzia</span><br><span>di PR con sede a Milano</span></h1>
+			</div>
+		</div>
+	</article>
+	<a href="" class="slogan-scroll-link">Recent News</a>
+</section>
+
+<div class="row">
+	<div class="small-12 columns">
+		<section class="post-wall" masonry column-width=".grid-sizer">
+			<div class="grid-sizer" style="width:33.333%"></div>
+			<article class="post masonry-brick" ng-repeat="post in posts">
+				<h3 ng-bind="post.title"></h3>
+				<div class="content" ng-bind-html-unsafe="post.content"></div>
+			</article>
+		</section>
+	</div>
+</div>

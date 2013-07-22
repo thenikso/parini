@@ -1,0 +1,56 @@
+/** Slogan */
+
+.slogan {
+	color: white;
+	min-height: 650px;
+	overflow: hidden;
+	position: relative;
+}
+
+.slogan-background {
+		display: block;
+		height: auto;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+	}
+
+.slogan-content {
+	height: 11em;
+	left: 0;
+	margin-top: -5.5em;
+	position: absolute;
+	top: 50%;
+	width: 100%;
+}
+
+.slogan-title {
+	@include text-shadow(rgba(black, 0.5) 0 0 5px);
+	color: white;
+	text-align: center;
+	font-size: 3.3em;
+}
+
+.slogan-scroll-link {
+	bottom: 0;
+	color: white;
+	display: block;
+	font-size: 1.5em;
+	font-weight: bold;
+	left: 0;
+	margin-bottom: 15px;
+	padding-bottom: 45px;
+	position: absolute;
+	text-align: center;
+	text-transform: uppercase;
+	width: 100%;
+}
+
+/** Post Wall */
+
+.post-wall {
+	.post {
+		width: 33.3333%;
+	}
+}
