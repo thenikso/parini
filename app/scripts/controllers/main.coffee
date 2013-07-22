@@ -2,6 +2,10 @@
 
 angular.module('App')
 	.controller 'MainCtrl', ($scope, $rootScope, $location, wordpress) ->
+		# Specify body classes
+		$scope.body =
+			classes: []
+
 		# Language
 		# The current language code is extrapolated from the current location path
 		# as the first 2 letters of the path component.
