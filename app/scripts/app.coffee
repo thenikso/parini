@@ -7,7 +7,7 @@ angular.module('App', ['ngRoute', 'ngResource', 'wu.masonry'])
 			controller: 'HomeCtrl'
 			resolve:
 				wordpressData: (wordpressApi) ->
-					wordpressApi.getPostsPromise {}
+					wordpressApi.getRecentPostsPromise {}
 
 		# Account for different languages
 		if wordpress.language?.others? then for l in wordpress.language.others
@@ -16,7 +16,7 @@ angular.module('App', ['ngRoute', 'ngResource', 'wu.masonry'])
 				controller: 'HomeCtrl'
 				resolve:
 					wordpressData: (wordpressApi) ->
-						wordpressApi.getPostsPromise
+						wordpressApi.getRecentPostsPromise
 							lang: l
 
 		# Custom post types will have a $routeParams.postname parameter

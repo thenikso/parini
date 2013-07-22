@@ -3,6 +3,7 @@
 # AngularJS will instantiate a singleton by calling "new" on this function
 wordpressApi = ($resource, $q, wordpress) ->
 	# API resources
+	RecentPosts = $resource '/:lang/api/get_recent_posts', lang: null
 	Posts = $resource '/:lang/api/get_posts', lang: null
 	Post = $resource '/:lang/api/get_post', lang: null
 	Page = $resource '/:lang/api/get_page', lang: null
@@ -28,15 +29,16 @@ wordpressApi = ($resource, $q, wordpress) ->
 
 	# Service interface
 	return {
+		getRecentPosts: RecentPosts.get
 		getPosts : Posts.get
 		getPost: Post.get
 		getPage: Page.get
 
+		getRecentPostsPromise: getPromiseFactory RecentPosts
 		getPostsPromise: getPromiseFactory Posts
 		getPostPromise: getPromiseFactory Post, (data, opts) -> data.post?.slug is opts.slug
 		getPagePromise: getPromiseFactory Page, (data, opts) -> data.page?.slug is opts.slug
 	}
 wordpressApi.$inject = ['$resource', '$q', 'wordpress']
-
 
 angular.module('App').service 'wordpressApi', wordpressApi
