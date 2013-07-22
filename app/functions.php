@@ -20,6 +20,9 @@ function parini_setup() {
 			'public' => true,
 		)
 	);
+
+	// Adding post thumbnail support
+	add_theme_support( 'post-thumbnails' );
 }
 add_action( 'init', 'parini_setup' );
 
