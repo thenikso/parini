@@ -8,9 +8,9 @@ angular.module('App')
 			@scheduleRelayout = ->
 				return if @relayoutScheduled or not @masonry?
 				@relayoutScheduled = yes
-				setTimeout (=>
+				setTimeout =>
 					@relayoutScheduled = no
-					do @masonry.layout), 0
+					do @masonry.layout
 			@masonry = null
 			@createMasonry = ->
 				return if @masonry?
@@ -40,7 +40,7 @@ angular.module('App')
 				callback.image = new Image
 				callback.image.onload = callback.image.onerror = ->
 					if images.length
-						checkImages()
+						setTimeout checkImages
 					else
 						deferred.resolve()
 				checkImages = ->
@@ -50,7 +50,7 @@ angular.module('App')
 				else for i in element.children().find('img')
 					images.push i.attr('src')
 				if images.length
-					checkImages()
+					setTimeout checkImages
 				else
 					deferred.resolve()
 				deferred.promise
