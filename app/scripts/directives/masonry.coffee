@@ -20,6 +20,7 @@ angular.module('App')
 				}
 				return unless $element.children().hasClass(options.itemSelector.substr(1))
 				@masonry = new Masonry $element.get(0), options
+				scheduleRelayout @masonry
 			@appendBrick = (element, testImages=yes) ->
 				@createMasonry()
 				return if @masonry?.getItem(element.get(0))?
