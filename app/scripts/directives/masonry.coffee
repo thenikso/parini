@@ -4,13 +4,13 @@ angular.module('App')
 	.directive 'masonry', ->
 		restrict: 'EA'
 		controller: ($scope, $element, $attrs) ->
-			relayoutScheduled = no
-			scheduleRelayout = (masonry) ->
-				return if relayoutScheduled or not masonry?
-				relayoutScheduled = yes
-				setTimeout (->
-					relayoutScheduled = no
-					masonry.layout()), 0
+			@relayoutScheduled = no
+			@scheduleRelayout = ->
+				return if @relayoutScheduled or not @masonry?
+				@relayoutScheduled = yes
+				setTimeout (=>
+					@relayoutScheduled = no
+					do @masonry.layout), 0
 			@masonry = null
 			@createMasonry = ->
 				return if @masonry?
@@ -20,7 +20,7 @@ angular.module('App')
 				}
 				return unless $element.children().hasClass(options.itemSelector.substr(1))
 				@masonry = new Masonry $element.get(0), options
-				scheduleRelayout @masonry
+				do @scheduleRelayout
 			@appendBrick = (element, testImages=yes) ->
 				@createMasonry()
 				return if @masonry?.getItem(element.get(0))?
@@ -28,16 +28,18 @@ angular.module('App')
 					element.imagesLoaded => @appendBrick element, no
 					return
 				@masonry?.appended element.get(0), yes
-				scheduleRelayout @masonry
+				do @scheduleRelayout
 			@removeBrick = (element) ->
 				@masonry?.remove element.get(0)
-				scheduleRelayout @masonry
+				do @scheduleRelayout
 			@destroy = ->
 				@masonry?.destroy()
 				@masonry = null
 			@
 		link: (scope, element, attrs, controller) ->
 			controller.createMasonry()
+			if $?.fn?.imagesLoaded?
+				element.imagesLoaded()
 			scope.$on '$destroy', controller.destroy
 
 	.directive 'masonryBrick', ->
@@ -48,3 +50,15 @@ angular.module('App')
 			controller.appendBrick element
 			scope.$on '$destroy', ->
 				controller.removeBrick element
+
+	.directive 'masonryLayoutOn', ->
+		priority: -1
+		restrict: 'A'
+		require: '^masonry'
+		link: (scope, element, attrs, controller) ->
+			scope.$watch attrs.masonryLayoutOn, ->
+				if $?.fn?.imagesLoaded? and element.find('img').length
+					element.imagesLoaded ->
+						do controller.scheduleRelayout
+					return
+				do controller.scheduleRelayout
