@@ -12,11 +12,9 @@ wordpressApi = ($resource, $q, wordpress) ->
 	getPromiseFactory = (Api, check=->yes) -> (opts) ->
 		deferred = $q.defer()
 		if (data = wordpress.data)? and check(data, opts)
-			console.log 'cached'
 			wordpress.data = null
 			deferred.resolve data
 		else
-			console.log 'fetched'
 			Api.get opts
 			, (data) ->
 				if check(data, opts)
