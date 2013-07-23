@@ -50,8 +50,58 @@
 /** Post Wall */
 
 .post-wall {
+	margin: $column-gutter ($column-gutter/2);
+
 	.grid-sizer,
+	.masonry-brick {
+		width: 25%;
+	}
+
+	.masonry-brick {
+		padding: 0 ($column-gutter/2) ($column-gutter/2);
+	}
+
 	.post {
-		width: 33.333%;
+		&:after {
+			color: $header-font-color;
+			content: '•';
+			display: block;
+			font-size: 1.5em;
+			text-align: center;
+		}
+	}
+
+	.post-meta {
+		color: $subheader-font-color;
+		font-size: 0.8em;
+
+		a {
+			color: $subheader-font-color;
+		}
+	}
+
+	.post-category-icon {
+		background: lightgray;
+		float: right;
+		height: 24px;
+		width: 24px;
+	}
+
+	.post-title {
+		font-family: inherit;
+		font-size: 1.2em;
+		font-style: normal;
+		font-weight: bold;
+		text-transform: uppercase;
+	}
+
+	.post-thumbnail {
+		width: 100%;
+		height: auto;
+		margin-bottom: 0.5em;
+	}
+
+	.post-link {
+		color: $body-font-color;
 	}
 }

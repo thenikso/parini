@@ -96,7 +96,7 @@ $body-font-family: 'Quicksand', sans-serif;
 //
 
 // $row-width: emCalc(1000px);
-// $column-gutter: emCalc(30px);
+$column-gutter: 30px;
 // $total-columns: 12;
 
 //
@@ -121,7 +121,7 @@ $body-font-family: 'Quicksand', sans-serif;
 $header-font-family: 'Arapey', serif;
 $header-font-weight: normal;
 $header-font-style: italic;
-// $header-font-color: #222;
+$header-font-color: #666;
 // $header-line-height: 1.4;
 // $header-top-margin: .2em;
 // $header-bottom-margin: .5em;
@@ -139,7 +139,7 @@ $header-font-style: italic;
 // Subheaders
 
 // $subheader-line-height: 1.4;
-// $subheader-font-color: lighten($header-font-color, 30%);
+$subheader-font-color: lighten($header-font-color, 40%);
 // $subheader-font-weight: 100;
 // $subheader-top-margin: .2em;
 // $subheader-bottom-margin: .5em;
