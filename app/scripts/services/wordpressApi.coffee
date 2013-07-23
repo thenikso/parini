@@ -8,17 +8,29 @@ wordpressApi = ($resource, $q, wordpress) ->
 	Post = $resource '/:lang/api/get_post', lang: null
 	Page = $resource '/:lang/api/get_page', lang: null
 
+	preparePost = (post) ->
+		post.date = new Date(post.date) if post?.date?
+		post
+
+	preparePostData = (data) ->
+		data.post = preparePost data.post
+		data
+
+	preparePostsData = (data) ->
+		data.posts = data.posts.map preparePost
+		data
+
 	# Utility function to generate promises methods
-	getPromiseFactory = (Api, check=->yes) -> (opts) ->
+	getPromiseFactory = (Api, prepare, check=->yes) -> (opts) ->
 		deferred = $q.defer()
 		if (data = wordpress.data)? and check(data, opts)
 			wordpress.data = null
-			deferred.resolve data
+			deferred.resolve prepare(data)
 		else
 			Api.get opts
 			, (data) ->
 				if check(data, opts)
-					deferred.resolve data
+					deferred.resolve prepare(data)
 				else
 					deferred.resolve null
 			, ->
@@ -27,15 +39,19 @@ wordpressApi = ($resource, $q, wordpress) ->
 
 	# Service interface
 	return {
+		preparePost: preparePost
+		preparePostData: preparePostData
+		preparePostsData: preparePostsData
+
 		getRecentPosts: RecentPosts.get
-		getPosts : Posts.get
+		getPosts: Posts.get
 		getPost: Post.get
 		getPage: Page.get
 
-		getRecentPostsPromise: getPromiseFactory RecentPosts
-		getPostsPromise: getPromiseFactory Posts
-		getPostPromise: getPromiseFactory Post, (data, opts) -> data.post?.slug is opts.slug
-		getPagePromise: getPromiseFactory Page, (data, opts) -> data.page?.slug is opts.slug
+		getRecentPostsPromise: getPromiseFactory RecentPosts, preparePostsData
+		getPostsPromise: getPromiseFactory Posts, preparePostsData
+		getPostPromise: getPromiseFactory Post, preparePostData, (data, opts) -> data.post?.slug is opts.slug
+		getPagePromise: getPromiseFactory Page, preparePostData, (data, opts) -> data.page?.slug is opts.slug
 	}
 wordpressApi.$inject = ['$resource', '$q', 'wordpress']
 
