@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('App')
-	.directive 'masonry', ->
+	.directive 'masonry', ($q) ->
 		restrict: 'EA'
 		controller: ($scope, $element, $attrs) ->
 			@relayoutScheduled = no
@@ -21,25 +21,42 @@ angular.module('App')
 				return unless $element.children().hasClass(options.itemSelector.substr(1))
 				@masonry = new Masonry $element.get(0), options
 				do @scheduleRelayout
-			@appendBrick = (element, testImages=yes) ->
+			@appendBrick = (element) ->
 				@createMasonry()
 				return if @masonry?.getItem(element.get(0))?
-				if testImages and $?.fn?.imagesLoaded? and element.find('img').length
-					element.imagesLoaded => @appendBrick element, no
-					return
-				@masonry?.appended element.get(0), yes
-				do @scheduleRelayout
+				@onImagesLoaded element, =>
+					@masonry?.appended element.get(0), yes
+					do @scheduleRelayout
 			@removeBrick = (element) ->
 				@masonry?.remove element.get(0)
 				do @scheduleRelayout
 			@destroy = ->
 				@masonry?.destroy()
 				@masonry = null
+			@onImagesLoaded = (element, callback) ->
+				deferred = $q.defer()
+				deferred.promise.then callback
+				images = []
+				callback.image = new Image
+				callback.image.onload = callback.image.onerror = ->
+					if images.length
+						checkImages()
+					else
+						deferred.resolve()
+				checkImages = ->
+					callback.image.src = images.pop()
+				if element.prop('tagName') is 'IMG'
+					images.push element.attr('src')
+				else for i in element.children().find('img')
+					images.push i.attr('src')
+				if images.length
+					checkImages()
+				else
+					deferred.resolve()
+				deferred.promise
 			@
 		link: (scope, element, attrs, controller) ->
 			controller.createMasonry()
-			if $?.fn?.imagesLoaded?
-				element.imagesLoaded()
 			scope.$on '$destroy', controller.destroy
 
 	.directive 'masonryBrick', ->
@@ -57,8 +74,6 @@ angular.module('App')
 		require: '^masonry'
 		link: (scope, element, attrs, controller) ->
 			scope.$watch attrs.masonryLayoutOn, ->
-				if $?.fn?.imagesLoaded? and element.find('img').length
-					element.imagesLoaded ->
-						do controller.scheduleRelayout
-					return
-				do controller.scheduleRelayout
+				controller.onImagesLoaded element, ->
+					controller.scheduleRelayout()
+
