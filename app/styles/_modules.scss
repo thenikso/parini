@@ -1,3 +1,7 @@
+/** Category Icon */
+@import "category-icon/*.png";
+@include all-category-icon-sprites;
+
 /** Slogan */
 
 .slogan {
@@ -89,10 +93,9 @@
 	}
 
 	.post-category-icon {
-		background: lightgray;
 		float: right;
-		height: 24px;
-		width: 24px;
+		height: 30px;
+		width: 30px;
 	}
 
 	.post-title {
