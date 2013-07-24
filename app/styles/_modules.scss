@@ -38,7 +38,8 @@ $category-icon-spacing: 1px;
 	font-size: 3.3em;
 }
 
-.slogan-scroll-link {
+a.slogan-scroll-link {
+	@include text-shadow(rgba(black, 0.5) 0 0 5px);
 	bottom: 0;
 	color: white;
 	display: block;

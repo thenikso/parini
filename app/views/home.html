@@ -7,10 +7,10 @@
 			</div>
 		</div>
 	</article>
-	<a href="" class="slogan-scroll-link">Recent News</a>
+	<a smooth-scroll target="home-post-wall" class="slogan-scroll-link hide-for-small">Recent News</a>
 </section>
 
-<section class="post-wall" masonry="{ columnWidth: '.grid-sizer' }">
+<section id="home-post-wall" class="post-wall" masonry="{ columnWidth: '.grid-sizer' }">
 	<div class="grid-sizer"></div>
 	<article class="post masonry-brick" ng-repeat="post in posts">
 		<header>
