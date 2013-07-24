@@ -14,13 +14,14 @@ $category-icon-spacing: 1px;
 }
 
 .slogan-background {
-		display: block;
-		height: auto;
-		left: 0;
-		position: absolute;
-		top: 0;
-		width: 100%;
-	}
+	left: 0;
+	max-width: none;
+	min-height: 100%;
+	min-width: 100%;
+	position: absolute;
+	text-align: center;
+	top: 0;
+}
 
 .slogan-content {
 	height: 11em;
