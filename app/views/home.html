@@ -16,8 +16,8 @@
 		<header>
 			<div class="post-meta">
 				<div class="post-category-icon" ng-if="post.categories.length" ng-class="'category-icon-'+post.categories[0].slug"></div>
-				<span ng-bind="post.date|date:'dd/MM/yyyy'"></span>
-				<span ng-if="post.categories.length">&ndash;
+				<span class="post-date" ng-bind="post.date|date:'dd/MM/yyyy'"></span>
+				<span class="post-categories" ng-if="post.categories.length">&ndash;
 					<span ng-repeat="category in post.categories">
 						<a ng-href="/topics/{{category.slug}}">{{category.title}}</a><span class="sep" ng-if="!$last">,</span>
 					</span>

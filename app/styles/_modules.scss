@@ -89,7 +89,9 @@ a.slogan-scroll-link {
 
 	.post-meta {
 		color: $subheader-font-color;
-		font-size: 0.8em;
+		font-size: 0.9em;
+		font-family: $header-font-family;
+		font-style: $header-font-style;
 
 		a {
 			color: $subheader-font-color;
@@ -100,6 +102,10 @@ a.slogan-scroll-link {
 		float: right;
 		height: 30px;
 		width: 30px;
+	}
+
+	.post-categories {
+		text-transform: lowercase;
 	}
 
 	.post-title {
