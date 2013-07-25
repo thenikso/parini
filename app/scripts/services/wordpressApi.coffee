@@ -9,7 +9,12 @@ wordpressApi = ($resource, $q, wordpress) ->
 	Page = $resource '/:lang/api/get_page', lang: null
 
 	preparePost = (post) ->
-		post.date = new Date(post.date) if post?.date?
+		if post?.date?
+			d = new Date(post.date)
+			if isNaN(d) and d = dateRegExp.exec(post.date)
+				d = d[1..].map (i) -> parseInt i, 10
+				d = new Date Date.UTC(d...)
+			post.date = d
 		post
 
 	preparePostData = (data) ->
@@ -54,5 +59,8 @@ wordpressApi = ($resource, $q, wordpress) ->
 		getPagePromise: getPromiseFactory Page, preparePostData, (data, opts) -> data.page?.slug is opts.slug
 	}
 wordpressApi.$inject = ['$resource', '$q', 'wordpress']
+
+dateRegExp = /^(\d{4})\-(\d\d)\-(\d\d)(?:\s+(\d\d):(\d\d):(\d\d))?$/
+dateRegExp.compile(dateRegExp)
 
 angular.module('App').service 'wordpressApi', wordpressApi
