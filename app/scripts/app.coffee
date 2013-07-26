@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('App', ['ngRoute', 'ngResource', 'angularSmoothscroll'])
+angular.module('App', ['ngRoute', 'ngResource', 'angularSmoothscroll', 'angular-inview'])
 	.config ($routeProvider, $locationProvider, wordpress) ->
 		$routeProvider.when '/',
 			templateUrl: "#{wordpress.templateUrl}/views/home.html"
