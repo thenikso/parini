@@ -33,7 +33,7 @@
 
 		<div id="site">
 
-			<header id="site-header" class="fixed">
+			<header id="site-header">
 				<nav class="top-bar">
 					<ul class="title-area">
 						<li class="name">
