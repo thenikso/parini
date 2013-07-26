@@ -3,7 +3,7 @@
 describe 'Controller: HomeCtrl', () ->
 
   # load the controller's module
-  beforeEach module 'angularthemeApp'
+  beforeEach module 'App'
 
   HomeCtrl = {}
   scope = {}

@@ -3,7 +3,7 @@
 describe 'Service: wordpressApi', () ->
 
   # load the service's module
-  beforeEach module 'angularthemeApp'
+  beforeEach module 'App'
 
   # instantiate service
   wordpressApi = {}

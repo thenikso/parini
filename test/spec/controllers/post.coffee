@@ -3,7 +3,7 @@
 describe 'Controller: PostCtrl', () ->
 
   # load the controller's module
-  beforeEach module 'angularthemeApp'
+  beforeEach module 'App'
 
   PostCtrl = {}
   scope = {}

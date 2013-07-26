@@ -1,7 +1,7 @@
 'use strict'
 
 describe 'Directive: wpHref', () ->
-  beforeEach module 'angularthemeApp'
+  beforeEach module 'App'
 
   element = {}
 

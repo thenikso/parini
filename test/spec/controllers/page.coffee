@@ -3,7 +3,7 @@
 describe 'Controller: PageCtrl', () ->
 
   # load the controller's module
-  beforeEach module 'angularthemeApp'
+  beforeEach module 'App'
 
   PageCtrl = {}
   scope = {}
