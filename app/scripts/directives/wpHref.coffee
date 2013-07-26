@@ -18,6 +18,7 @@ setWpHref = (attrs, controller, value) ->
 	value
 
 angular.module('App')
+	# wpHrefLang
 	# Directive to specify the current language code
 	# The code will be used by the other directive wpHref to localize the href.
 	.directive 'wpHrefLang', ->
@@ -49,6 +50,7 @@ angular.module('App')
 				controller.updateAllActiveClass()
 				controller.updateAllHrefChange()
 
+	# wpHrefActiveClass
 	# If present, will add the specified CSS class (default to `active`) on the
 	# element when the current location is the localized href of the element
 	# or a children of it.
@@ -67,7 +69,10 @@ angular.module('App')
 		link: (scope, element, attrs, controller) ->
 			controller.cssClass = c if (c = attrs.wpHrefActiveClass)
 
-	# With a wpHrefLang present, interpolate and localize the href of the element.
+	# wpHref
+	# Interpolate and localize the href of the element.
+	# Usage:
+	# <any wp-href="url"></any>
 	.directive 'wpHref', ->
 		restrict: 'A'
 		require: ['^wpHrefLang', '^?wpHrefActiveClass']
@@ -84,6 +89,12 @@ angular.module('App')
 				# Update active state on iterpolation change
 				controllers[1]?.checkActive(url)
 
+	# wpHrefChange
+	# Changes the language in a url with the `lang` code.
+	# This directive expect the url to be in the form:
+	# host/<lang_code>/path
+	# Usage:
+	# <any wp-href-change="url" lang="it"></any>
 	.directive 'wpHrefChange', ($location) ->
 		restrict: 'A'
 		require: '^wpHrefLang'
