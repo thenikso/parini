@@ -11,6 +11,7 @@ angular.module('App')
 		restrict: 'AC'
 		require: '^parallaxBox'
 		link: (scope, element, attrs, controller) ->
+			return if Modernizr?.touch
 			parallaxItem =
 				parent: controller.element
 				element: element
