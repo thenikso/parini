@@ -2,11 +2,13 @@
 
 # AngularJS will instantiate a singleton by calling "new" on this function
 wordpressApi = ($resource, $q, wordpress) ->
+	siteUrl = wordpress.siteUrl or ''
+
 	# API resources
-	RecentPosts = $resource '/:lang/api/get_recent_posts', lang: null
-	Posts = $resource '/:lang/api/get_posts', lang: null
-	Post = $resource '/:lang/api/get_post', lang: null
-	Page = $resource '/:lang/api/get_page', lang: null
+	RecentPosts = $resource "#{siteUrl}/:lang/api/get_recent_posts", lang: null
+	Posts = $resource "#{siteUrl}/:lang/api/get_posts", lang: null
+	Post = $resource "#{siteUrl}/:lang/api/get_post", lang: null
+	Page = $resource "#{siteUrl}/:lang/api/get_page", lang: null
 
 	preparePost = (post) ->
 		if post?.date?

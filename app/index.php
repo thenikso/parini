@@ -102,6 +102,7 @@
 		<script src="<?php echo get_template_directory_uri(); ?>/script.js"></script>
 		<script type="text/javascript">
 		angular.module('App').constant('wordpress', {
+			siteUrl: "<?php echo get_site_url(); ?>",
 			templateUrl: "<?php echo get_template_directory_uri() ?>",
 			rewriteRules: <?php echo ng_rewrite_rules(); ?>,
 			language: <?php echo ng_sitepress_languages(); ?>,
