@@ -67,19 +67,19 @@ a.slogan-scroll-link {
 	width: 100%;
 
 	&:after {
-		@include theme-sprite(slogan-scroll-link-arrow);
+		@include theme-sprite(scroll-arrow-white);
 		content: '';
 		display: block;
-		height: theme-sprite-height(slogan-scroll-link-arrow);
+		height: theme-sprite-height(scroll-arrow-white);
 		margin: 0 auto;
-		width: theme-sprite-width(slogan-scroll-link-arrow);
+		width: theme-sprite-width(scroll-arrow-white);
 	}
 }
 
 /** Post Wall */
 
 .post-wall {
-	padding: ($column-gutter/2) 0;
+	padding-top: ($column-gutter/2);
 
 	.grid-sizer,
 	.masonry-brick {
@@ -145,5 +145,19 @@ a.slogan-scroll-link {
 
 	.post-link {
 		color: $body-font-color;
+	}
+}
+
+a.post-wall-load-more-link {
+	@extend a.slogan-scroll-link;
+	color: $body-font-color;
+	position: relative;
+
+	&:after {
+		@include theme-sprite(scroll-arrow-black);
+	}
+
+	&.loading:after {
+		background: none;
 	}
 }

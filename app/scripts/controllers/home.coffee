@@ -9,10 +9,10 @@ angular.module('App')
 		$scope.data.page = 1
 		$scope.data.hasMore = ->
 			$scope.data.count * $scope.data.page < $scope.data.count_total
-		$scope.data.loadingMore = no
+		$scope.data.isLoadingMore = no
 		$scope.data.loadMore = ->
-			return if $scope.data.loadingMore or not $scope.data.hasMore()
-			$scope.data.loadingMore = yes
+			return if $scope.data.isLoadingMore or not $scope.data.hasMore()
+			$scope.data.isLoadingMore = yes
 			more = wordpressApi.getRecentPosts {
 				lang: $scope.lang
 				page: $scope.data.page + 1
@@ -21,4 +21,4 @@ angular.module('App')
 				return unless more?.posts?
 				$scope.data.posts = $scope.data.posts.concat more.posts
 				$scope.data.page += 1
-				$scope.data.loadingMore = no
+				$scope.data.isLoadingMore = no
