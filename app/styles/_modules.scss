@@ -1,14 +1,27 @@
-/** Category Icon */
+/** Sprites */
 
 $category-icon-spacing: 1px;
 @import "category-icon/*.png";
 @include all-category-icon-sprites;
 
+$theme-spacing: 1px;
+@import "theme/*.png";
+@include all-theme-sprites;
+
+/** Loading */
+
+.loading {
+	background: url(images/loading.gif) no-repeat center center;
+	background-size: 36px;
+	min-height: 36px;
+	min-width: 36px;
+}
+
 /** Slogan */
 
 .slogan {
 	color: white;
-	min-height: 650px;
+	min-height: 550px;
 	overflow: hidden;
 	position: relative;
 }
@@ -48,17 +61,25 @@ a.slogan-scroll-link {
 	font-weight: bold;
 	left: 0;
 	margin-bottom: 15px;
-	padding-bottom: 45px;
 	position: absolute;
 	text-align: center;
 	text-transform: uppercase;
 	width: 100%;
+
+	&:after {
+		@include theme-sprite(slogan-scroll-link-arrow);
+		content: '';
+		display: block;
+		height: theme-sprite-height(slogan-scroll-link-arrow);
+		margin: 0 auto;
+		width: theme-sprite-width(slogan-scroll-link-arrow);
+	}
 }
 
 /** Post Wall */
 
 .post-wall {
-	margin: $column-gutter ($column-gutter/2);
+	margin: ($column-gutter/2) 0;
 
 	.grid-sizer,
 	.masonry-brick {
