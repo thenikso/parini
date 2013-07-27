@@ -18,10 +18,13 @@ angular.module('App')
 				multiplier: parseFloat(attrs.parallaxMultiplier)
 			parallaxItems.push parallaxItem
 			scope.$on '$destroy', ->
-				parallaxItems = parallaxItems.filter (i) -> i != parallaxItem
+				removeParallaxItem parallaxItem
 			updateParallax()
 
 parallaxItems = []
+removeParallaxItem = (parallaxItem) ->
+	parallaxItems = parallaxItems.filter (i) -> i != parallaxItem
+
 $window = $(window)
 unless Modernizr?.csstransforms3d
 	updateParallax = ->
