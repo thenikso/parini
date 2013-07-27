@@ -86,4 +86,5 @@
 
 #home-post-wall {
 	@include box-shadow(rgba(black, 0.8) 0 0 10px);
+	position: relative;
 }
