@@ -10,7 +10,7 @@ angular.module('App')
 				@relayoutScheduled = yes
 				setTimeout (=>
 					@relayoutScheduled = no
-					do @masonry.layout), 0
+					do @masonry?.layout), 0
 			@masonry = null
 			@createMasonry = ->
 				return if @masonry?
@@ -30,6 +30,7 @@ angular.module('App')
 				@masonry?.appended element.get(0), yes
 				do @scheduleRelayout
 			@removeBrick = (element) ->
+				return @destroy() if @masonry?.getItemElements().length <= 1
 				@masonry?.remove element.get(0)
 				do @scheduleRelayout
 			@destroy = ->
@@ -40,7 +41,8 @@ angular.module('App')
 			controller.createMasonry()
 			if $?.fn?.imagesLoaded?
 				element.imagesLoaded()
-			scope.$on '$destroy', controller.destroy
+			scope.$on '$destroy', ->
+				do controller.destroy
 
 	.directive 'masonryBrick', ->
 		restrict: 'AC'
