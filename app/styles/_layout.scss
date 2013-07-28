@@ -4,6 +4,8 @@
 #site {
 	min-height: 100%;
 	background: $body-bg;
+	position: relative;
+	z-index: 50;
 }
 
 #site-loader {
@@ -73,6 +75,7 @@
 #footer-map {
 	background: url(images/footer-map.jpg) no-repeat bottom center;
 	background-size: auto 100%;
+	display: block;
 	height: 550px;
 }
 

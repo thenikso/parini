@@ -92,6 +92,7 @@
 
 		</div>
 		<footer reveal-sheet-stack id="site-footer">
+			<a reveal-sheet="reference" id="footer-map" href=""></a>
 			<div reveal-sheet id="footer-contacts">
 				<div class="row">
 					<div class="small-12 large-4 columns">
@@ -104,8 +105,6 @@
 						orari ufficio
 					</div>
 				</div>
-			</div>
-			<div reveal-sheet="reference" id="footer-map">
 			</div>
 		</footer>
 

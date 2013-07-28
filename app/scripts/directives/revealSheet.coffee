@@ -20,7 +20,6 @@ angular.module('App')
 					height: "#{@height}px"
 				sheetElement.css
 					position: 'fixed'
-					zIndex: -@sheets.length
 					width: '100%'
 					bottom: 0
 					left: 0
@@ -39,15 +38,14 @@ angular.module('App')
 				# TODO remove jQuery dependency
 				scrollOffset = -(@stackElement.offset().top - $(window).scrollTop() - $(window).height())
 				return unless scrollOffset > 0
-				for s, i in @sheets[..-1]
+				for s, i in @sheets
+					continue if s is @referenceSheet
 					if (scrollOffset -= s.height()) >= 0
 						s.css
 							position: 'relative'
-							zIndex: 0
 					else
 						s.css
 							position: 'fixed'
-							zIndex: -(i + 1)
 			@
 		link: (scope, element, attrs, controller) ->
 			angular.element(window).bind 'scroll resize', controller.scroll

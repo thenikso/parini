@@ -152,6 +152,7 @@ a.post-wall-load-more-link {
 	@extend a.slogan-scroll-link;
 	color: $body-font-color;
 	position: relative;
+	margin-bottom: 0;
 
 	&:after {
 		@include theme-sprite(scroll-arrow-black);
