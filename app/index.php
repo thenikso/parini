@@ -37,7 +37,7 @@
 				<nav class="top-bar">
 					<ul class="title-area">
 						<li class="name">
-							<h1 id="site-title"><a wp-href="/" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+							<h1 id="site-title"><a href="<?php echo get_site_url(); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 						</li>
 						<li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
 					</ul>
