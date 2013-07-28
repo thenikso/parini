@@ -160,7 +160,7 @@ a.slogan-scroll-link {
 
 a.post-wall-load-more-link {
 	@extend a.slogan-scroll-link;
-	color: $body-font-color;
+	color: $topbar-bg;
 	position: relative;
 
 	&:after {
@@ -168,7 +168,11 @@ a.post-wall-load-more-link {
 		margin-bottom: 0;
 	}
 
-	&.loading:after {
-		background: none;
+	&.loading {
+		background-position: bottom center;
+
+		&:after {
+			background: none;
+		}
 	}
 }

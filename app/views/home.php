@@ -43,5 +43,5 @@ $ng_settings = get_option( 'ng_options', $ng_options );
 			</a>
 		</article>
 	</section>
-	<a href="" class="post-wall-load-more-link" ng-class="{ 'loading': data.isLoadingMore }" ng-if="data.hasMore()" ng-click="data.loadMore()">Load More</a>
+	<a href="" class="post-wall-load-more-link" ng-class="{ 'loading': data.isLoadingMore }" ng-if="data.hasMore()" ng-click="data.loadMore()">Mostra pi&ugrave; news</a>
 </div>
