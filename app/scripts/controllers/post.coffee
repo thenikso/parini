@@ -1,9 +1,6 @@
 'use strict'
 
 angular.module('App')
-  .controller 'PostCtrl', ($scope) ->
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ]
+	.controller 'PostCtrl', ($scope, wordpressData) ->
+		$scope.post = wordpressData.post
+		console.log wordpressData
