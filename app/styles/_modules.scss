@@ -70,7 +70,6 @@ a.slogan-scroll-link {
 	display: block;
 	font-size: 1.5em;
 	left: 0;
-	margin-bottom: 15px;
 	position: absolute;
 	text-align: center;
 	text-transform: uppercase;
@@ -81,7 +80,7 @@ a.slogan-scroll-link {
 		content: '';
 		display: block;
 		height: theme-sprite-height(scroll-arrow-white);
-		margin: 0.5em auto 0;
+		margin: 0.5em auto;
 		width: theme-sprite-width(scroll-arrow-white);
 	}
 }
@@ -163,10 +162,10 @@ a.post-wall-load-more-link {
 	@extend a.slogan-scroll-link;
 	color: $body-font-color;
 	position: relative;
-	margin-bottom: 0;
 
 	&:after {
 		@include theme-sprite(scroll-arrow-black);
+		margin-bottom: 0;
 	}
 
 	&.loading:after {
