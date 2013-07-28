@@ -1,6 +1,10 @@
 <?php
 define('WP_USE_THEMES', true);
-require_once ('../../../../../wp-load.php');
+if (file_exists('../../../../wp-load.php'))
+	require_once ('../../../../wp-load.php');
+else
+	require_once ('../../../../../wp-load.php');
+
 global $ng_options;
 $ng_settings = get_option( 'ng_options', $ng_options );
 ?>
@@ -14,7 +18,7 @@ $ng_settings = get_option( 'ng_options', $ng_options );
 			</div>
 		</div>
 	</article>
-	<a smooth-scroll-jquery target="home-post-wall" speed="2000" offset="45" class="slogan-scroll-link hide-for-small">Recent News</a>
+	<a smooth-scroll-jquery target="home-post-wall" speed="2000" offset="45" class="slogan-scroll-link hide-for-small">News Recenti</a>
 </section>
 
 <div id="home-post-wall">
