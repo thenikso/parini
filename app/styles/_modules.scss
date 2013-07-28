@@ -58,7 +58,6 @@ a.slogan-scroll-link {
 	color: white;
 	display: block;
 	font-size: 1.5em;
-	font-weight: bold;
 	left: 0;
 	margin-bottom: 15px;
 	position: absolute;
@@ -71,7 +70,7 @@ a.slogan-scroll-link {
 		content: '';
 		display: block;
 		height: theme-sprite-height(scroll-arrow-white);
-		margin: 0 auto;
+		margin: 0.5em auto 0;
 		width: theme-sprite-width(scroll-arrow-white);
 	}
 }
