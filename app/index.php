@@ -91,8 +91,22 @@
 			<div id="site-content" ng-view ng-animate="'view-animation'"></div>
 
 		</div>
-		<footer id="site-footer">
-			footer
+		<footer reveal-sheet-stack id="site-footer">
+			<div reveal-sheet id="footer-contacts">
+				<div class="row">
+					<div class="small-12 large-4 columns">
+						contatti
+					</div>
+					<div class="small-12 large-4 columns">
+						indirizzo
+					</div>
+					<div class="small-12 large-4 columns">
+						orari ufficio
+					</div>
+				</div>
+			</div>
+			<div reveal-sheet="reference" id="footer-map">
+			</div>
 		</footer>
 
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
