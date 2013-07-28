@@ -173,7 +173,7 @@ module.exports = function (grunt) {
             '<%= yeoman.app %>/angular/angular.js',
             '<%= yeoman.app %>/angular/modules/{,*/}*.js',
             '<%= yeoman.app %>/bower_components/angular-masonry/angular-masonry.js',
-            '<%= yeoman.app %>/bower_components/angular-inview/angular-inview.js',
+            //'<%= yeoman.app %>/bower_components/angular-inview/angular-inview.js',
 
             '.tmp/scripts/{,*/}*.js',
             '<%= yeoman.app %>/scripts/{,*/}*.js'
