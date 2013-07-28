@@ -2,8 +2,9 @@
 // Site
 ////////////////////////////////////////////////////////////////////////////////
 #site {
-	min-height: 100%;
 	background: $body-bg;
+	min-height: 100%;
+	padding-top: $topbar-height;
 	position: relative;
 	z-index: 50;
 }
