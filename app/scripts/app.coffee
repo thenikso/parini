@@ -3,7 +3,7 @@
 angular.module('App', ['ngRoute', 'ngResource', 'angularSmoothscroll'])
 	.config ($routeProvider, $locationProvider, wordpress) ->
 		$routeProvider.when '/',
-			templateUrl: "#{wordpress.templateUrl}/views/home.html"
+			templateUrl: "#{wordpress.templateUrl}/views/home.php"
 			controller: 'HomeCtrl'
 			resolve:
 				wordpressData: (wordpressApi) ->
@@ -12,7 +12,7 @@ angular.module('App', ['ngRoute', 'ngResource', 'angularSmoothscroll'])
 		# Account for different languages
 		if wordpress.language?.others? then for l in wordpress.language.others
 			$routeProvider.when "/#{l}",
-				templateUrl: "#{wordpress.templateUrl}/views/home.html"
+				templateUrl: "#{wordpress.templateUrl}/views/home.php"
 				controller: 'HomeCtrl'
 				resolve:
 					wordpressData: (wordpressApi) ->

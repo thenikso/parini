@@ -1,9 +1,16 @@
+<?php
+define('WP_USE_THEMES', true);
+require_once ('../../../../../wp-load.php');
+global $ng_options;
+$ng_settings = get_option( 'ng_options', $ng_options );
+?>
+
 <section class="slogan" parallax-box>
-	<img class="slogan-background" src="http://lorempixel.com/600/300/city/1" parallax-multiplier="0.5">
+	<img class="slogan-background" src="<?php echo $ng_settings['home_slogan_background_url']; ?>" parallax-multiplier="0.5">
 	<article class="slogan-content">
 		<div class="row">
 			<div class="small-12 columns">
-				<h1 class="slogan-title"><span>Parini-Associati &egrave; un'agenzia</span><br><span>di PR con sede a Milano</span></h1>
+				<h1 class="slogan-title"><?php echo $ng_settings['home_slogan_content']; ?></h1>
 			</div>
 		</div>
 	</article>

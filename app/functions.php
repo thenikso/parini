@@ -126,6 +126,8 @@ if (class_exists("JSON_API_Post")) {
 /** Administration */
 
 $ng_options = array(
+	'home_slogan_content' => get_bloginfo('name'),
+	'home_slogan_background_url' => '',
 	'footer_content' => '&copy; ' . date('Y') . get_bloginfo('name'),
 	'footer_background_url' => '',
 	'footer_background_link' => ''
@@ -158,9 +160,10 @@ function ng_theme_options_page() {
 		<div class="updated"><p><strong><?php _e( 'Options saved' ); ?></strong></p></div>
 		<?php endif; // If the form has just been submitted, this shows the notification ?>
 
-		<?php $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'footer_options'; ?>
+		<?php $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'home_slogan_options'; ?>
 		<h2 class="nav-tab-wrapper">
-			<a href="?page=theme_options&amp;tab=footer_options" class="nav-tab <?php echo $active_tab == 'footer_options' ? 'nav-tab-active' : ''; ?>">Display Options</a>
+			<a href="?page=theme_options&amp;tab=home_slogan_options" class="nav-tab <?php echo $active_tab == 'home_slogan_options' ? 'nav-tab-active' : ''; ?>">Home Slogan</a>
+			<a href="?page=theme_options&amp;tab=footer_options" class="nav-tab <?php echo $active_tab == 'footer_options' ? 'nav-tab-active' : ''; ?>">Footer</a>
 		</h2>
 
 		<form method="post" action="options.php">
@@ -169,22 +172,30 @@ function ng_theme_options_page() {
 
 			<?php settings_fields( 'ng_theme_options' ); ?>
 
-			<?php if ($active_tab == 'footer_options'): ?>
+			<?php if ($active_tab == 'home_slogan_options'): ?>
+
+			<div><?php wp_editor($settings['home_slogan_content'], 'ng_options[home_slogan_content]'); ?></div>
+
+			<p>
+				Home slogan background image URL:
+				<input id="home_slogan_background_url" name="ng_options[home_slogan_background_url]" type="text" value="<?php  esc_attr_e($settings['home_slogan_background_url']); ?>"/>
+				<a href="" data-select-image="home_slogan_background_url">Choose image</a>
+			</p>
+
+			<?php elseif ($active_tab == 'footer_options') : ?>
 
 			<div><?php wp_editor($settings['footer_content'], 'ng_options[footer_content]'); ?></div>
 
 			<p>
 				Footer background map image URL:
-				<input id="footer_background_url" name="ng_options[footer_background_url]" type="text" value="<?php  esc_attr_e($settings['footer_background_url']); ?>" placeholder="Background map image"/>
+				<input id="footer_background_url" name="ng_options[footer_background_url]" type="text" value="<?php  esc_attr_e($settings['footer_background_url']); ?>"/>
 				<a href="" data-select-image="footer_background_url">Choose image</a>
 			</p>
 
 			<p>
 				Footer background map link URL:
-				<input id="footer_background_link" name="ng_options[footer_background_link]" type="text" value="<?php  esc_attr_e($settings['footer_background_link']); ?>" placeholder="Background map link"/>
+				<input id="footer_background_link" name="ng_options[footer_background_link]" type="text" value="<?php  esc_attr_e($settings['footer_background_link']); ?>"/>
 			</p>
-
-			<?php // elseif ($active_tab == '_options') : ?>
 
 			<?php endif; ?>
 
@@ -210,33 +221,16 @@ function ng_theme_options_page() {
 }
 
 function ng_validate_options( $input ) {
-	// global $ng_options;
+	global $ng_options;
 
-	// $settings = get_option( 'ng_options', $ng_options );
+	$settings = get_option( 'ng_options', $ng_options );
 
-	// 	// We strip all tags from the text field, to avoid vulnerablilties like XSS
-	// $input['footer_copyright'] = wp_filter_nohtml_kses( $input['footer_copyright'] );
-
-	// 	// We strip all tags from the text field, to avoid vulnerablilties like XSS
-	// $input['intro_text'] = wp_filter_post_kses( $input['intro_text'] );
-
-	// 	// We select the previous value of the field, to restore it in case an invalid entry has been given
-	// $prev = $settings['featured_cat'];
-	// 	// We verify if the given value exists in the categories array
-	// if ( !array_key_exists( $input['featured_cat'], $categories ) )
-	// 	$input['featured_cat'] = $prev;
-
-	// 	// We select the previous value of the field, to restore it in case an invalid entry has been given
-	// $prev = $settings['layout_view'];
-	// 	// We verify if the given value exists in the layouts array
-	// if ( !array_key_exists( $input['layout_view'], $layouts ) )
-	// 	$input['layout_view'] = $prev;
-
-	// 	// If the checkbox has not been checked, we void it
-	// if ( ! isset( $input['author_credits'] ) )
-	// 	$input['author_credits'] = null;
-	// 	// We verify if the input is a boolean value
-	// $input['author_credits'] = ( $input['author_credits'] == 1 ? 1 : 0 );
+	// Keep previous values
+	foreach ($settings as $key => $value) {
+		if ( !isset( $input[$key] ) ) {
+			$input[$key] = $value;
+		}
+	}
 
 	return $input;
 }
