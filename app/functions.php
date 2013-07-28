@@ -40,6 +40,14 @@ function ng_rewrite_rules() {
 	$rules['post'] = addLeadingSlash(preg_replace($paramRegexp, $paramReplace, get_option('permalink_structure')));
 	// Page
 	$rules['page'] = addLeadingSlash(preg_replace($paramRegexp, $paramReplace, $wp_rewrite->get_page_permastruct()));
+	// Categories
+	$rules['category'] = addLeadingSlash(preg_replace($paramRegexp, $paramReplace, $wp_rewrite->get_category_permastruct()));
+	// Author
+	$rules['author'] = addLeadingSlash(preg_replace($paramRegexp, $paramReplace, $wp_rewrite->get_author_permastruct()));
+	// Search
+	$rules['search'] = addLeadingSlash(preg_replace($paramRegexp, $paramReplace, $wp_rewrite->get_search_permastruct()));
+	// Date
+	$rules['date'] = addLeadingSlash(preg_replace($paramRegexp, $paramReplace, $wp_rewrite->get_date_permastruct()));
 	// Custom post types
 	$postType = array();
 	foreach (get_post_types(array('_builtin' => false)) as $post_type) {
