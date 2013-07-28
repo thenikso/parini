@@ -2,5 +2,6 @@
 
 angular.module('App')
 	.controller 'PageCtrl', ($scope, wordpressData) ->
-		console.log wordpressData #.page
+		$scope.data = wordpressData
+		console.log $scope.data
 

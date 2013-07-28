@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('App')
-	.controller 'MainCtrl', ($scope, $rootScope, $location, wordpress) ->
+	.controller 'MainCtrl', ($scope, $rootScope, $location, wordpress, wordpressApi) ->
 		# Specify body classes
 		$scope.body =
 			classes: []
@@ -17,12 +17,22 @@ angular.module('App')
 			else
 				$scope.lang = null
 
-		# Loading control
+		# Loading animations control
 		$rootScope.loading = yes
 		$rootScope.$on '$routeChangeStart', ->
 			$rootScope.loading = yes
 		$rootScope.$on '$viewContentLoaded', ->
 			$rootScope.loading = no
+
+		# API access
+		# This can be used in pages like so:
+		# <div ng-init="myposts=load.posts()">{{myposts.status}}</div>
+		$scope.load =
+			posts: (page=1) ->
+				wordpressApi.getPosts {
+					lang: $scope.lang
+					page: page }, -> console.log arguments
+			# TODO add other apis
 
 	# Animation to give the appearance of the content to fall down
 	.animation 'view-animation-leave', ->
