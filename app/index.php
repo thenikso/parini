@@ -91,20 +91,15 @@
 			<div id="site-content" ng-view ng-animate="'view-animation'"></div>
 
 		</div>
+
+		<?php
+		global $ng_options;
+		$ng_settings = get_option( 'ng_options', $ng_options );
+		?>
 		<footer reveal-sheet-stack id="site-footer">
-			<a reveal-sheet="reference" id="footer-map" href=""></a>
+			<a reveal-sheet="reference" id="footer-map" href="<?php echo $ng_settings['footer_background_link']; ?>" target="_blank" style="background-image:url('<?php echo $ng_settings['footer_background_url']; ?>')"></a>
 			<div reveal-sheet id="footer-contacts">
-				<div class="row">
-					<div class="small-12 large-4 columns">
-						contatti
-					</div>
-					<div class="small-12 large-4 columns">
-						indirizzo
-					</div>
-					<div class="small-12 large-4 columns">
-						orari ufficio
-					</div>
-				</div>
+				<?php echo $ng_settings['footer_content']; ?>
 			</div>
 		</footer>
 
