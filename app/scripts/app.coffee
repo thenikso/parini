@@ -89,14 +89,3 @@ angular.module('App', ['ngRoute', 'ngResource'])
 
 # Run foundation
 $(document).foundation('topbar')
-
-$ ->
-	# Smooth scroll for header links
-	$('a[href^="#scrollto-"]').click ->
-		offset = 45
-		speed = 1000
-		target = $(this).attr('href')
-		target = target.substr(target.indexOf('-') + 1)
-		target = $("##{target}")
-		$('html,body').stop().animate({scrollTop: target.offset().top - offset}, speed)
-		no
