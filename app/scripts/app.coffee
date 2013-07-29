@@ -22,22 +22,24 @@ angular.module('App', ['ngRoute', 'ngResource'])
 		# Custom post types will have a $routeParams.postname parameter
 		# The post will be injected as `post`
 		if wordpress.rewriteRules?.postTypes?
-			for k, postType of wordpress.rewriteRules.postTypes
-				$routeProvider.when postType,
+			for postType, postTypePermastruct of wordpress.rewriteRules.postTypes
+				$routeProvider.when postTypePermastruct,
 					templateUrl: "#{wordpress.templateUrl}/views/post.html"
 					controller: 'PostCtrl'
 					resolve:
 						wordpressData: ($route, wordpressApi) ->
 							wordpressApi.getPostPromise
+								post_type: postType
 								slug: $route.current.params.postname
 				if wordpress.language?.others? then for l in wordpress.language.others
-					$routeProvider.when "/#{l}#{postType}",
+					$routeProvider.when "/#{l}#{postTypePermastruct}",
 						templateUrl: "#{wordpress.templateUrl}/views/post.html"
 						controller: 'PostCtrl'
 						resolve:
 							wordpressData: ($route, wordpressApi) ->
 								wordpressApi.getPostPromise
 									lang: l
+									post_type: postType
 									slug: $route.current.params.postname
 
 		# Post will have a $routeParams.postname parameter
@@ -87,3 +89,14 @@ angular.module('App', ['ngRoute', 'ngResource'])
 
 # Run foundation
 $(document).foundation('topbar')
+
+$ ->
+	# Smooth scroll for header links
+	$('a[href^="#scrollto-"]').click ->
+		offset = 45
+		speed = 1000
+		target = $(this).attr('href')
+		target = target.substr(target.indexOf('-') + 1)
+		target = $("##{target}")
+		$('html,body').stop().animate({scrollTop: target.offset().top - offset}, speed)
+		no
