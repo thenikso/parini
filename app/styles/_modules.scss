@@ -90,6 +90,10 @@ a.slogan-scroll-link {
 .post-wall {
 	padding-top: ($column-gutter/2);
 
+	p { // to fix Wordpress insertion of paragraphs
+		margin-bottom: 0;
+	}
+
 	.grid-sizer,
 	.masonry-brick {
 		width: 100%;
@@ -145,6 +149,8 @@ a.slogan-scroll-link {
 		font-style: normal;
 		font-weight: bold;
 		text-transform: uppercase;
+
+		a { color: inherit; }
 	}
 
 	.post-thumbnail {
@@ -155,6 +161,10 @@ a.slogan-scroll-link {
 
 	.post-link {
 		color: $body-font-color;
+	}
+
+	.post-content p {
+		margin-bottom: $paragraph-margin-bottom;
 	}
 }
 

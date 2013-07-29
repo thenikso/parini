@@ -35,7 +35,7 @@ $ng_settings = get_option( 'ng_options', $ng_options );
 						</span>
 					</span>
 				</div>
-				<a ng-href="{{post.url}}"><h3 class="post-title" ng-bind="post.title"></h3></a>
+				<h3 class="post-title"><a ng-href="{{post.url}}" ng-bind="post.title"></a></h3>
 			</header>
 			<a class="post-link" ng-href="{{post.url}}">
 				<img class="post-thumbnail" ng-src="{{post.thumbnail_images.large.url}}" ng-if="post.thumbnail_images" masonry-layout-on="post.thumbnail_images.large.url">
