@@ -2,6 +2,7 @@
 // Site
 ////////////////////////////////////////////////////////////////////////////////
 #site {
+	@include box-shadow(rgba(black, 0.8) 0 0 10px);
 	background: $body-bg;
 	min-height: 100%;
 	padding-top: $topbar-height;
@@ -99,6 +100,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 #site-content {
 	min-height: 100%;
+	overflow: hidden;
 }
 
 .view-animation-leave-wrapper {
