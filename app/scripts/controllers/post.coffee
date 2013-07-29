@@ -2,5 +2,5 @@
 
 angular.module('App')
 	.controller 'PostCtrl', ($scope, wordpressData) ->
-		$scope.post = wordpressData.post
+		$scope.data = wordpressData
 		console.log wordpressData
