@@ -6,6 +6,15 @@ angular.module('App')
 		$scope.body =
 			classes: []
 
+		# Setting document title
+		$scope.document =
+			title: ''
+		$scope.$watch 'document.title', (title) ->
+			if title
+				document.title = "#{wordpress.info.name} | #{title}"
+			else
+				document.title = wordpress.info.name
+
 		# Language
 		# The current language code is extrapolated from the current location path
 		# as the first 2 letters of the path component.
