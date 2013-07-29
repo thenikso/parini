@@ -37,7 +37,7 @@
 				<nav class="top-bar">
 					<ul class="title-area">
 						<li class="name">
-							<h1 id="site-title"><a href="<?php echo get_site_url(); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+							<h1 id="site-title"><a wp-href="<?php echo get_site_url(); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 						</li>
 						<li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
 					</ul>
@@ -69,7 +69,7 @@
 						<li class="hide-for-small"><a href="" class="social-link facebook">Facebook</a></li>
 						<li class="hide-for-small"><a href="" class="social-link instagram">Instagram</a></li>
 						<li><a wp-href-change lang="en" ng-if="lang!='en'" target="_self">Eng</a></li>
-						<li><a wp-href-change lang="it" ng-if="lang" target="_self">Ita</a></li>
+						<li><a wp-href-change lang="" ng-if="lang" target="_self">Ita</a></li>
 					</ul>
 					</section>
 				</nav>

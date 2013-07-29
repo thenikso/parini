@@ -3,9 +3,9 @@
 urlRegExp = /^([^#]*?:\/\/.*?)(?:\/([a-z]{2})(?=\/))?(\/.*)?$/
 urlRegExp.compile?(urlRegExp)
 localizedUrl = (url, lang) ->
-	return url unless lang
-	return "#{r[1]}/#{lang}#{r[3] ? ''}" if r = urlRegExp.exec(url)
-	"/#{lang}#{url}"
+	lang = "/#{lang}" if lang
+	return "#{r[1]}#{lang}#{r[3] ? ''}" if r = urlRegExp.exec(url)
+	"#{lang}#{url}"
 
 setWpHref = (attrs, controller, value) ->
 	return unless value?
@@ -100,7 +100,6 @@ angular.module('App')
 		require: '^wpHrefLang'
 		priority: 99
 		link: (scope, element, attrs, controller) ->
-			return unless attrs.lang?
 			controller.allWpHrefChange.push attrs
 			attrs.$observe 'wpHrefChange', (url) ->
 				url = $location.absUrl() unless url
