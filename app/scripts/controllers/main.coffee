@@ -35,13 +35,14 @@ angular.module('App')
 	# Animation to give the appearance of the content to fall down
 	.animation 'view-animation-leave', ->
 		setup: (el) ->
-			scrollTop = $(document).scrollTop()
+			scrollTop = $(window).scrollTop()
 			wrapper = el.wrapAll('<div class="view-animation-leave-wrapper"></div>').parent()
 			# wrapper css is setup via styles
 			wrapper.scrollTop scrollTop
+			$(window).scrollTop(0)
 			wrapper
 		start: (el, done, wrapper) ->
-			wrapper.animate top: $(document).height(),
+			wrapper.animate top: $(window).height(),
 				{
 					duration: 1000
 					easing: 'easeInOutExpo'
