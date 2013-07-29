@@ -18,10 +18,19 @@ This theme is build to work with Wordpress JSON API and use AngularJS in the fro
 @import "foundation/scss/foundation";
 @import "compass";
 
+/** Base */
+
 html, body {
 	width: 100%;
 	height: 100%;
 }
+
+a {
+	@include transition-property(all);
+	@include transition-duration(0.25s);
+}
+
+/** Includes */
 
 @import "layout";
 @import "modules";
