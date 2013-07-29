@@ -5,10 +5,86 @@ wordpressApi = ($resource, $q, wordpress) ->
 	siteUrl = wordpress.siteUrl or ''
 
 	# API resources
-	RecentPosts = $resource "#{siteUrl}/:lang/api/get_recent_posts", lang: null
-	Posts = $resource "#{siteUrl}/:lang/api/get_posts", lang: null
-	Post = $resource "#{siteUrl}/:lang/api/get_post", lang: null
+
+	# Page
+	# Requires one of:
+	# - `id` or `page_id` - set to the page's ID
+	# - `slug` or `page_slug` - set to the page's URL slug
+	# Optional:
+	# `children` - set to a non-empty value to include a recursive hierarchy of child pages
+	# `post_type` - used to retrieve custom post types
 	Page = $resource "#{siteUrl}/:lang/api/get_page", lang: null
+
+	# Post
+	# Requires one of:
+	# - `id` or `post_id` - set to the post's ID
+	# - `slug` or `post_slug` - set to the post's URL slug
+	# Optional:
+	# `post_type` - used to retrieve custom post types
+	Post = $resource "#{siteUrl}/:lang/api/get_post", lang: null
+
+	# Posts
+	# Optional:
+	# `count` - determines how many posts per page are returned (default value is 10)
+	# `page` - return a specific page number from the results
+	# `post_type` - used to retrieve custom post types
+	Posts = $resource "#{siteUrl}/:lang/api/get_posts", lang: null
+
+	# RecentPosts
+	# Optional:
+	# `count` - determines how many posts per page are returned (default value is 10)
+	# `page` - return a specific page number from the results
+	# `post_type` - used to retrieve custom post types
+	RecentPosts = $resource "#{siteUrl}/:lang/api/get_recent_posts", lang: null
+
+	# DatePosts
+	# Requires one of:
+	# - `date` - set to a date in the format `YYYY` or `YYYY-MM` or `YYYY-MM-DD`
+	#   (non-numeric characters are stripped from the var, so `YYYYMMDD` or `YYYY/MM/DD` are also valid)
+	# Optional:
+	# `count` - determines how many posts per page are returned (default value is 10)
+	# `page` - return a specific page number from the results
+	# `post_type` - used to retrieve custom post types
+	DatePosts = $resource "#{siteUrl}/:lang/api/get_date_posts", lang: null
+
+	# CategoryPosts
+	# Requires one of:
+	# - `id` or `category_id` - set to the category's ID
+	# - `slug` or `category_slug` - set to the category's URL slug
+	# Optional:
+	# `count` - determines how many posts per page are returned (default value is 10)
+	# `page` - return a specific page number from the results
+	# `post_type` - used to retrieve custom post types
+	CategoryPosts = $resource "#{siteUrl}/:lang/api/get_category_posts", lang: null
+
+	# TagPosts
+	# Required one of:
+	# - `id` or `tag_id` - set to the tag's ID
+	# - `slug` or `tag_slug` - set to the tag's URL slug
+	# Optional:
+	# `count` - determines how many posts per page are returned (default value is 10)
+	# `page` - return a specific page number from the results
+	# `post_type` - used to retrieve custom post types
+	TagPosts = $resource "#{siteUrl}/:lang/api/get_tag_posts", lang: null
+
+	# AuthorPosts
+	# Required one of:
+	# - `id` or `author_id` - set to the author's ID
+	# - `slug` or `author_slug` - set to the author's URL slug
+	# Optional:
+	# `count` - determines how many posts per page are returned (default value is 10)
+	# `page` - return a specific page number from the results
+	# `post_type` - used to retrieve custom post types
+	AuthorPosts = $resource "#{siteUrl}/:lang/api/get_author_posts", lang: null
+
+	# SearchPosts
+	# Required one of:
+	# - `search` - set to the desired search query
+	# Optional:
+	# `count` - determines how many posts per page are returned (default value is 10)
+	# `page` - return a specific page number from the results
+	# `post_type` - used to retrieve custom post types
+	SearchPosts = $resource "#{siteUrl}/:lang/api/get_search_results", lang: null
 
 	# Prepare single post
 	preparePost = (post) ->
@@ -21,12 +97,13 @@ wordpressApi = ($resource, $q, wordpress) ->
 		post
 
 	# Preparing data
-	preparePostData = (data) ->
+	prepareSingleData = (data) ->
 		data.post = preparePost data.post
 		data
 
 	preparePageData = (data) ->
 		data.page = preparePost data.page
+		# TODO prepare child pages if present
 		data
 
 	preparePostsData = (data, Api, opts) ->
@@ -76,19 +153,25 @@ wordpressApi = ($resource, $q, wordpress) ->
 
 	# Service interface
 	return {
-		preparePost: preparePost
-		preparePostData: preparePostData
-		preparePostsData: preparePostsData
+		getPage: getPreparedGetFactory Page, preparePageData
+		getPost: getPreparedGetFactory Post, prepareSingleData
+		getPosts: getPreparedGetFactory Posts, preparePostsData
+		getRecentPosts: getPreparedGetFactory RecentPosts, preparePostsData
+		getDatePosts: getPreparedGetFactory DatePosts, preparePostsData
+		getCategoryPosts: getPreparedGetFactory CategoryPosts, preparePostsData
+		getTagPosts: getPreparedGetFactory TagPosts, preparePostsData
+		getAuthorPosts: getPreparedGetFactory AuthorPosts, preparePostsData
+		getSearchPosts: getPreparedGetFactory SearchPosts, preparePostsData
 
-		getRecentPosts: getPreparedGetFactory(RecentPosts, preparePostsData)
-		getPosts: getPreparedGetFactory(Posts, preparePostsData)
-		getPost: getPreparedGetFactory(Post, preparePostData)
-		getPage: getPreparedGetFactory(Page, preparePageData)
-
-		getRecentPostsPromise: getPromiseFactory RecentPosts, preparePostsData
-		getPostsPromise: getPromiseFactory Posts, preparePostsData
-		getPostPromise: getPromiseFactory Post, preparePostData, (data, opts) -> data.post?.slug is opts.slug
 		getPagePromise: getPromiseFactory Page, preparePageData, (data, opts) -> data.page?.slug is opts.slug
+		getPostPromise: getPromiseFactory Post, prepareSingleData, (data, opts) -> data.post?.slug is opts.slug
+		getPostsPromise: getPromiseFactory Posts, preparePostsData
+		getRecentPostsPromise: getPromiseFactory RecentPosts, preparePostsData
+		getDatePostsPromise: getPromiseFactory DatePosts, preparePostsData
+		getCategoryPostsPromise: getPromiseFactory CategoryPosts, preparePostsData
+		getTagPostsPromise: getPromiseFactory TagPosts, preparePostsData
+		getAuthorPostsPromise: getPromiseFactory AuthorPosts, preparePostsData
+		getSearchPostsPromise: getPromiseFactory SearchPosts, preparePostsData
 	}
 wordpressApi.$inject = ['$resource', '$q', 'wordpress']
 
