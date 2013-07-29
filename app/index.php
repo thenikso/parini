@@ -4,7 +4,7 @@
 	<head>
 		<?php if ($_SERVER['HTTP_HOST'] != 'localhost'): ?><base href="/parini/" /><?php endif; ?>
 
-		<title><?php wp_title( '|', true, 'right' ); ?></title>
+		<title ng-bind-template="<?php bloginfo( 'name' ); ?>{{document.title&&(' | '+document.title)}}"><?php wp_title( '|', true, 'right' ); ?></title>
 
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<?php if (is_home()): ?><meta name="fragment" content="!"><?php endif; ?>

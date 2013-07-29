@@ -7,13 +7,8 @@ angular.module('App')
 			classes: []
 
 		# Setting document title
-		$scope.document =
+		$rootScope.document =
 			title: ''
-		$scope.$watch 'document.title', (title) ->
-			if title
-				document.title = "#{wordpress.info.name} | #{title}"
-			else
-				document.title = wordpress.info.name
 
 		# Language
 		# The current language code is extrapolated from the current location path
@@ -30,6 +25,8 @@ angular.module('App')
 		$rootScope.loading = yes
 		$rootScope.$on '$routeChangeStart', ->
 			$rootScope.loading = yes
+		$rootScope.$on '$routeChangeSuccess', ->
+			$rootScope.document.title = ''
 		$rootScope.$on '$viewContentLoaded', ->
 			$rootScope.loading = no
 
