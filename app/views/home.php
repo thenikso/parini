@@ -10,7 +10,7 @@ $ng_settings = get_option( 'ng_options', $ng_options );
 ?>
 
 <section class="slogan" parallax-box>
-	<img class="slogan-background" src="<?php echo $ng_settings['home_slogan_background_url']; ?>" parallax-multiplier="0.5">
+	<div class="slogan-background" style="background-image:url('<?php echo $ng_settings['home_slogan_background_url']; ?>');" parallax-multiplier="0.5"></div>
 	<article class="slogan-content">
 		<div class="row">
 			<div class="small-12 columns">

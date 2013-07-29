@@ -31,9 +31,11 @@ $theme-spacing: 1px;
 }
 
 .slogan-background {
+	background-position: center center;
+	background-size: cover;
 	left: 0;
 	max-width: none;
-	min-height: 100%;
+	min-height: 120%;
 	min-width: 100%;
 	position: absolute;
 	text-align: center;
