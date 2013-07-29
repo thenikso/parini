@@ -18,7 +18,7 @@ $ng_settings = get_option( 'ng_options', $ng_options );
 			</div>
 		</div>
 	</article>
-	<a smooth-scroll-jquery target="home-post-wall" speed="2000" offset="45" class="slogan-scroll-link hide-for-small">News Recenti</a>
+	<a smooth-scroll="#home-post-wall" speed="1000" offset="45" class="slogan-scroll-link hide-for-small">News Recenti</a>
 </section>
 
 <div id="home-post-wall">
