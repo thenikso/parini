@@ -68,8 +68,8 @@
 						<li class="hide-for-small"><a href="" class="social-link twitter">Twitter</a></li>
 						<li class="hide-for-small"><a href="" class="social-link facebook">Facebook</a></li>
 						<li class="hide-for-small"><a href="" class="social-link instagram">Instagram</a></li>
-						<li><a wp-href-change lang="en" ng-if="lang!='en'">Eng</a></li>
-						<li><a wp-href-change lang="it" ng-if="lang">Ita</a></li>
+						<li><a wp-href-change lang="en" ng-if="lang!='en'" target="_self">Eng</a></li>
+						<li><a wp-href-change lang="it" ng-if="lang" target="_self">Ita</a></li>
 					</ul>
 					</section>
 				</nav>
