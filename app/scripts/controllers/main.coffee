@@ -28,10 +28,8 @@ angular.module('App')
 		# This can be used in pages like so:
 		# <div ng-init="myposts=load.posts()">{{myposts.status}}</div>
 		$scope.load =
-			posts: (page=1) ->
-				wordpressApi.getPosts {
-					lang: $scope.lang
-					page: page }, -> console.log arguments
+			posts: (opts) ->
+				wordpressApi.getPosts angular.extend({ lang: $scope.lang }, opts)
 			# TODO add other apis
 
 	# Animation to give the appearance of the content to fall down

@@ -53,7 +53,9 @@ wordpressApi = ($resource, $q, wordpress) ->
 
 	# Utility function to generate get APIs with prepare step
 	getPreparedGetFactory = (Api, prepare) -> (opts, callback) ->
-		res = Api.get opts, -> prepare(res, Api, opts)
+		res = Api.get opts, (data, resp) ->
+			prepare(res, Api, opts)
+			callback?(data, resp)
 
 	# Utility function to generate promises methods
 	getPromiseFactory = (Api, prepare, check=->yes) -> (opts) ->
