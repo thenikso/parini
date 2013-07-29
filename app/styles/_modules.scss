@@ -60,6 +60,23 @@ $theme-spacing: 1px;
 
 	@media #{$small} {
 		font-size: 4.3em;
+
+		span {
+			display: inline-block;
+			position: relative;
+
+			&:after {
+				@include box-shadow(rgba(black, 0.5) 0 0 5px);
+				background: white;
+				bottom: 0;
+				content: '';
+				display: inline-block;
+				height: 3px;
+				left: 0;
+				position: absolute;
+				width: 100%;
+			}
+		}
 	}
 }
 
