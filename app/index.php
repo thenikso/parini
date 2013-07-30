@@ -20,7 +20,9 @@
 		<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/json3/3.2.4/json3.min.js"></script>
 		<script type="text/javascript">
-		document.createElement('ng-view');
+		// Add every element directvie to the array here to have it available in IE8
+		for (d in ['ng-view'])
+			document.createElement(d);
 		</script>
 		<![endif]-->
 
@@ -90,7 +92,7 @@
 
 			<div id="site-content" ng-view ng-animate="'view-animation'"></div>
 
-		</div>
+		</div><!-- #site -->
 
 		<?php
 		global $ng_options;
@@ -101,12 +103,14 @@
 			<div reveal-sheet id="footer-contacts">
 				<?php echo $ng_settings['footer_content']; ?>
 			</div>
-		</footer>
+		</footer><!-- #site-footer -->
 
+		<!-- Cleanup start -->
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/foundation/4.1.6/js/foundation.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/masonry/3.0.0/masonry.pkgd.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/2.1.0/jquery.imagesloaded.min.js"></script>
+		<!-- Cleanup end -->
 		<script src="<?php echo get_template_directory_uri(); ?>/script.js"></script>
 		<script type="text/javascript">
 		angular.module('WordpressApp').constant('wordpress', {
