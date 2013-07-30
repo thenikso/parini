@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('App')
+angular.module('WordpressApp')
 	.controller 'MainCtrl', ($scope, $rootScope, $location, wordpress, wordpressApi) ->
 		# Specify body classes
 		$scope.body =

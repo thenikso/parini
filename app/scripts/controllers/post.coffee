@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('App')
+angular.module('WordpressApp')
 	.controller 'PostCtrl', ($scope, wordpressData) ->
 		$scope.data = wordpressData
 		$scope.body.classes = [

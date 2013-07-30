@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('App')
+angular.module('WordpressApp')
 	.directive 'parallaxBox', ->
 		restrict: 'AC'
 		controller: ($element) ->

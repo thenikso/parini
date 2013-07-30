@@ -1,6 +1,6 @@
 <!doctype html>
-<!--[if lte IE 8]>     <html id="ng-app" ng-app="App" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html ng-app="App" class="no-js"> <!--<![endif]-->
+<!--[if lte IE 8]>     <html id="ng-app" ng-app="WordpressApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html ng-app="WordpressApp" class="no-js"> <!--<![endif]-->
 	<head>
 		<?php if ($_SERVER['HTTP_HOST'] != 'localhost'): ?><base href="/parini/" /><?php endif; ?>
 
@@ -109,7 +109,7 @@
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/2.1.0/jquery.imagesloaded.min.js"></script>
 		<script src="<?php echo get_template_directory_uri(); ?>/script.js"></script>
 		<script type="text/javascript">
-		angular.module('App').constant('wordpress', {
+		angular.module('WordpressApp').constant('wordpress', {
 			info: {
 				name: "<?php bloginfo( 'name' ); ?>"
 			},

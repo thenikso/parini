@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('App')
+angular.module('WordpressApp')
 	.directive 'revealSheetStack', ->
 		restrict: 'EAC'
 		controller: ($element) ->

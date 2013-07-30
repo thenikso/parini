@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('App', ['ngRoute', 'ngResource'])
+angular.module('WordpressApp', ['ngRoute', 'ngResource'])
 	.config ($routeProvider, $locationProvider, wordpress) ->
 		$routeProvider.when '/',
 			templateUrl: "#{wordpress.templateUrl}/views/home.php"

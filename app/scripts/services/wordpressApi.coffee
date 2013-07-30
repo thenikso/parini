@@ -178,4 +178,4 @@ wordpressApi.$inject = ['$resource', '$q', 'wordpress']
 dateRegExp = /^(\d{4})\-(\d\d)\-(\d\d)(?:\s+(\d\d):(\d\d):(\d\d))?$/
 dateRegExp.compile(dateRegExp)
 
-angular.module('App').service 'wordpressApi', wordpressApi
+angular.module('WordpressApp').service 'wordpressApi', wordpressApi

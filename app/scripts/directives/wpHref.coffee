@@ -17,7 +17,7 @@ setWpHref = (attrs, controller, value) ->
 	attrs.$set 'href', value
 	value
 
-angular.module('App')
+angular.module('WordpressApp')
 	# wpHrefLang
 	# Directive to specify the current language code
 	# The code will be used by the other directive wpHref to localize the href.

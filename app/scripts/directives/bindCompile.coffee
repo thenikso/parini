@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('App')
+angular.module('WordpressApp')
 	.directive 'bindCompile', ($compile) ->
 		scope: yes
 		link: (scope, element, attrs) ->

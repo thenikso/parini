@@ -4,7 +4,7 @@ getValueFromClass = (classes, startWith) ->
   return c.substr(startWith.length) for c in classes when (s = c.indexOf(startWith)) == 0
   null
 
-angular.module('App')
+angular.module('WordpressApp')
 
   # smoothScroll
   # Uses jQuery to smooth scroll to a target element or location.
