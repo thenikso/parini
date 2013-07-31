@@ -25,6 +25,7 @@ $ng_settings = get_option( 'ng_options', $ng_options );
 	<section class="post-wall" masonry="{ columnWidth: '.grid-sizer' }">
 		<div class="grid-sizer"></div>
 		<article masonry-brick class="post" ng-repeat="post in data.posts">
+		<article masonry-brick class="post" ng-repeat="post in data.posts track by post.id">
 			<header>
 				<div class="post-meta">
 					<div class="post-category-icon" ng-if="post.categories.length" ng-class="'category-icon-'+post.categories[0].slug"></div>
