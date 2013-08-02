@@ -61,8 +61,10 @@ angular.module('WordpressApp')
 			@cssClass = 'active'
 			@checkActive = (url) ->
 				return unless (url or= @wpHrefAttrs.wpHref)
-				currentLocation = $location.absUrl() + '/'
-				if currentLocation.indexOf(url) >= 0
+				currentLocation = $location.absUrl()
+				currentLocation += '/' if currentLocation[currentLocation.length-1] isnt '/'
+				url += '/' if url[url.length-1] isnt '/'
+				if currentLocation is url
 					$element.addClass(@cssClass)
 				else
 					$element.removeClass(@cssClass)
