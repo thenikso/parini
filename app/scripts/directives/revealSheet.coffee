@@ -48,6 +48,7 @@ angular.module('WordpressApp')
 							position: 'fixed'
 			@
 		link: (scope, element, attrs, controller) ->
+			return if Modernizr?.touch
 			angular.element(window).bind 'scroll resize', controller.scroll
 			scope.$on '$destroy', ->
 				angular.element(window).unbind 'scroll resize', controller.scroll
@@ -56,6 +57,7 @@ angular.module('WordpressApp')
 		restrict: 'A'
 		require: '^revealSheetStack'
 		link: (scope, element, attrs, controller) ->
+			return if Modernizr?.touch
 			controller.addSheet element, attrs
 			scope.$on '$destroy', ->
 				controller.removeSheet element, attrs
