@@ -28,19 +28,7 @@ $theme-spacing: 1px;
 @import "theme/*.png";
 @include all-theme-sprites;
 
-/** Base */
-
-html, body {
-	width: 100%;
-	height: 100%;
-}
-
-a {
-	@include transition-property(all);
-	@include transition-duration(0.25s);
-}
-
-/** Includes */
-
+/** Parts */
+@import "base";
 @import "layout";
 @import "modules";
