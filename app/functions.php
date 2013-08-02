@@ -1,84 +1,134 @@
 <?php
+/** Crawler support */
 
-// Setup
-function parini_setup() {
-
-	// This theme uses wp_nav_menu() in one location.
-	register_nav_menu( 'primary', __( 'Primary Menu' ) );
-
-	// See http://justintadlock.com/archives/2010/04/29/custom-post-types-in-wordpress
-	// Custom post for Works
-	register_post_type( 'lavori',
-		array(
-			'labels' => array(
-				'name' => __( 'Lavori' ),
-				'singular_name' => __( 'Lavoro' )
-				),
-			'rewrite' => array(
-				'with_front' => false
-				),
-			'public' => true,
-			)
-		);
-
-	// Adding post thumbnail support
-	add_theme_support( 'post-thumbnails' );
+// Gets the requested path if the website visitor is a crawler.
+// To make WordPress return the proper content, the following configuration should
+// be added to .htaccess after the WordPress symlink configuration:
+//
+// # BEGIN Angular-WordPress-Theme
+// <IfModule mod_rewrite.c>
+// RewriteEngine On
+// RewriteCond %{QUERY_STRING} ^_escaped_fragment_=(.*)$
+// RewriteRule ^$ $1 [L]
+// </IfModule>
+// # END Angular-WordPress-Theme
+function ngwp_crawler_path()
+{
+	if (isset($_GET['_escaped_fragment_'])) {
+		return $_GET['_escaped_fragment_'];
+	}
+	$spiders = array('Googlebot', 'Yammybot', 'Openbot', 'Yahoo', 'Slurp', 'msnbot', 'ia_archiver', 'Lycos', 'Scooter', 'AltaVista', 'Teoma', 'Gigabot', 'Googlebot-Mobile');
+	foreach ($spiders as $s) {
+		if (strstr($_SERVER['HTTP_USER_AGENT'], $s)) {
+			return $_SERVER['REQUEST_URI'];
+		}
+	}
+	return null;
 }
-add_action( 'init', 'parini_setup' );
 
-// Rewrite rules to build angular routing
-function ng_rewrite_rules() {
+function ngwp_get_permastructs($transform=null)
+{
+	if (!$transform)
+	{
+		$transform = function($x) { return $x; };
+	}
 	global $wp_rewrite;
 	$rules = array();
-	$paramRegexp = '/%([a-z\-]+)%/i';
-	$paramReplace = ':$1';
+	// Post
+	$rules['post'] = $transform(get_option('permalink_structure'));
+	// Categories
+	$rules['category'] = $transform($wp_rewrite->get_category_permastruct());
+	// Author
+	$rules['author'] = $transform($wp_rewrite->get_author_permastruct());
+	// Search
+	$rules['search'] = $transform($wp_rewrite->get_search_permastruct());
+	// Date
+	$rules['date'] = $transform($wp_rewrite->get_date_permastruct());
+	// Custom post types
+	$postType = array();
+	foreach (get_post_types(array('_builtin' => false)) as $post_type) {
+		$postType[$post_type] = $transform($wp_rewrite->get_extra_permastruct($post_type));
+	}
+	if (count($postType)) $rules['postTypes'] = $postType;
+	// Page
+	$rules['page'] = $transform($wp_rewrite->get_page_permastruct());
+	return $rules;
+}
+
+function ngwp_template_for_path($path)
+{
+	if (strpos($path, '/') === 0)
+	{
+		$path = substr($path, 1);
+	}
+	if (strlen($path) === 0)
+	{
+		return "home";
+	}
+	function matchPath($template, $permastructs, $path)
+	{
+		foreach ($permastructs as $regexp => $rewrite)
+		{
+			if (is_array($rewrite))
+			{
+				$m = matchPath($regexp, $rewrite, $path);
+				if ($m) return $m;
+			}
+			elseif (preg_match('['.$regexp.']', $path) >= 1)
+			{
+				return $template;
+			}
+		}
+		return null;
+	}
+	foreach (ngwp_get_permastructs(function($p) {
+		global $wp_rewrite;
+		return $wp_rewrite->generate_rewrite_rule($p);
+	}) as $name => $rr)
+	{
+		$m = matchPath($name, $rr, $path);
+		if ($m) return $m;
+	}
+	return null;
+}
+
+/** JSON Data builders */
+
+// Rewrite rules to build angular routing
+function ngwp_routes_object_json() {
 	function addLeadingSlash($value) {
 		if (substr($value, 0, 1) != '/') $value = '/' . $value;
 		return $value;
 	}
-	// Post
-	$rules['post'] = addLeadingSlash(preg_replace($paramRegexp, $paramReplace, get_option('permalink_structure')));
-	// Page
-	$rules['page'] = addLeadingSlash(preg_replace($paramRegexp, $paramReplace, $wp_rewrite->get_page_permastruct()));
-	// Categories
-	$rules['category'] = addLeadingSlash(preg_replace($paramRegexp, $paramReplace, $wp_rewrite->get_category_permastruct()));
-	// Author
-	$rules['author'] = addLeadingSlash(preg_replace($paramRegexp, $paramReplace, $wp_rewrite->get_author_permastruct()));
-	// Search
-	$rules['search'] = addLeadingSlash(preg_replace($paramRegexp, $paramReplace, $wp_rewrite->get_search_permastruct()));
-	// Date
-	$rules['date'] = addLeadingSlash(preg_replace($paramRegexp, $paramReplace, $wp_rewrite->get_date_permastruct()));
-	// Custom post types
-	$postType = array();
-	foreach (get_post_types(array('_builtin' => false)) as $post_type) {
-		$postType[$post_type] = addLeadingSlash(preg_replace($paramRegexp, ':postname', $wp_rewrite->get_extra_permastruct($post_type)));
-	}
-	if (count($postType)) $rules['postTypes'] = $postType;
-	return json_encode($rules);
+	return json_encode(ngwp_get_permastructs(function($p) {
+		return addLeadingSlash(preg_replace('/%([a-z\-]+)%/i', ':$1', $p));
+	}));
 }
 
 //
-function ng_sitepress_languages() {
+function ngwp_sitepress_languages_json() {
 	global $sitepress;
-	if (!$sitepress) {
+	if (!$sitepress)
+	{
 		return 'null';
 	}
 	$default = $sitepress->get_default_language();
 	$languages = array();
-	foreach ($sitepress->get_active_languages() as $lang) {
+	foreach ($sitepress->get_active_languages() as $lang)
+	{
 		if ($lang['code'] == $default) continue;
 		$languages[] = $lang['code'];
 	}
 	return json_encode(array(
 		'default' => $default,
 		'others' => $languages
-		));
+	));
 }
 
 // Output data only if JSON API plugin is installed and active
 if (class_exists("JSON_API_Post")) {
 
-	function ng_current_page_data() {
+	function ngwp_query_data_json() {
 		if ( !have_posts() ) return "null";
 		global $post, $wp_query;
 	// Get single page
@@ -124,14 +174,41 @@ if (class_exists("JSON_API_Post")) {
 
 } else {
 
-	function ng_current_page_data() {
+	function ngwp_query_data_json() {
 		return "null";
 	}
 
 }
 
+/** Wordpress setup */
 
-/** Administration */
+function parini_setup() {
+
+	// This theme uses wp_nav_menu() in one location.
+	register_nav_menu( 'primary', __( 'Primary Menu' ) );
+
+	// See http://justintadlock.com/archives/2010/04/29/custom-post-types-in-wordpress
+	// Custom post for Works
+	register_post_type( 'lavori',
+		array(
+			'labels' => array(
+				'name' => __( 'Lavori' ),
+				'singular_name' => __( 'Lavoro' )
+				),
+			'rewrite' => array(
+				'with_front' => false
+				),
+			'public' => true,
+			)
+		);
+
+	// Adding post thumbnail support
+	add_theme_support( 'post-thumbnails' );
+}
+add_action( 'init', 'parini_setup' );
+
+
+/** Wordpress Administration Setup */
 
 $ng_options = array(
 	'home_slogan_content' => get_bloginfo('name'),

@@ -16,6 +16,10 @@
 	position: fixed;
 	width: 100%;
 	z-index: 90;
+
+	.no-js & {
+		display: none !important;
+	}
 }
 
 .loader-animation-hide {

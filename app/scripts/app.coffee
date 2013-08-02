@@ -21,10 +21,10 @@ angular.module('WordpressApp', ['ngRoute', 'ngResource'])
 
 		# Custom post types will have a $routeParams.postname parameter
 		# The post will be injected as `post`
-		if wordpress.rewriteRules?.postTypes?
-			for postType, postTypePermastruct of wordpress.rewriteRules.postTypes
+		if wordpress.routes?.postTypes?
+			for postType, postTypePermastruct of wordpress.routes.postTypes
 				$routeProvider.when postTypePermastruct,
-					templateUrl: "#{wordpress.templateUrl}/views/post.html"
+					templateUrl: "#{wordpress.templateUrl}/views/post.php"
 					controller: 'PostCtrl'
 					resolve:
 						wordpressData: ($route, wordpressApi) ->
@@ -33,7 +33,7 @@ angular.module('WordpressApp', ['ngRoute', 'ngResource'])
 								slug: $route.current.params.postname
 				if wordpress.language?.others? then for l in wordpress.language.others
 					$routeProvider.when "/#{l}#{postTypePermastruct}",
-						templateUrl: "#{wordpress.templateUrl}/views/post.html"
+						templateUrl: "#{wordpress.templateUrl}/views/post.php"
 						controller: 'PostCtrl'
 						resolve:
 							wordpressData: ($route, wordpressApi) ->
@@ -43,8 +43,8 @@ angular.module('WordpressApp', ['ngRoute', 'ngResource'])
 									slug: $route.current.params.postname
 
 		# Post will have a $routeParams.postname parameter
-		$routeProvider.when (wordpress.rewriteRules?.post or '/post/:postname'),
-			templateUrl: "#{wordpress.templateUrl}/views/post.html"
+		$routeProvider.when (wordpress.routes?.post or '/post/:postname'),
+			templateUrl: "#{wordpress.templateUrl}/views/post.php"
 			controller: 'PostCtrl'
 			resolve:
 				wordpressData: ($route, wordpressApi) ->
@@ -52,8 +52,8 @@ angular.module('WordpressApp', ['ngRoute', 'ngResource'])
 						slug: $route.current.params.postname
 
 		if wordpress.language?.others? then for l in wordpress.language.others
-			$routeProvider.when "/#{l}" + (wordpress.rewriteRules?.post or '/post/:postname'),
-				templateUrl: "#{wordpress.templateUrl}/views/post.html"
+			$routeProvider.when "/#{l}" + (wordpress.routes?.post or '/post/:postname'),
+				templateUrl: "#{wordpress.templateUrl}/views/post.php"
 				controller: 'PostCtrl'
 				resolve:
 					wordpressData: ($route, wordpressApi) ->
@@ -63,8 +63,8 @@ angular.module('WordpressApp', ['ngRoute', 'ngResource'])
 
 		# Pages will have a $routeParams.pagename parameter
 		if wordpress.language?.others? then for l in wordpress.language.others
-			$routeProvider.when "/#{l}" + (wordpress.rewriteRules?.page or '/:pagename/'),
-				templateUrl: "#{wordpress.templateUrl}/views/page.html"
+			$routeProvider.when "/#{l}" + (wordpress.routes?.page or '/:pagename/'),
+				templateUrl: "#{wordpress.templateUrl}/views/page.php"
 				controller: 'PageCtrl'
 				resolve:
 					wordpressData: ($route, wordpressApi) ->
@@ -72,8 +72,8 @@ angular.module('WordpressApp', ['ngRoute', 'ngResource'])
 							lang: l
 							slug: $route.current.params.pagename
 
-		$routeProvider.when (wordpress.rewriteRules?.page or '/:pagename/'),
-			templateUrl: "#{wordpress.templateUrl}/views/page.html"
+		$routeProvider.when (wordpress.routes?.page or '/:pagename/'),
+			templateUrl: "#{wordpress.templateUrl}/views/page.php"
 			controller: 'PageCtrl'
 			resolve:
 				wordpressData: ($route, wordpressApi) ->

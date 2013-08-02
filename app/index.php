@@ -7,7 +7,6 @@
 		<title ng-bind-template="<?php bloginfo( 'name' ); ?>{{document.title&&(' | '+document.title)}}"><?php wp_title( '|', true, 'right' ); ?></title>
 
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<?php if (is_home()): ?><meta name="fragment" content="!"><?php endif; ?>
 
 		<link href='http://fonts.googleapis.com/css?family=Quicksand:300,400,700|Arapey:400,400italic' rel='stylesheet' type='text/css' />
 		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css" />
@@ -27,7 +26,7 @@
 		<![endif]-->
 
 		<?php wp_head(); ?>
-</head>
+	</head>
 	<body ng-controller="MainCtrl" wp-href-lang="{{lang}}" ng-class="body.classes">
 		<!--[if lt IE 8]>
 			<p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
@@ -90,7 +89,22 @@
 				</center>
 			</div>
 
-			<div id="site-content" ng-view ng-animate="'view-animation'"></div>
+			<div id="site-content" ng-view ng-animate="'view-animation'">
+				<?php
+				if (($path = ngwp_crawler_path()) !== null) {
+					switch (ngwp_template_for_path($path)) {
+						case 'post':
+							get_template_part('/views/post');
+							break;
+						case 'page':
+							get_template_part('/views/page');
+							break;
+						default: // home
+							get_template_part('/views/home');
+							break;
+					}
+				} ?>
+			</div>
 
 		</div><!-- #site -->
 
@@ -119,9 +133,9 @@
 			},
 			siteUrl: "<?php echo get_site_url(); ?>",
 			templateUrl: "<?php echo get_template_directory_uri() ?>",
-			rewriteRules: <?php echo ng_rewrite_rules(); ?>,
-			language: <?php echo ng_sitepress_languages(); ?>,
-			data: <?php echo ng_current_page_data(); ?>
+			routes: <?php echo ngwp_routes_object_json(); ?>,
+			language: <?php echo ngwp_sitepress_languages_json(); ?>,
+			data: <?php echo ngwp_query_data_json(); ?>
 		});
 		</script>
 
