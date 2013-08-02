@@ -1156,7 +1156,7 @@ $topbar-bg: #7c7c7c;
 
 // Height and margin
 
-$topbar-height: 50px;
+$topbar-height: 48px;
 $topbar-margin-bottom: 0;
 
 // Input height for top bar
@@ -1170,14 +1170,14 @@ $topbar-margin-bottom: 0;
 
 // Link colors and styles for top-level nav
 
-// $topbar-link-color: #fff;
-$topbar-link-color-hover: $topbar-bg;
-$topbar-link-color-active: $topbar-bg;
+$topbar-link-color: white;
+$topbar-link-color-hover: #2a2a2a;
+$topbar-link-color-active: white;
 $topbar-link-weight: 300;
 // $topbar-link-font-size: emCalc(13px);
 // $topbar-link-hover-lightness: -30%; /* Darken by 30% */
-$topbar-link-bg-hover: white;
-$topbar-link-bg-active: white;
+$topbar-link-bg-hover: darken($topbar-bg, 5%);
+$topbar-link-bg-active: darken($topbar-bg, 5%);
 
 // Top bar dropdown elements
 

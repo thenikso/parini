@@ -1,13 +1,3 @@
-/** Sprites */
-
-$category-icon-spacing: 1px;
-@import "category-icon/*.png";
-@include all-category-icon-sprites;
-
-$theme-spacing: 1px;
-@import "theme/*.png";
-@include all-theme-sprites;
-
 /** Loading */
 
 .loading {

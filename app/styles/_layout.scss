@@ -58,11 +58,10 @@
 	}
 
 	li > a {
-		color: white;
 		text-transform: uppercase;
 
 		&:hover {
-			color: #2a2a2a;
+			color: $topbar-link-color-hover;
 		}
 	}
 }
@@ -71,6 +70,34 @@
 	li > a {
 		color: #414141;
 		font-weight: bold;
+	}
+
+	.social-link {
+		@include transition-property(background-color);
+		@include transition-duration(0.25s);
+		overflow: hidden;
+		text-indent: -2000px;
+
+		&.twitter {
+			@include theme-sprite(topbar-twitter);
+			width: $topbar-height;
+			background-color: #414141;
+			&:hover { background-color: #27A9E1; }
+		}
+
+		&.instagram {
+			@include theme-sprite(topbar-instagram);
+			width: $topbar-height;
+			background-color: #414141;
+			&:hover { background-color: #917470; }
+		}
+
+		&.facebook {
+			@include theme-sprite(topbar-facebook);
+			width: $topbar-height;
+			background-color: #414141;
+			&:hover { background-color: #3C5A99; }
+		}
 	}
 }
 
