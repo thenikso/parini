@@ -114,10 +114,39 @@
 	}
 }
 
-#footer-contacts {
+#footer-content {
 	background: $topbar-bg;
 	background: rgba($topbar-bg, 0.8);
 	min-height: 350px;
+
+	.widget {
+		padding: ($column-gutter/2) 0;
+
+		div, p, form, input, .widget-title {
+			display: inline-block;
+			font-family: $body-font-family;
+			font-style: normal;
+			margin: 0;
+		}
+
+		input[type=text],
+		input[type=email],
+		input[type=password] {
+			@include box-shadow(none);
+			background: none;
+			border: none;
+			border-bottom: 1px solid white;
+			color: inherit;
+			font-size: 1.2em;
+		}
+
+		input[type=submit] {
+			background: none;
+			border: none;
+			color: inherit;
+			text-transform: uppercase;
+		}
+	}
 }
 
 #footer-map {

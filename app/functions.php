@@ -187,7 +187,7 @@ if (class_exists("JSON_API_Post")) {
 
 /** Wordpress setup */
 
-function parini_setup() {
+function ngwp_setup() {
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menu( 'primary', __( 'Primary Menu' ) );
@@ -210,7 +210,21 @@ function parini_setup() {
 	// Adding post thumbnail support
 	add_theme_support( 'post-thumbnails' );
 }
-add_action( 'init', 'parini_setup' );
+add_action( 'init', 'ngwp_setup' );
+
+function ngwp_widgets_init()
+{
+	register_sidebar( array(
+		'name' => __( 'Footer Widget Area', 'ngwp' ),
+		'id' => 'footer-1',
+		'description' => __( 'Appears on the bottom of the readable footer area', 'ngwp' ),
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget' => '</aside>',
+		'before_title' => '<h4 class="widget-title">',
+		'after_title' => '</h4>',
+	) );
+}
+add_action( 'widgets_init', 'ngwp_widgets_init' );
 
 
 /** Wordpress Administration Setup */

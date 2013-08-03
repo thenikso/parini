@@ -114,13 +114,18 @@
 		?>
 		<footer reveal-sheet-stack id="site-footer">
 			<a reveal-sheet="reference" id="footer-map" href="<?php echo $ng_settings['footer_background_link']; ?>" target="_blank" style="background-image:url('<?php echo $ng_settings['footer_background_url']; ?>')"></a>
-			<div reveal-sheet id="footer-contacts">
-				<?php echo $ng_settings['footer_content']; ?>
+			<div reveal-sheet id="footer-content">
+				<div id="footer-contacts"><?php echo $ng_settings['footer_content']; ?></div>
+				<div id="footer-widgets" class="row">
+					<div class="small-12 columns">
+						<?php dynamic_sidebar( 'footer-1' ); ?>
+					</div>
+				</div>
 			</div>
 		</footer><!-- #site-footer -->
 
 		<!-- Cleanup start -->
-		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/foundation/4.1.6/js/foundation.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/masonry/3.0.0/masonry.pkgd.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/2.1.0/jquery.imagesloaded.min.js"></script>
