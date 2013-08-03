@@ -21,7 +21,10 @@ else
 // $ng_settings = get_option( 'ng_options', $ng_options );
 if ( defined('NGWP_NEEDS_WORDPRESS') ) {
 	define('WP_USE_THEMES', true);
-	require_once (dirname(__FILE__) . '/../../../../wp-load.php');
+	if (file_exists(dirname(__FILE__) . '/../../../wp-load.php'))
+		require_once (dirname(__FILE__) . '/../../../wp-load.php');
+	else
+		require_once (dirname(__FILE__) . '/../../../../wp-load.php');
 }
 
 $ngwp_have_posts_mock = true;
