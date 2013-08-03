@@ -2,83 +2,41 @@
 
 angular.module('WordpressApp', ['ngRoute', 'ngResource'])
 	.config ($routeProvider, $locationProvider, wordpress) ->
-		$routeProvider.when '/',
-			templateUrl: "#{wordpress.templateUrl}/views/home.php"
-			controller: 'HomeCtrl'
-			resolve:
-				wordpressData: (wordpressApi) ->
-					wordpressApi.getRecentPostsPromise {}
 
-		# Account for different languages
-		if wordpress.language?.others? then for l in wordpress.language.others
-			$routeProvider.when "/#{l}",
-				templateUrl: "#{wordpress.templateUrl}/views/home.php"
-				controller: 'HomeCtrl'
+		# Helper function to generate routes settings using languages if present
+		makeRouteHandler = (route, controller, viewName, apiPromiseMethodName, apiParams) ->
+			if wordpress.language?.others? then for l in wordpress.language.others
+				$routeProvider.when "/#{l}" + route,
+					templateUrl: "#{wordpress.templateUrl}/views/#{viewName}.php"
+					controller: controller
+					resolve:
+						wordpressData: (wordpressApi, $route) ->
+							wordpressApi[apiPromiseMethodName] angular.extend(apiParams?($route) ? apiParams, lang: l)
+
+			$routeProvider.when route,
+				templateUrl: "#{wordpress.templateUrl}/views/#{viewName}.php"
+				controller: controller
 				resolve:
-					wordpressData: (wordpressApi) ->
-						wordpressApi.getRecentPostsPromise
-							lang: l
+					wordpressData: (wordpressApi, $route) ->
+						wordpressApi[apiPromiseMethodName] (apiParams?($route) ? apiParams)
 
-		# Custom post types will have a $routeParams.postname parameter
-		# The post will be injected as `post`
+		# Homepage
+		makeRouteHandler '/', 'HomeCtrl', 'home', 'getRecentPostsPromise', {}
+
+		# Custom post types. The post will be injected as `post`
 		if wordpress.routes?.postTypes?
 			for postType, postTypePermastruct of wordpress.routes.postTypes
-				$routeProvider.when postTypePermastruct,
-					templateUrl: "#{wordpress.templateUrl}/views/post.php"
-					controller: 'PostCtrl'
-					resolve:
-						wordpressData: ($route, wordpressApi) ->
-							wordpressApi.getPostPromise
-								post_type: postType
-								slug: $route.current.params.postname
-				if wordpress.language?.others? then for l in wordpress.language.others
-					$routeProvider.when "/#{l}#{postTypePermastruct}",
-						templateUrl: "#{wordpress.templateUrl}/views/post.php"
-						controller: 'PostCtrl'
-						resolve:
-							wordpressData: ($route, wordpressApi) ->
-								wordpressApi.getPostPromise
-									lang: l
-									post_type: postType
-									slug: $route.current.params.postname
+				makeRouteHandler postTypePermastruct, 'PostCtrl', 'post', 'getPostPromise', do (postType) -> (route) ->
+					post_type: postType
+					slug: route.current.params.postname
 
-		# Post will have a $routeParams.postname parameter
-		$routeProvider.when (wordpress.routes?.post or '/post/:postname'),
-			templateUrl: "#{wordpress.templateUrl}/views/post.php"
-			controller: 'PostCtrl'
-			resolve:
-				wordpressData: ($route, wordpressApi) ->
-					wordpressApi.getPostPromise
-						slug: $route.current.params.postname
+		# Single post
+		makeRouteHandler (wordpress.routes?.post or '/post/:postname'), 'PostCtrl', 'post', 'getPostPromise', (route) ->
+			slug: route.current.params.postname
 
-		if wordpress.language?.others? then for l in wordpress.language.others
-			$routeProvider.when "/#{l}" + (wordpress.routes?.post or '/post/:postname'),
-				templateUrl: "#{wordpress.templateUrl}/views/post.php"
-				controller: 'PostCtrl'
-				resolve:
-					wordpressData: ($route, wordpressApi) ->
-						wordpressApi.getPostPromise
-							lang: l
-							slug: $route.current.params.postname
-
-		# Pages will have a $routeParams.pagename parameter
-		if wordpress.language?.others? then for l in wordpress.language.others
-			$routeProvider.when "/#{l}" + (wordpress.routes?.page or '/:pagename/'),
-				templateUrl: "#{wordpress.templateUrl}/views/page.php"
-				controller: 'PageCtrl'
-				resolve:
-					wordpressData: ($route, wordpressApi) ->
-						wordpressApi.getPagePromise
-							lang: l
-							slug: $route.current.params.pagename
-
-		$routeProvider.when (wordpress.routes?.page or '/:pagename/'),
-			templateUrl: "#{wordpress.templateUrl}/views/page.php"
-			controller: 'PageCtrl'
-			resolve:
-				wordpressData: ($route, wordpressApi) ->
-					wordpressApi.getPagePromise
-						slug: $route.current.params.pagename
+		# Pages should be handled last as they may have a catch-all route
+		makeRouteHandler (wordpress.routes?.page or '/:pagename/'), 'PageCtrl', 'page', 'getPagePromise', (route) ->
+			slug: route.current.params.pagename
 
 		# Fallback
 		$routeProvider.otherwise
