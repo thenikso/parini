@@ -10,10 +10,16 @@
 }
 
 #site-loader {
+	@include border-radius(5px);
 	background: $body-bg;
-	height: 100%;
+	height: 100px;
+	left: 50%;
+	margin-left: -50px;
+	margin-top: -50px;
+	padding: 12px;
 	position: fixed;
-	width: 100%;
+	top: 50%;
+	width: 100px;
 	z-index: 90;
 
 	.no-js & {
@@ -21,15 +27,10 @@
 	}
 }
 
-.loader-animation-hide {
-	@include transition-property(top);
-	@include transition-duration(1.5s);
-	@include transition-timing-function(ease-in-out);
-	top: 0%;
-
-	&.loader-animation-hide-active {
-		top: 100%;
-	}
+.fade-animation {
+	@include transition(opacity 0.5s ease-in-out);
+	&.ng-enter { opacity: 0; &.ng-enter-active { opacity: 1; } }
+	&.ng-leave { opacity: 1; &.ng-leave-active { opacity: 0; } }
 }
 
 @import "spinner";
@@ -138,7 +139,7 @@
 	overflow: hidden;
 }
 
-.view-animation-leave-wrapper {
+.view-animation-wrapper {
 	background: $body-bg;
 	position: absolute;
 	top: 0;

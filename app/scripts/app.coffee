@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('WordpressApp', ['ngRoute', 'ngResource'])
+angular.module('WordpressApp', ['ngRoute', 'ngResource', 'ngAnimate'])
 	.config ($routeProvider, $locationProvider, wordpress) ->
 
 		# Helper function to generate routes settings using languages if present

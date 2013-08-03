@@ -76,8 +76,8 @@
 				</nav>
 			</header>
 
-			<div id="site-loader" ng-show="loading" ng-animate="'loader-animation'">
-				<center style="margin-top:100px">
+			<div id="site-loader" ng-if="loading" class="fade-animation">
+				<center>
 					<div class="loader rspin">
 						<span class="c"></span>
 						<span class="d spin"><span class="e"></span></span>
@@ -89,7 +89,7 @@
 				</center>
 			</div>
 
-			<div id="site-content" ng-view ng-animate="'view-animation'">
+			<div id="site-content" ng-view class="view-animation">
 				<?php
 				if (($path = ngwp_crawler_path()) !== null) {
 					switch (ngwp_template_for_path($path)) {

@@ -45,15 +45,13 @@ angular.module('WordpressApp')
 			# TODO add other apis
 
 	# Animation to give the appearance of the content to fall down
-	.animation 'view-animation-leave', ->
-		setup: (el) ->
+	.animation '.view-animation', ->
+		leave: (el, done) ->
 			scrollTop = $(window).scrollTop()
-			wrapper = el.wrapAll('<div class="view-animation-leave-wrapper"></div>').parent()
+			wrapper = el.wrapAll('<div class="view-animation-wrapper"></div>').parent()
 			# wrapper css is setup via styles
 			wrapper.scrollTop scrollTop
 			$(window).scrollTop(0)
-			wrapper
-		start: (el, done, wrapper) ->
 			wrapper.animate top: $(window).height(),
 				{
 					duration: 1000
@@ -62,6 +60,7 @@ angular.module('WordpressApp')
 						wrapper.remove()
 						done()
 				}
+			null
 
 $.easing['easeInOutExpo'] = (x, t, b, c, d) ->
 		return b if t == 0
