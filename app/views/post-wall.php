@@ -31,6 +31,6 @@
 </div>
 <a href="" class="post-wall-load-more-link" ng-class="{ 'loading': data.isLoadingMore }" ng-if="data.hasMore()" ng-click="data.loadMore()">Mostra pi&ugrave; articoli</a>
 
-<div ng-if="!data||!data.posts||!data.posts.leng" class="post-wall-no-results no-result not-found">
+<div ng-if="!data||!data.posts||!data.posts.length" class="post-wall-no-results no-result not-found">
 	Nessun post trovato. <a href="/">Torna alla homepage</a>
 </div>
