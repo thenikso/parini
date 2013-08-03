@@ -38,8 +38,10 @@ angular.module('WordpressApp')
 				wordpressApi.getPosts angular.extend({ lang: $scope.lang }, opts)
 			categoryPosts: (opts) ->
 				wordpressApi.getCategoryPosts angular.extend({ lang: $scope.lang }, opts)
-			datePosts: (opts) ->
+			archive: (opts) ->
 				wordpressApi.getDatePosts angular.extend({ lang: $scope.lang }, opts)
+			search: (opts) ->
+				wordpressApi.getSearchPosts angular.extend({ lang: $scope.lang }, opts)
 			# TODO add other apis
 
 	# Animation to give the appearance of the content to fall down

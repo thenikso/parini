@@ -38,6 +38,10 @@ angular.module('WordpressApp', ['ngRoute', 'ngResource'])
 		makeRouteHandler (wordpress.routes?.date or '/archive/:year/:monthnum/:day'), 'DateCtrl', 'date', 'getDatePostsPromise', (route) ->
 			date: "#{route.current.params.year}-#{route.current.params.monthnum}-#{route.current.params.dat}"
 
+		# Search
+		makeRouteHandler (wordpress.routes?.search or '/search/:search'), 'SearchCtrl', 'search', 'getSearchPostsPromise', (route) ->
+			search: route.current.params.search
+
 		# Single post
 		makeRouteHandler (wordpress.routes?.post or '/post/:postname'), 'PostCtrl', 'post', 'getPostPromise', (route) ->
 			slug: route.current.params.postname
