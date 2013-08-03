@@ -30,13 +30,17 @@ angular.module('WordpressApp', ['ngRoute', 'ngResource'])
 					post_type: postType
 					slug: route.current.params.postname
 
-		# Single post
-		makeRouteHandler (wordpress.routes?.post or '/post/:postname'), 'PostCtrl', 'post', 'getPostPromise', (route) ->
-			slug: route.current.params.postname
-
 		# Categories
 		makeRouteHandler (wordpress.routes?.category or '/category/:category'), 'CategoryCtrl', 'category', 'getCategoryPostsPromise', (route) ->
 			slug: route.current.params.category
+
+		# Date archives
+		makeRouteHandler (wordpress.routes?.date or '/archive/:year/:monthnum/:day'), 'DateCtrl', 'date', 'getDatePostsPromise', (route) ->
+			date: "#{route.current.params.year}-#{route.current.params.monthnum}-#{route.current.params.dat}"
+
+		# Single post
+		makeRouteHandler (wordpress.routes?.post or '/post/:postname'), 'PostCtrl', 'post', 'getPostPromise', (route) ->
+			slug: route.current.params.postname
 
 		# Pages should be handled last as they may have a catch-all route
 		makeRouteHandler (wordpress.routes?.page or '/:pagename/'), 'PageCtrl', 'page', 'getPagePromise', (route) ->
