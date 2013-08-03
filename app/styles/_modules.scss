@@ -177,6 +177,21 @@ a.slogan-scroll-link {
 	}
 }
 
+.post-wall-container {
+	@include box-shadow(rgba(black, 0.8) 0 0 10px);
+	position: relative;
+	padding-bottom: 0.5em;
+
+	> header {
+		overflow: hidden;
+		padding: 0 ($column-gutter/2);
+
+		+ .post-wall {
+			padding-top: 0;
+		}
+	}
+}
+
 a.post-wall-load-more-link {
 	@extend a.slogan-scroll-link;
 	color: $topbar-bg;

@@ -9,7 +9,7 @@
 // <IfModule mod_rewrite.c>
 // RewriteEngine On
 // RewriteCond %{QUERY_STRING} ^_escaped_fragment_=(.*)$
-// RewriteRule ^$ $1 [L]
+// RewriteRule ^$ $1 [QSA,L]
 // </IfModule>
 // # END Angular-WordPress-Theme
 function ngwp_crawler_path()
@@ -131,14 +131,14 @@ if (class_exists("JSON_API_Post")) {
 	function ngwp_query_data_json() {
 		if ( !have_posts() ) return "null";
 		global $post, $wp_query;
-	// Get single page
+		// Get single page
 		if ( is_page() ) {
 			$data = array(
 				'status' => 'ok',
 				'page' => new JSON_API_Post($post)
 				);
 		}
-	// Get single post
+		// Get single post
 		elseif ( is_single() )
 		{
 			$previous = get_adjacent_post(false, '', true);
@@ -154,7 +154,7 @@ if (class_exists("JSON_API_Post")) {
 				$data['next_url'] = get_permalink($next->ID);
 			}
 		}
-	// Get all posts
+		// Get all posts
 		else
 		{
 			$posts = array();
@@ -168,6 +168,11 @@ if (class_exists("JSON_API_Post")) {
 				'pages' => $wp_query->max_num_pages,
 				'posts' => $posts
 				);
+
+			// Get category
+			if ( is_category() ) {
+				$data['category'] = new JSON_API_Category(get_category(get_query_var('cat'),false));
+			}
 		}
 		return json_encode($data);
 	}

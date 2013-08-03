@@ -34,6 +34,10 @@ angular.module('WordpressApp', ['ngRoute', 'ngResource'])
 		makeRouteHandler (wordpress.routes?.post or '/post/:postname'), 'PostCtrl', 'post', 'getPostPromise', (route) ->
 			slug: route.current.params.postname
 
+		# Categories
+		makeRouteHandler (wordpress.routes?.category or '/category/:category'), 'CategoryCtrl', 'category', 'getCategoryPostsPromise', (route) ->
+			slug: route.current.params.category
+
 		# Pages should be handled last as they may have a catch-all route
 		makeRouteHandler (wordpress.routes?.page or '/:pagename/'), 'PageCtrl', 'page', 'getPagePromise', (route) ->
 			slug: route.current.params.pagename

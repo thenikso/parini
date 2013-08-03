@@ -5,7 +5,7 @@ angular.module('WordpressApp')
 		$scope.data = wordpressData
 		$scope.body.classes = [
 			'single'
-			"type-${$scope.data.post.type}"
+			"type-#{$scope.data.post.type}"
 			"post-#{$scope.data.post.id}"
 			"post-#{$scope.data.post.slug}"
 		]

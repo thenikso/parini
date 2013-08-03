@@ -1,27 +1,11 @@
-<?php
-// Prepare the view for possible inclusion in `index.php` when called by a crawler.
-// Also request for Wordpress to be loaded in order to retrieve theme options.
-define('NGWP_NEEDS_WORDPRESS', true);
-require_once (dirname(__FILE__).'/../prepare-view.php');
+<?php require_once (dirname(__FILE__).'/../prepare-view.php'); ?>
 
-global $ng_options;
-$ng_settings = get_option( 'ng_options', $ng_options );
-?>
+<section id="category-post-wall" class="post-wall-container category-section">
+	<header>
+		<h1 class="category-title">Archivio per categoria: <span ng-bind="data.category.title"><?php ngwp_call('single_cat_title'); ?></span></h1>
+	</header>
 
-<section class="slogan" parallax-box>
-	<div class="slogan-background" style="background-image:url('<?php echo $ng_settings['home_slogan_background_url']; ?>');" parallax-multiplier="0.5"></div>
-	<article class="slogan-content">
-		<div class="row">
-			<div class="small-12 columns">
-				<h1 class="slogan-title"><?php echo $ng_settings['home_slogan_content']; ?></h1>
-			</div>
-		</div>
-	</article>
-	<a smooth-scroll="home-post-wall" speed="1000" offset="45" class="slogan-scroll-link hide-for-small">News Recenti</a>
-</section>
-
-<section id="home-post-wall" class="post-wall-container home-content">
-	<div class="post-wall" masonry="{ columnWidth: '.grid-sizer' }">
+	<div class="post-wall category-content" masonry="{ columnWidth: '.grid-sizer' }">
 		<div class="grid-sizer"></div>
 
 		<?php
