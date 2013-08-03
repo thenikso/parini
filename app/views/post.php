@@ -9,7 +9,7 @@
 			</header>
 			<div class="post-content" bind-compile="data.post.content"><?php ngwp_call('the_content'); ?></div>
 		</article>
-		<div ng-if="!data||!data.post" ng-class="no-result not-found">
+		<div ng-if="!data||!data.post" class="no-result not-found">
 			Nessun post trovato. <a href="/">Torna alla homepage</a>
 		</div>
 	</div>
