@@ -57,6 +57,7 @@
 
 	li > a {
 		text-transform: uppercase;
+		color: $topbar-link-color;
 
 		&:hover {
 			color: $topbar-link-color-hover;
