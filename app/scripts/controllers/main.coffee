@@ -2,6 +2,9 @@
 
 angular.module('WordpressApp')
 	.controller 'MainCtrl', ($scope, $rootScope, $location, wordpress, wordpressApi) ->
+		# Expose wordpress settings
+		$scope.wordpress = wordpress
+
 		# Specify body classes
 		$scope.body =
 			classes: []
@@ -34,14 +37,14 @@ angular.module('WordpressApp')
 		# This can be used in pages like so:
 		# <div ng-init="myposts=load.posts()">{{myposts.status}}</div>
 		$scope.load =
-			posts: (opts) ->
-				wordpressApi.getPosts angular.extend({ lang: $scope.lang }, opts)
-			categoryPosts: (opts) ->
-				wordpressApi.getCategoryPosts angular.extend({ lang: $scope.lang }, opts)
-			archive: (opts) ->
-				wordpressApi.getDatePosts angular.extend({ lang: $scope.lang }, opts)
-			search: (opts) ->
-				wordpressApi.getSearchPosts angular.extend({ lang: $scope.lang }, opts)
+			posts: (opts, callback) ->
+				wordpressApi.getPosts angular.extend({ lang: $scope.lang }, opts), callback
+			categoryPosts: (opts, callback) ->
+				wordpressApi.getCategoryPosts angular.extend({ lang: $scope.lang }, opts), callback
+			datePosts: (opts, callback) ->
+				wordpressApi.getDatePosts angular.extend({ lang: $scope.lang }, opts), callback
+			searchPosts: (opts, callback) ->
+				wordpressApi.getSearchPosts angular.extend({ lang: $scope.lang }, opts), callback
 			# TODO add other apis
 
 	# Animation to give the appearance of the content to fall down

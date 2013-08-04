@@ -1,4 +1,6 @@
-<div class="post-wall" masonry="{ columnWidth: '.grid-sizer' }">
+<?php require_once (dirname(__FILE__).'/../prepare-view.php'); ?>
+
+<div class="post-wall" masonry="{ columnWidth: '.grid-sizer' }" ng-init="theData = (wall.data||data)">
 	<div class="grid-sizer"></div>
 
 	<?php
@@ -6,7 +8,7 @@
 	// be used if the page is being included in PHP or requested as a template.
 	while ( ngwp_call('have_posts') ) : ngwp_call('the_post'); ?>
 
-	<article masonry-brick class="post" ng-repeat="post in data.posts track by post.id">
+	<article masonry-brick class="post" ng-repeat="post in theData.posts track by post.id">
 		<header>
 			<div class="post-meta">
 				<div class="post-category-icon" ng-if="post.categories.length" ng-class="'category-icon-'+post.categories[0].slug"></div>
@@ -29,8 +31,8 @@
 	<?php endwhile; ?>
 
 </div>
-<a href="" class="post-wall-load-more-link" ng-class="{ 'loading': data.isLoadingMore }" ng-if="data.hasMore()" ng-click="data.loadMore()">Mostra pi&ugrave; articoli</a>
+<a href="" class="post-wall-load-more-link" ng-class="{ 'loading': theData.isLoadingMore }" ng-if="theData.hasMore()" ng-click="theData.loadMore()">Mostra pi&ugrave; articoli</a>
 
-<div ng-if="!data||!data.posts||!data.posts.length" class="post-wall-no-results no-result not-found">
+<div ng-if="!theData||!theData.posts||!theData.posts.length" class="post-wall-no-results no-result not-found">
 	Nessun post trovato. <a href="/">Torna alla homepage</a>
 </div>

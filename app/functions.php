@@ -226,6 +226,142 @@ function ngwp_widgets_init()
 }
 add_action( 'widgets_init', 'ngwp_widgets_init' );
 
+/** Meta Boxes */
+
+function ngwp_add_meta_boxes()
+{
+	add_meta_box( 'ngwp-page-wall-box', __( 'Posts Wall Settings', 'ngwp' ), 'ngwp_page_wall_meta_box', 'page', 'side', 'core' );
+}
+add_action( 'add_meta_boxes', 'ngwp_add_meta_boxes' );
+
+function ngwp_page_wall_meta_box()
+{
+	global $post;
+	$values = array(
+		'type' => get_post_meta( $post->ID, 'ngwpPageWallType', true ),
+		'posts' => get_post_meta( $post->ID, 'ngwpPageWallPosts', true ),
+		'count' => get_post_meta( $post->ID, 'ngwpPageWallCount', true ),
+		'postsType' => get_post_meta( $post->ID, 'ngwpPageWallPostsType', true ),
+		'date' => get_post_meta( $post->ID, 'ngwpPageWallDate', true ),
+		'category' => get_post_meta( $post->ID, 'ngwpPageWallCategory', true ),
+		'tag' => get_post_meta( $post->ID, 'ngwpPageWallTag', true ),
+		'author' => get_post_meta( $post->ID, 'ngwpPageWallAuthor', true ),
+		'search' => get_post_meta( $post->ID, 'ngwpPageWallSearch', true )
+	);
+
+	wp_nonce_field( 'ngwp_page_wall_meta_box_nonce', 'ngwp_page_wall_meta_box_nonce_name' );
+?>
+	<p><?php _e( 'A posts wall like the one in the homepage or a thumbnails wall can be displayed after the content of the page.', 'ngwp' ); ?></p>
+	<p>
+		<label for="ngwp-page-wall-box-type">Type</label>
+		<select name="ngwp-page-wall-box[type]" id="ngwp-page-wall-box-type" class="ngwp-show-has-class-like-id">
+			<option value="">None</option>
+			<option value="posts" <?php selected( $values['type'], 'posts' ); ?>>Posts Wall</option>
+			<option value="thumbnails" <?php selected( $values['type'], 'thumbnails' ); ?>>Thumbnails Wall</option>
+		</select>
+	</p>
+	<div class="has-ngwp-page-wall-box-type" style="display:none">
+		<p>
+			<label for="ngwp-page-wall-box-posts">Posts</label>
+			<select name="ngwp-page-wall-box[posts]" id="ngwp-page-wall-box-posts" class="ngwp-show-has-class-like-val">
+				<option value="">Posts</option>
+				<option value="recent" <?php selected( $values['posts'], 'recent' ); ?>>Recent Posts</option>
+				<option value="date" <?php selected( $values['posts'], 'date' ); ?>>Date Posts</option>
+				<option value="category" <?php selected( $values['posts'], 'category' ); ?>>Category Posts</option>
+				<option value="tag" <?php selected( $values['posts'], 'tag' ); ?>>Tag Posts</option>
+				<option value="author" <?php selected( $values['posts'], 'author' ); ?>>Author Posts</option>
+				<option value="search" <?php selected( $values['posts'], 'search' ); ?>>Search Posts</option>
+			</select>
+		</p>
+
+		<p>
+			<label fore="ngwp-page-wall-box-count">Count per page</label>
+			<input type="number" name="ngwp-page-wall-box[count]" id="ngwp-page-wall-box-count" value="<?php echo $values['count'] ? $values['count'] : '10'; ?>" style="width: 4em;">
+		</p>
+
+		<?php
+		$post_types = get_post_types(array('_builtin' => false), 'objects');
+		if (count($post_types) > 0):
+		?>
+		<p>
+			<label for="ngwp-page-wall-box-posts-type">Post type</label>
+			<select name="ngwp-page-wall-box[postsType]" id="ngwp-page-wall-box-posts-type">
+				<option value="">Posts</option>
+				<?php foreach ($post_types as $pt): ?>
+				<option value="<?php echo $pt->name; ?>" <?php selected( $values['postsType'], $pt->name ); ?>><?php echo $pt->label; ?></option>
+				<?php endforeach; ?>
+			</select>
+		</p>
+		<?php endif; ?>
+
+		<p class="has-ngwp-page-wall-box-posts ngwp-is-date" style="display:none;">
+			<label for="ngwp-page-wall-box-date">Date</label>
+			<input type="date" id="ngwp-page-wall-box-date" name="ngwp-page-wall-box[date]" value="<?php echo $values['date']; ?>">
+		</p>
+
+		<p class="has-ngwp-page-wall-box-posts ngwp-is-category" style="display:none;">
+			<label for="ngwp-page-wall-box-category">Category</label>
+			<select name="ngwp-page-wall-box[category]" id="ngwp-page-wall-box-category">
+				<?php foreach (get_categories() as $c): ?>
+				<option value="<?php echo $c->slug; ?>" <?php selected( $values['category'], $c->slug ); ?>><?php echo $c->name; ?></option>
+				<?php endforeach; ?>
+			</select>
+		</p>
+
+		<p class="has-ngwp-page-wall-box-posts ngwp-is-tag" style="display:none;">
+			<label for="ngwp-page-wall-box-tag">Tag</label>
+			<select name="ngwp-page-wall-box[tag]" id="ngwp-page-wall-box-tag">
+				<?php foreach (get_tags() as $c): ?>
+				<option value="<?php echo $c->slug; ?>" <?php selected( $values['tag'], $c->slug ); ?>><?php echo $c->name; ?></option>
+				<?php endforeach; ?>
+			</select>
+		</p>
+
+		<p class="has-ngwp-page-wall-box-posts ngwp-is-author" style="display:none;">
+			<label for="ngwp-page-wall-box-author">Author</label>
+			<select name="ngwp-page-wall-box[author]" id="ngwp-page-wall-box-author">
+				<?php foreach (get_users() as $c): ?>
+				<option value="<?php echo $c->user_nicename; ?>" <?php selected( $values['author'], $c->user_nicename ); ?>><?php echo $c->display_name; ?></option>
+				<?php endforeach; ?>
+			</select>
+		</p>
+
+		<p class="has-ngwp-page-wall-box-posts ngwp-is-search" style="display:none;">
+			<label for="ngwp-page-wall-box-search">Search</label>
+			<input type="text" id="ngwp-page-wall-box-search" name="ngwp-page-wall-box[search]" value="<?php echo $values['search']; ?>">
+		</p>
+
+	</div>
+	<script type="text/javascript">
+	jQuery('.ngwp-show-has-class-like-id').change(function () {
+		var $el = jQuery('.has-'+this.id);
+		if (jQuery(this).val()) $el.fadeIn('fast');
+		else $el.fadeOut('fast');
+	}).change();
+	jQuery('.ngwp-show-has-class-like-val').change(function () {
+		var $el = jQuery('.has-'+this.id+'.ngwp-is-'+jQuery(this).val());
+		jQuery('.has-'+this.id).not($el).fadeOut('fast', function () {
+			$el.fadeIn('fast');
+		});
+	}).change();
+	</script>
+<?php
+}
+
+function ngwp_meta_box_save( $post_id )
+{
+	// if our current user can't edit this post, bail
+	if( !current_user_can( 'edit_post', $post_id ) ) return;
+
+	// if our nonce isn't there, or we can't verify it, bail
+	if( !isset( $_POST['ngwp_page_wall_meta_box_nonce_name'] ) || !wp_verify_nonce( $_POST['ngwp_page_wall_meta_box_nonce_name'], 'ngwp_page_wall_meta_box_nonce' ) ) return;
+
+	foreach ($_POST['ngwp-page-wall-box'] as $key => $value) {
+		update_post_meta( $post_id, 'ngwpPageWall'.ucfirst($key), $value );
+	}
+}
+add_action( 'save_post', 'ngwp_meta_box_save' );
+
 
 /** Wordpress Administration Setup */
 
