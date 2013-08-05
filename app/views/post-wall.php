@@ -9,7 +9,7 @@
 	while ( ngwp_call('have_posts') ) : ngwp_call('the_post'); ?>
 
 	<article masonry-brick class="post" ng-repeat="post in theData.posts track by post.id">
-		<header>
+		<header class="post-header">
 			<div class="post-meta">
 				<div class="post-category-icon" ng-if="post.categories.length" ng-class="'category-icon-'+post.categories[0].slug"></div>
 				<span class="post-date" ng-bind="post.date|date:'dd/MM/yyyy'"></span>
@@ -19,12 +19,12 @@
 					</span>
 				</span>
 			</div>
-			<h3 class="post-title"><a ng-href="{{post.url}}" ng-bind="post.title"><?php ngwp_call('the_title'); ?></a></h3>
+			<h2 class="post-title"><a ng-href="{{post.url}}" ng-bind="post.title"><?php ngwp_call('the_title'); ?></a></h2>
 		</header>
 		<a class="post-link" ng-href="{{post.url}}" href="<?php echo ngwp_call('the_permalink'); ?>">
-			<img class="post-thumbnail" ng-src="{{post.thumbnail_images.large.url}}" ng-if="post.thumbnail_images" masonry-layout-on="post.thumbnail_images.large.url">
+			<img class="post-thumbnail" ng-src="{{post.thumbnail_images.large.url}}" ng-if="post.thumbnail_images" masonry-layout-on="post.thumbnail_images.large.url" alt="{{post.title}}">
 			<?php ngwp_call('the_post_thumbnail'); ?>
-			<div class="post-content" ng-bind-html-unsafe="post.excerpt"><?php ngwp_call('the_excerpt'); ?></div>
+			<div class="post-content" ng-bind-html="post.excerpt"><?php ngwp_call('the_excerpt'); ?></div>
 		</a>
 	</article>
 
