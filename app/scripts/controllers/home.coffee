@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('WordpressApp')
-	.controller 'HomeCtrl', ($scope, wordpressData) ->
-		$scope.body.classes = ['home']
-		$scope.data = wordpressData
+app = angular.module('WordpressApp')
+app.controller 'HomeCtrl', ($scope, wordpressData) ->
+	$scope.body.classes = ['home']
+	$scope.data = wordpressData
