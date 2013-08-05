@@ -57,14 +57,30 @@ angular.module('WordpressApp')
 			# wrapper css is setup via styles
 			wrapper.scrollTop scrollTop
 			$(window).scrollTop(0)
-			wrapper.animate top: $(window).height(),
-				{
-					duration: 1000
-					easing: 'easeInOutExpo'
-					done: ->
-						wrapper.remove()
-						done()
-				}
+			if Modernizr?.csstransforms3d
+				translateY = $(window).height()
+				wrapper.css
+					'-webkit-transition': 'all 1s ease-in-out'
+					'-moz-transition': 'all 1s ease-in-out'
+					'-o-transition': 'all 1s ease-in-out'
+					'transition': 'all 1s ease-in-out'
+					'-webkit-transform': "translate3d(0px, #{translateY}px, 0px)"
+					'-mox-transform': "translate3d(0px, #{translateY}px, 0px)"
+					'-o-transform': "translate3d(0px, #{translateY}px, 0px)"
+					'-ms-transform': "translateY(#{translateY}px)"
+					'transform': "translate3d(0px, #{translateY}px, 0px)"
+				setTimeout (->
+					wrapper.remove()
+					done()), 1000
+			else
+				wrapper.animate top: $(window).height(),
+					{
+						duration: 1000
+						easing: 'easeInOutExpo'
+						done: ->
+							wrapper.remove()
+							done()
+					}
 			null
 
 $.easing['easeInOutExpo'] = (x, t, b, c, d) ->
