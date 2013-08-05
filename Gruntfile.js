@@ -316,7 +316,7 @@ module.exports = function (grunt) {
     'concat',
     'copy',
     'ngmin',
-    // 'uglify'
+    'uglify'
   ]);
 
   grunt.registerTask('default', [

@@ -10,15 +10,15 @@ angular.module('WordpressApp', ['ngRoute', 'ngResource', 'ngAnimate', 'ngSanitiz
 					templateUrl: "#{wordpress.templateUrl}/views/#{viewName}.php"
 					controller: controller
 					resolve:
-						wordpressData: (wordpressApi, $route) ->
-							wordpressApi[apiPromiseMethodName] angular.extend(apiParams?($route) ? apiParams, lang: l)
+						wordpressData: ['wordpressApi', '$route', (wordpressApi, $route) ->
+							wordpressApi[apiPromiseMethodName] angular.extend(apiParams?($route) ? apiParams, lang: l)]
 
 			$routeProvider.when route,
 				templateUrl: "#{wordpress.templateUrl}/views/#{viewName}.php"
 				controller: controller
 				resolve:
-					wordpressData: (wordpressApi, $route) ->
-						wordpressApi[apiPromiseMethodName] (apiParams?($route) ? apiParams)
+					wordpressData: ['wordpressApi', '$route', (wordpressApi, $route) ->
+						wordpressApi[apiPromiseMethodName] (apiParams?($route) ? apiParams)]
 
 		# Homepage
 		makeRouteHandler '/', 'HomeCtrl', 'home', 'getRecentPostsPromise', {}
