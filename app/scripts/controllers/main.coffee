@@ -31,20 +31,22 @@ angular.module('WordpressApp')
 		$rootScope.$on '$routeChangeSuccess', ->
 			$rootScope.document.title = ''
 		$rootScope.$on '$viewContentLoaded', ->
-			$rootScope.loading = no
+			$rootScope.loading = no unless secondaryLoadInProgress
 
 		# API access
 		# This can be used in pages like so:
 		# <div ng-init="myposts=load.posts()">{{myposts.status}}</div>
+		secondaryLoadInProgress = no
+		loadFactory = (wpApi) -> (opts, callback) ->
+			$rootScope.loading = secondaryLoadInProgress = yes
+			wordpressApi[wpApi] angular.extend({ lang: $scope.lang }, opts), (data, resp) ->
+				$rootScope.loading = secondaryLoadInProgress = no
+				callback?(data, resp)
 		$scope.load =
-			posts: (opts, callback) ->
-				wordpressApi.getPosts angular.extend({ lang: $scope.lang }, opts), callback
-			categoryPosts: (opts, callback) ->
-				wordpressApi.getCategoryPosts angular.extend({ lang: $scope.lang }, opts), callback
-			datePosts: (opts, callback) ->
-				wordpressApi.getDatePosts angular.extend({ lang: $scope.lang }, opts), callback
-			searchPosts: (opts, callback) ->
-				wordpressApi.getSearchPosts angular.extend({ lang: $scope.lang }, opts), callback
+			posts: loadFactory 'getPosts'
+			categoryPosts: loadFactory 'getCategoryPosts'
+			datePosts: loadFactory 'getDatePosts'
+			searchPosts: loadFactory 'getSearchPosts'
 			# TODO add other apis
 
 	# Animation to give the appearance of the content to fall down
