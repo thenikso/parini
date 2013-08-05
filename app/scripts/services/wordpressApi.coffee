@@ -1,7 +1,7 @@
 'use strict';
 
 # AngularJS will instantiate a singleton by calling "new" on this function
-wordpressApi = ($resource, $q, wordpress) ->
+wordpressApi = ($resource, $q, $sce, wordpress) ->
 	siteUrl = wordpress.siteUrl or ''
 
 	# API resources
@@ -94,6 +94,7 @@ wordpressApi = ($resource, $q, wordpress) ->
 				d = d[1..].map (i) -> parseInt i, 10
 				d = new Date Date.UTC(d...)
 			post.date = d
+		post.content = $sce.trustAsHtml(post.content) if post?.content?
 		post
 
 	# Preparing data
@@ -173,7 +174,7 @@ wordpressApi = ($resource, $q, wordpress) ->
 		getAuthorPostsPromise: getPromiseFactory AuthorPosts, preparePostsData
 		getSearchPostsPromise: getPromiseFactory SearchPosts, preparePostsData
 	}
-wordpressApi.$inject = ['$resource', '$q', 'wordpress']
+wordpressApi.$inject = ['$resource', '$q', '$sce', 'wordpress']
 
 dateRegExp = /^(\d{4})\-(\d\d)\-(\d\d)(?:\s+(\d\d):(\d\d):(\d\d))?$/
 dateRegExp.compile(dateRegExp)
