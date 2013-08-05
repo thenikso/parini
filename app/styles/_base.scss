@@ -6,3 +6,7 @@ html, body {
 a {
 	@include transition(all $default-transition-speed $default-transition-ease);
 }
+
+[ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none;
+}

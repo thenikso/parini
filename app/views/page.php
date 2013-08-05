@@ -9,3 +9,11 @@
 	id="page-wall"
 	ng-if="wall.data"
 	ng-include="wordpress.templateUrl+'/views/'+wall.type+'-wall.php'"></section>
+
+<div class="row" ng-if="!data||!data.page" ng-cloak>
+	<div class="small-12 columns">
+		<p>
+			La pagina non esiste! <a href="/">Torna alla homepage</a>
+		</p>
+	</div>
+</div>
