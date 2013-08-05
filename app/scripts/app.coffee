@@ -28,7 +28,7 @@ angular.module('WordpressApp', ['ngRoute', 'ngResource', 'ngAnimate', 'ngSanitiz
 			for postType, postTypePermastruct of wordpress.routes.postTypes
 				makeRouteHandler postTypePermastruct, 'PostCtrl', 'post', 'getPostPromise', do (postType) -> (route) ->
 					post_type: postType
-					slug: route.current.params.postname
+					slug: route.current.params.postname ? route.current.params[postType]
 
 		# Categories
 		makeRouteHandler (wordpress.routes?.category or '/category/:category'), 'CategoryCtrl', 'category', 'getCategoryPostsPromise', (route) ->
