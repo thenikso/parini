@@ -94,6 +94,31 @@ a.slogan-scroll-link {
 	}
 }
 
+/** Generic Wall */
+
+a.wall-load-more-link {
+	@extend a.slogan-scroll-link;
+	color: $topbar-bg;
+	position: relative;
+
+	&:after {
+		@include theme-sprite(scroll-arrow-black);
+		margin-bottom: 0;
+	}
+
+	&.loading {
+		background-position: bottom center;
+
+		&:after {
+			background: none;
+		}
+	}
+}
+
+.wall-no-results {
+	padding: 0 ($column-gutter/2);
+}
+
 /** Post Wall */
 
 .posts-wall {
@@ -190,29 +215,6 @@ a.slogan-scroll-link {
 			padding-top: 0;
 		}
 	}
-}
-
-a.posts-wall-load-more-link {
-	@extend a.slogan-scroll-link;
-	color: $topbar-bg;
-	position: relative;
-
-	&:after {
-		@include theme-sprite(scroll-arrow-black);
-		margin-bottom: 0;
-	}
-
-	&.loading {
-		background-position: bottom center;
-
-		&:after {
-			background: none;
-		}
-	}
-}
-
-.posts-wall-no-results {
-	padding: 0 ($column-gutter/2);
 }
 
 /** Thumbnails Wall */

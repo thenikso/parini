@@ -13,3 +13,8 @@
 	</article>
 
 </div>
+<a href="" class="wall-load-more-link" ng-class="{ 'loading': theData.isLoadingMore }" ng-if="theData.hasMore()" ng-click="theData.loadMore()">Mostra pi&ugrave; articoli</a>
+
+<div ng-if="!theData||!theData.posts||!theData.posts.length" class="wall-no-results no-result not-found">
+	Nessun post trovato. <a href="/">Torna alla homepage</a>
+</div>
