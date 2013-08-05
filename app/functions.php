@@ -206,6 +206,9 @@ function ngwp_setup() {
 			'public' => true,
 			)
 		);
+	add_post_type_support( 'lavori', array(
+		'title', 'editor', 'thumbnail', 'excerpt'
+	));
 
 	// Adding post thumbnail support
 	add_theme_support( 'post-thumbnails' );

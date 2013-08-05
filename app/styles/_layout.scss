@@ -167,6 +167,11 @@
 #site-content {
 	min-height: 100%;
 	overflow: hidden;
+
+	.post &,
+	.page & {
+		margin-top: $column-gutter/2;
+	}
 }
 
 .view-animation-wrapper {

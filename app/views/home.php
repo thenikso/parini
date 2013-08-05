@@ -17,9 +17,9 @@ $ng_settings = get_option( 'ng_options', $ng_options );
 			</div>
 		</div>
 	</article>
-	<a smooth-scroll="home-post-wall" speed="1000" offset="45" class="slogan-scroll-link hide-for-small">News Recenti</a>
+	<a smooth-scroll="home-posts-wall" speed="1000" offset="45" class="slogan-scroll-link hide-for-small">News Recenti</a>
 </section>
 
-<section id="home-post-wall" class="post-wall-container home-content">
-	<?php require (dirname(__FILE__).'/post-wall.php'); ?>
+<section id="home-posts-wall" class="posts-wall-container home-content">
+	<?php require (dirname(__FILE__).'/posts-wall.php'); ?>
 </section>

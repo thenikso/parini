@@ -1,6 +1,6 @@
 <?php require_once (dirname(__FILE__).'/../prepare-view.php'); ?>
 
-<div class="post-wall" masonry="{ columnWidth: '.grid-sizer' }" ng-init="theData = (wall.data||data)">
+<div class="posts-wall" masonry="{ columnWidth: '.grid-sizer' }" ng-init="theData = (wall.data||data)">
 	<div class="grid-sizer"></div>
 
 	<?php
@@ -31,8 +31,8 @@
 	<?php endwhile; ?>
 
 </div>
-<a href="" class="post-wall-load-more-link" ng-class="{ 'loading': theData.isLoadingMore }" ng-if="theData.hasMore()" ng-click="theData.loadMore()">Mostra pi&ugrave; articoli</a>
+<a href="" class="posts-wall-load-more-link" ng-class="{ 'loading': theData.isLoadingMore }" ng-if="theData.hasMore()" ng-click="theData.loadMore()">Mostra pi&ugrave; articoli</a>
 
-<div ng-if="!theData||!theData.posts||!theData.posts.length" class="post-wall-no-results no-result not-found">
+<div ng-if="!theData||!theData.posts||!theData.posts.length" class="posts-wall-no-results no-result not-found">
 	Nessun post trovato. <a href="/">Torna alla homepage</a>
 </div>
