@@ -5,20 +5,13 @@ app.config ($routeProvider, $locationProvider, wordpress) ->
 
 	# Helper function to generate routes settings using languages if present
 	makeRouteHandler = (route, controller, viewName, apiPromiseMethodName, apiParams) ->
-		if wordpress.language?.others? then for l in wordpress.language.others
-			$routeProvider.when "/#{l}" + route,
+		for l in (wordpress?.language?.others ? []).concat([null])
+			$routeProvider.when (if l then "/#{l}#{route}" else route),
 				templateUrl: "#{wordpress.templateUrl}/views/#{viewName}.php"
 				controller: controller
 				resolve:
 					wordpressData: ['wordpressApi', '$route', (wordpressApi, $route) ->
 						wordpressApi[apiPromiseMethodName] angular.extend(apiParams?($route.current.params) ? apiParams, lang: l)]
-
-		$routeProvider.when route,
-			templateUrl: "#{wordpress.templateUrl}/views/#{viewName}.php"
-			controller: controller
-			resolve:
-				wordpressData: ['wordpressApi', '$route', (wordpressApi, $route) ->
-					wordpressApi[apiPromiseMethodName] (apiParams?($route.current.params) ? apiParams)]
 
 	# Homepage
 	makeRouteHandler '/', 'HomeCtrl', 'home', 'getRecentPostsPromise', {}
