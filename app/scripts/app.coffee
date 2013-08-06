@@ -11,14 +11,14 @@ app.config ($routeProvider, $locationProvider, wordpress) ->
 				controller: controller
 				resolve:
 					wordpressData: ['wordpressApi', '$route', (wordpressApi, $route) ->
-						wordpressApi[apiPromiseMethodName] angular.extend(apiParams?($route) ? apiParams, lang: l)]
+						wordpressApi[apiPromiseMethodName] angular.extend(apiParams?($route.current.params) ? apiParams, lang: l)]
 
 		$routeProvider.when route,
 			templateUrl: "#{wordpress.templateUrl}/views/#{viewName}.php"
 			controller: controller
 			resolve:
 				wordpressData: ['wordpressApi', '$route', (wordpressApi, $route) ->
-					wordpressApi[apiPromiseMethodName] (apiParams?($route) ? apiParams)]
+					wordpressApi[apiPromiseMethodName] (apiParams?($route.current.params) ? apiParams)]
 
 	# Homepage
 	makeRouteHandler '/', 'HomeCtrl', 'home', 'getRecentPostsPromise', {}
@@ -26,29 +26,29 @@ app.config ($routeProvider, $locationProvider, wordpress) ->
 	# Custom post types. The post will be injected as `post`
 	if wordpress.routes?.postTypes?
 		for postType, postTypePermastruct of wordpress.routes.postTypes
-			makeRouteHandler postTypePermastruct, 'PostCtrl', 'post', 'getPostPromise', do (postType) -> (route) ->
+			makeRouteHandler postTypePermastruct, 'PostCtrl', 'post', 'getPostPromise', do (postType) -> (routeParams) ->
 				post_type: postType
-				slug: route.current.params.postname ? route.current.params[postType]
+				slug: routeParams.postname ? routeParams[postType]
 
 	# Categories
-	makeRouteHandler (wordpress.routes?.category or '/category/:category'), 'CategoryCtrl', 'category', 'getCategoryPostsPromise', (route) ->
-		slug: route.current.params.category
+	makeRouteHandler (wordpress.routes?.category or '/category/:category'), 'CategoryCtrl', 'category', 'getCategoryPostsPromise', (routeParams) ->
+		slug: routeParams.category
 
 	# Date archives
-	makeRouteHandler (wordpress.routes?.date or '/archive/:year/:monthnum/:day'), 'DateCtrl', 'date', 'getDatePostsPromise', (route) ->
-		date: "#{route.current.params.year}-#{route.current.params.monthnum}-#{route.current.params.dat}"
+	makeRouteHandler (wordpress.routes?.date or '/archive/:year/:monthnum/:day'), 'DateCtrl', 'date', 'getDatePostsPromise', (routeParams) ->
+		date: "#{routeParams.year}-#{routeParams.monthnum}-#{routeParams.dat}"
 
 	# Search
-	makeRouteHandler (wordpress.routes?.search or '/search/:search'), 'SearchCtrl', 'search', 'getSearchPostsPromise', (route) ->
-		search: route.current.params.search
+	makeRouteHandler (wordpress.routes?.search or '/search/:search'), 'SearchCtrl', 'search', 'getSearchPostsPromise', (routeParams) ->
+		search: routeParams.search
 
 	# Single post
-	makeRouteHandler (wordpress.routes?.post or '/post/:postname'), 'PostCtrl', 'post', 'getPostPromise', (route) ->
-		slug: route.current.params.postname
+	makeRouteHandler (wordpress.routes?.post or '/post/:postname'), 'PostCtrl', 'post', 'getPostPromise', (routeParams) ->
+		slug: routeParams.postname
 
 	# Pages should be handled last as they may have a catch-all route
-	makeRouteHandler (wordpress.routes?.page or '/:pagename/'), 'PageCtrl', 'page', 'getPagePromise', (route) ->
-		slug: route.current.params.pagename
+	makeRouteHandler (wordpress.routes?.page or '/:pagename/'), 'PageCtrl', 'page', 'getPagePromise', (routeParams) ->
+		slug: routeParams.pagename
 
 	# Fallback
 	$routeProvider.otherwise
