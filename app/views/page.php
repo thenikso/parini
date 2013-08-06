@@ -1,4 +1,7 @@
-<?php require_once (dirname(__FILE__).'/../prepare-view.php'); ?>
+<?php
+define('NGWP_NEEDS_WORDPRESS', true);
+require_once (dirname(__FILE__).'/../prepare-view.php');
+?>
 <?php ngwp_call('the_post'); ?>
 
 <div class="row">
@@ -13,7 +16,7 @@
 <div class="row" ng-if="!data||!data.page" ng-cloak>
 	<div class="small-12 columns">
 		<p>
-			La pagina non esiste! <a href="/">Torna alla homepage</a>
+			<?php _e('The page does not exists!', 'ngwp'); ?> <a href="<?php echo get_site_url(); ?>"><?php _e('Back to home', 'ngwp'); ?></a>
 		</p>
 	</div>
 </div>

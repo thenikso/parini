@@ -17,7 +17,7 @@ $ng_settings = get_option( 'ng_options', $ng_options );
 			</div>
 		</div>
 	</article>
-	<a smooth-scroll="home-posts-wall" speed="1000" offset="45" class="slogan-scroll-link hide-for-small">News Recenti</a>
+	<a smooth-scroll="home-posts-wall" speed="1000" offset="45" class="slogan-scroll-link hide-for-small"><?php _e('Recent News', 'ngwp'); ?></a>
 </section>
 
 <section id="home-posts-wall" class="posts-wall-container home-content">

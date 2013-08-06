@@ -194,11 +194,11 @@ function ngwp_setup() {
 
 	// See http://justintadlock.com/archives/2010/04/29/custom-post-types-in-wordpress
 	// Custom post for Works
-	register_post_type( 'lavori',
+	register_post_type( 'works',
 		array(
 			'labels' => array(
-				'name' => __( 'Lavori' ),
-				'singular_name' => __( 'Lavoro' )
+				'name' => __( 'Works', 'ngwp' ),
+				'singular_name' => __( 'Work', 'ngwp' )
 				),
 			'rewrite' => array(
 				'with_front' => false
@@ -206,7 +206,7 @@ function ngwp_setup() {
 			'public' => true,
 			)
 		);
-	add_post_type_support( 'lavori', array(
+	add_post_type_support( 'works', array(
 		'title', 'editor', 'thumbnail', 'excerpt'
 	));
 
@@ -256,7 +256,7 @@ function ngwp_page_wall_meta_box()
 ?>
 	<p><?php _e( 'A posts wall like the one in the homepage or a thumbnails wall can be displayed after the content of the page.', 'ngwp' ); ?></p>
 	<p>
-		<label for="ngwp-page-wall-box-type">Type</label>
+		<label for="ngwp-page-wall-box-type"><?php _e('Type'); ?></label>
 		<select name="ngwp-page-wall-box[type]" id="ngwp-page-wall-box-type" class="ngwp-show-has-class-like-id">
 			<option value="">None</option>
 			<option value="posts" <?php selected( $values['type'], 'posts' ); ?>>Posts Wall</option>
@@ -278,7 +278,7 @@ function ngwp_page_wall_meta_box()
 		</p>
 
 		<p>
-			<label fore="ngwp-page-wall-box-count">Count per page</label>
+			<label fore="ngwp-page-wall-box-count"><?php _e('Count per page', 'ngwp'); ?></label>
 			<input type="number" name="ngwp-page-wall-box[count]" id="ngwp-page-wall-box-count" value="<?php echo $values['count'] ? $values['count'] : '10'; ?>" style="width: 4em;">
 		</p>
 
@@ -298,12 +298,12 @@ function ngwp_page_wall_meta_box()
 		<?php endif; ?>
 
 		<p class="has-ngwp-page-wall-box-posts ngwp-is-date" style="display:none;">
-			<label for="ngwp-page-wall-box-date">Date</label>
+			<label for="ngwp-page-wall-box-date"><?php _e('Date'); ?></label>
 			<input type="date" id="ngwp-page-wall-box-date" name="ngwp-page-wall-box[date]" value="<?php echo $values['date']; ?>">
 		</p>
 
 		<p class="has-ngwp-page-wall-box-posts ngwp-is-category" style="display:none;">
-			<label for="ngwp-page-wall-box-category">Category</label>
+			<label for="ngwp-page-wall-box-category"><?php _e('Category'); ?></label>
 			<select name="ngwp-page-wall-box[category]" id="ngwp-page-wall-box-category">
 				<?php foreach (get_categories() as $c): ?>
 				<option value="<?php echo $c->slug; ?>" <?php selected( $values['category'], $c->slug ); ?>><?php echo $c->name; ?></option>
@@ -321,7 +321,7 @@ function ngwp_page_wall_meta_box()
 		</p>
 
 		<p class="has-ngwp-page-wall-box-posts ngwp-is-author" style="display:none;">
-			<label for="ngwp-page-wall-box-author">Author</label>
+			<label for="ngwp-page-wall-box-author"><?php _e('Author'); ?></label>
 			<select name="ngwp-page-wall-box[author]" id="ngwp-page-wall-box-author">
 				<?php foreach (get_users() as $c): ?>
 				<option value="<?php echo $c->user_nicename; ?>" <?php selected( $values['author'], $c->user_nicename ); ?>><?php echo $c->display_name; ?></option>
@@ -330,7 +330,7 @@ function ngwp_page_wall_meta_box()
 		</p>
 
 		<p class="has-ngwp-page-wall-box-posts ngwp-is-search" style="display:none;">
-			<label for="ngwp-page-wall-box-search">Search</label>
+			<label for="ngwp-page-wall-box-search"><?php _e('Search'); ?></label>
 			<input type="text" id="ngwp-page-wall-box-search" name="ngwp-page-wall-box[search]" value="<?php echo $values['search']; ?>">
 		</p>
 
@@ -420,9 +420,9 @@ function ng_theme_options_page() {
 			<div><?php wp_editor($settings['home_slogan_content'], 'ng_options[home_slogan_content]'); ?></div>
 
 			<p>
-				Home slogan background image URL:
+				<?php _e('Home slogan background image URL:', 'ngwp') ?>
 				<input id="home_slogan_background_url" name="ng_options[home_slogan_background_url]" type="text" value="<?php  esc_attr_e($settings['home_slogan_background_url']); ?>"/>
-				<a href="" data-select-image="home_slogan_background_url">Choose image</a>
+				<a href="" data-select-image="home_slogan_background_url"><?php _e('Choose image') ?></a>
 			</p>
 
 			<?php elseif ($active_tab == 'footer_options') : ?>
@@ -430,19 +430,19 @@ function ng_theme_options_page() {
 			<div><?php wp_editor($settings['footer_content'], 'ng_options[footer_content]'); ?></div>
 
 			<p>
-				Footer background map image URL:
+				<?php _e('Footer background map image URL:', 'ngwp') ?>
 				<input id="footer_background_url" name="ng_options[footer_background_url]" type="text" value="<?php  esc_attr_e($settings['footer_background_url']); ?>"/>
-				<a href="" data-select-image="footer_background_url">Choose image</a>
+				<a href="" data-select-image="footer_background_url"><?php _e('Choose image') ?></a>
 			</p>
 
 			<p>
-				Footer background map link URL:
+				<?php _e('Footer background map link URL:', 'ngwp') ?>
 				<input id="footer_background_link" name="ng_options[footer_background_link]" type="text" value="<?php  esc_attr_e($settings['footer_background_link']); ?>"/>
 			</p>
 
 			<?php endif; ?>
 
-			<?php submit_button( "Save Options", "primary" ); ?>
+			<?php submit_button( __("Save Options"), "primary" ); ?>
 
 		</form>
 

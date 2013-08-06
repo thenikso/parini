@@ -1,4 +1,7 @@
-<?php require_once (dirname(__FILE__).'/../prepare-view.php'); ?>
+<?php
+define('NGWP_NEEDS_WORDPRESS', true);
+require_once (dirname(__FILE__).'/../prepare-view.php');
+?>
 
 <div class="posts-wall" masonry="{ columnWidth: '.grid-sizer' }" ng-init="theData = (wall.data||data)">
 	<div class="grid-sizer"></div>
@@ -34,5 +37,5 @@
 <a href="" class="wall-load-more-link" ng-class="{ 'loading': theData.isLoadingMore }" ng-if="theData.hasMore()" ng-click="theData.loadMore()" ng-cloak>Mostra pi&ugrave; articoli</a>
 
 <div ng-if="!theData||!theData.posts||!theData.posts.length" class="wall-no-results no-result not-found" ng-cloak>
-	Nessun post trovato. <a href="/">Torna alla homepage</a>
+	<?php _e('Nothing found.', 'ngwp'); ?> <a href="<?php echo get_site_url(); ?>"><?php _e('Back to home', 'ngwp'); ?></a>
 </div>
