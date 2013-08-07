@@ -212,6 +212,11 @@ function ngwp_setup() {
 
 	// Adding post thumbnail support
 	add_theme_support( 'post-thumbnails' );
+
+	// Do not load WPML fornt end files
+	define('ICL_DONT_LOAD_NAVIGATION_CSS', true);
+	define('ICL_DONT_LOAD_LANGUAGE_SELECTOR_CSS', true);
+	define('ICL_DONT_LOAD_LANGUAGES_JS', true);
 }
 add_action( 'init', 'ngwp_setup' );
 
