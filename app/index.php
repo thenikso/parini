@@ -47,7 +47,7 @@
 					<?php wp_nav_menu(array(
 							'location' => 'primary',
 							'container' => false,
-							'menu_class' => 'left menu'
+							'menu_class' => 'left wp-nav-menu'
 						));
 					?>
 					<ul id="secondary-menu" class="right">
