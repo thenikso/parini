@@ -44,26 +44,11 @@
 					</ul>
 
 					<section class="top-bar-section">
-					<?php
-						$menu_name = 'primary';
-
-						if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[ $menu_name ] ) ) {
-							$menu = wp_get_nav_menu_object( $locations[ $menu_name ] );
-
-							$menu_items = wp_get_nav_menu_items($menu->term_id);
-
-							$menu_list = '<ul id="' . $menu_name . '-menu" class="left">';
-
-							foreach ( (array) $menu_items as $key => $menu_item ) {
-								$url = $menu_item->url;
-								$menu_list .= '<li wp-href-active-class><a href="' . $url . '" class="' . join(' ', $menu_item->classes) . '">' . $menu_item->title . '</a></li>';
-							}
-							$menu_list .= '</ul>';
-						} else {
-							$menu_list = '<ul class="left"><li>Menu "' . $menu_name . '" non definito.</li></ul>';
-						}
-
-						echo $menu_list;
+					<?php wp_nav_menu(array(
+							'location' => 'primary',
+							'container' => false,
+							'menu_class' => 'left menu'
+						));
 					?>
 					<ul id="secondary-menu" class="right">
 						<li class="hide-for-small"><a href="" class="social-link twitter">Twitter</a></li>
