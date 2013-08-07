@@ -135,6 +135,28 @@ if ( $sitepress && $sitepress->get_default_language() != ICL_LANGUAGE_CODE) {
 	}
 }
 
+if ( $sitepress ) {
+	function ngwp_site_root_url_for_lang($lang='')
+	{
+		global $sitepress;
+		if (!$lang || $lang == $sitepress->get_default_language())
+		{
+			return get_option('siteurl');
+		}
+		else
+		{
+			return get_option('siteurl') . '/' . $lang;
+		}
+	}
+}
+else
+{
+	function ngwp_site_root_url_for_lang($lang='')
+	{
+		return site_url();
+	}
+}
+
 /** JSON Data builders */
 
 // Rewrite rules to build angular routing

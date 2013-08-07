@@ -58,7 +58,7 @@
 						if (function_exists( 'icl_get_languages' )) :
 							$languages = icl_get_languages('skip_missing=0&orderby=code');
 							foreach($languages as $l): if($l['active']) continue; ?>
-							<li><a href="<?php echo $l['url']; ?>" target="_self"><?php echo substr( $l['native_name'], 0, 3 ); ?></a></li>
+							<li><a ng-href="<?php echo ngwp_site_root_url_for_lang($l['language_code']); ?>{{document.locationPath}}" target="_self"><?php echo substr( $l['native_name'], 0, 3 ); ?></a></li>
 						<?php endforeach; endif; ?>
 					</ul>
 					</section>

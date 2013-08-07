@@ -12,6 +12,7 @@ app.controller 'MainCtrl', ($scope, $rootScope, $location, wordpress, wordpressA
 	# Setting document title
 	$rootScope.document =
 		title: ''
+		locationPath: ''
 
 	# Loading animations control
 	$rootScope.loading = yes
@@ -19,6 +20,7 @@ app.controller 'MainCtrl', ($scope, $rootScope, $location, wordpress, wordpressA
 		$rootScope.loading = yes
 	$rootScope.$on '$routeChangeSuccess', ->
 		$rootScope.document.title = ''
+		$rootScope.document.locationPath = $location.path()
 	$rootScope.$on '$viewContentLoaded', ->
 		$rootScope.loading = no unless secondaryLoadInProgress
 
