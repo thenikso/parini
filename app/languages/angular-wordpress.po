@@ -1,0 +1,132 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: angular-wordpress\n"
+"POT-Creation-Date: 2013-08-06 20:09+0100\n"
+"PO-Revision-Date: 2013-08-06 20:43+0100\n"
+"Last-Translator: Nicola Peduzzi <thenikso@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
+"X-Poedit-Basepath: .\n"
+"Language: en_US\n"
+"X-Poedit-SearchPath-0: ..\n"
+"X-Poedit-SearchPath-1: ../views\n"
+
+#: ../functions.php:196
+msgid "Primary Menu"
+msgstr ""
+
+#: ../functions.php:203
+msgid "Works"
+msgstr ""
+
+#: ../functions.php:204
+msgid "Work"
+msgstr ""
+
+#: ../functions.php:224
+msgid "Footer Widget Area"
+msgstr ""
+
+#: ../functions.php:226
+msgid "Appears on the bottom of the readable footer area"
+msgstr ""
+
+#: ../functions.php:239
+msgid "Posts Wall Settings"
+msgstr ""
+
+#: ../functions.php:260
+msgid ""
+"A posts wall like the one in the homepage or a thumbnails wall can be "
+"displayed after the content of the page."
+msgstr ""
+
+#: ../functions.php:262
+msgid "Type"
+msgstr ""
+
+#: ../functions.php:284
+msgid "Count per page"
+msgstr ""
+
+#: ../functions.php:304
+msgid "Date"
+msgstr ""
+
+#: ../functions.php:309
+msgid "Category"
+msgstr ""
+
+#: ../functions.php:327
+msgid "Author"
+msgstr ""
+
+#: ../functions.php:336
+msgid "Search"
+msgstr ""
+
+#: ../functions.php:390 ../functions.php:402
+msgid "Theme Options"
+msgstr ""
+
+#: ../functions.php:406
+msgid "Options saved"
+msgstr ""
+
+#: ../functions.php:426
+msgid "Home slogan background image URL:"
+msgstr ""
+
+#: ../functions.php:428 ../functions.php:438
+msgid "Choose image"
+msgstr ""
+
+#: ../functions.php:436
+msgid "Footer background map image URL:"
+msgstr ""
+
+#: ../functions.php:442
+msgid "Footer background map link URL:"
+msgstr ""
+
+#: ../functions.php:448
+msgid "Save Options"
+msgstr ""
+
+#: ../views/category.php:8
+msgid "Category archives:"
+msgstr ""
+
+#: ../views/date.php:8
+msgid "Date archives:"
+msgstr ""
+
+#: ../views/home.php:20
+msgid "Recent News"
+msgstr ""
+
+#: ../views/page.php:19
+msgid "The page does not exists!"
+msgstr ""
+
+#: ../views/page.php:19 ../views/post.php:16 ../views/posts-wall.php:40
+#: ../views/thumbnails-wall.php:24
+msgid "Back to home"
+msgstr ""
+
+#: ../views/post.php:16 ../views/posts-wall.php:40
+#: ../views/thumbnails-wall.php:24
+msgid "Nothing found."
+msgstr ""
+
+#: ../views/search.php:8
+msgid "Results for:"
+msgstr ""
+
+#: ../views/thumbnails-wall.php:11
+msgid "View project"
+msgstr ""

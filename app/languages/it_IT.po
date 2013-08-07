@@ -1,0 +1,135 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: angular-wordpress\n"
+"POT-Creation-Date: 2013-08-06 20:09+0100\n"
+"PO-Revision-Date: 2013-08-06 20:44+0100\n"
+"Last-Translator: Nicola Peduzzi <thenikso@gmail.com>\n"
+"Language-Team: \n"
+"Language: it_IT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ..\n"
+"X-Poedit-SearchPath-1: ../views\n"
+
+#: ../functions.php:196
+msgid "Primary Menu"
+msgstr "Menu Principale"
+
+#: ../functions.php:203
+msgid "Works"
+msgstr "Lavori"
+
+#: ../functions.php:204
+msgid "Work"
+msgstr "Lavoro"
+
+#: ../functions.php:224
+msgid "Footer Widget Area"
+msgstr "Widget nel Footer"
+
+#: ../functions.php:226
+msgid "Appears on the bottom of the readable footer area"
+msgstr "Appaiono alla fine della parte leggibile del footer"
+
+#: ../functions.php:239
+msgid "Posts Wall Settings"
+msgstr "Impostazioni Posts Wall"
+
+#: ../functions.php:260
+msgid ""
+"A posts wall like the one in the homepage or a thumbnails wall can be "
+"displayed after the content of the page."
+msgstr ""
+"Un posts wall come quello visibile nella homepage o un thumbnails wall; se "
+"importato qui, verrà visualizzato dopo il contenuto di questa pagina."
+
+#: ../functions.php:262
+msgid "Type"
+msgstr "Tipo"
+
+#: ../functions.php:284
+msgid "Count per page"
+msgstr "Per pagina"
+
+#: ../functions.php:304
+msgid "Date"
+msgstr "Data"
+
+#: ../functions.php:309
+msgid "Category"
+msgstr "Categoria"
+
+#: ../functions.php:327
+msgid "Author"
+msgstr "Autore"
+
+#: ../functions.php:336
+msgid "Search"
+msgstr "Cerca"
+
+#: ../functions.php:390 ../functions.php:402
+#, fuzzy
+msgid "Theme Options"
+msgstr "Optioni tema"
+
+#: ../functions.php:406
+msgid "Options saved"
+msgstr "Opzioni salvate"
+
+#: ../functions.php:426
+msgid "Home slogan background image URL:"
+msgstr "URL sfondo slogan homepage:"
+
+#: ../functions.php:428 ../functions.php:438
+msgid "Choose image"
+msgstr "Scegli immagine"
+
+#: ../functions.php:436
+msgid "Footer background map image URL:"
+msgstr "URL sfondo footer:"
+
+#: ../functions.php:442
+msgid "Footer background map link URL:"
+msgstr "URL link sfondo footer:"
+
+#: ../functions.php:448
+msgid "Save Options"
+msgstr "Salva opzioni"
+
+#: ../views/category.php:8
+msgid "Category archives:"
+msgstr "Categoria:"
+
+#: ../views/date.php:8
+msgid "Date archives:"
+msgstr "Archivio del"
+
+#: ../views/home.php:20
+msgid "Recent News"
+msgstr "News recenti"
+
+#: ../views/page.php:19
+msgid "The page does not exists!"
+msgstr "Questa pagina non esiste!"
+
+#: ../views/page.php:19 ../views/post.php:16 ../views/posts-wall.php:40
+#: ../views/thumbnails-wall.php:24
+msgid "Back to home"
+msgstr "Torna alla home"
+
+#: ../views/post.php:16 ../views/posts-wall.php:40
+#: ../views/thumbnails-wall.php:24
+msgid "Nothing found."
+msgstr "Nessun risultato."
+
+#: ../views/search.php:8
+msgid "Results for:"
+msgstr "Risultati per:"
+
+#: ../views/thumbnails-wall.php:11
+msgid "View project"
+msgstr "Vedi progetto"

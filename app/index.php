@@ -38,7 +38,7 @@
 				<nav class="top-bar">
 					<ul class="title-area">
 						<li class="name">
-							<h1 id="site-title"><a wp-href="<?php echo get_site_url(); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+							<h1 id="site-title"><a wp-href="<?php echo site_url(); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 						</li>
 						<li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
 					</ul>
@@ -109,8 +109,8 @@
 		</div><!-- #site -->
 
 		<?php
-		global $ng_options;
-		$ng_settings = get_option( 'ng_options', $ng_options );
+		global $ngwp_options;
+		$ng_settings = get_option( 'ngwp_options', $ngwp_options );
 		?>
 		<footer reveal-sheet-stack id="site-footer">
 			<a reveal-sheet="reference" id="footer-map" href="<?php echo $ng_settings['footer_background_link']; ?>" target="_blank" style="background-image:url('<?php echo $ng_settings['footer_background_url']; ?>')"></a>
@@ -136,8 +136,8 @@
 			info: {
 				name: "<?php bloginfo( 'name' ); ?>"
 			},
-			siteUrl: "<?php echo get_site_url(); ?>",
-			templateUrl: "<?php echo get_template_directory_uri() ?>",
+			siteUrl: "<?php echo site_url(); ?>",
+			templatePath: "<?php echo substr(get_template_directory_uri(), strlen(site_url())) ?>",
 			routes: <?php echo ngwp_routes_object_json(); ?>,
 			language: <?php echo ngwp_sitepress_languages_json(); ?>,
 			data: <?php echo ngwp_query_data_json(); ?>

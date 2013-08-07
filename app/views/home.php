@@ -4,8 +4,8 @@
 define('NGWP_NEEDS_WORDPRESS', true);
 require_once (dirname(__FILE__).'/../prepare-view.php');
 
-global $ng_options;
-$ng_settings = get_option( 'ng_options', $ng_options );
+global $ngwp_options;
+$ng_settings = get_option( 'ngwp_options', $ngwp_options );
 ?>
 
 <section class="slogan" parallax-box>

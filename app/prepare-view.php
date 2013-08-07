@@ -17,8 +17,8 @@ else
 // called via AJAX for Angular to use. This may be the case if Wordpress options
 // are needed to complete the rendering of the view template.
 // To load options use:
-// global $ng_options; // default options
-// $ng_settings = get_option( 'ng_options', $ng_options );
+// global $ngwp_options; // default options
+// $ng_settings = get_option( 'ngwp_options', $ngwp_options );
 if ( defined('NGWP_NEEDS_WORDPRESS') ) {
 	define('WP_USE_THEMES', true);
 	if (file_exists(dirname(__FILE__) . '/../../../wp-load.php'))

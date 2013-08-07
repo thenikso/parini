@@ -8,7 +8,7 @@ app.config ($routeProvider, $locationProvider, wordpress) ->
 		for l in (wordpress?.language?.others ? []).concat([null])
 			do (l) ->
 				$routeProvider.when (if l then "/#{l}#{route}" else route),
-					templateUrl: "#{wordpress.templateUrl}/views/#{viewName}.php"
+					templateUrl: wordpress.siteUrl + (if l then "/#{l}" else '') + "#{wordpress.templatePath}/views/#{viewName}.php"
 					controller: controller
 					resolve:
 						wordpressData: ['wordpressApi', '$route', (wordpressApi, $route) ->

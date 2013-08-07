@@ -189,6 +189,9 @@ if (class_exists("JSON_API_Post")) {
 
 function ngwp_setup() {
 
+	// Translations can be placed in /languages
+	load_theme_textdomain( 'ngwp', get_template_directory() . '/languages' );
+
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menu( 'primary', __( 'Primary Menu' ) );
 
@@ -373,7 +376,7 @@ add_action( 'save_post', 'ngwp_meta_box_save' );
 
 /** Wordpress Administration Setup */
 
-$ng_options = array(
+$ngwp_options = array(
 	'home_slogan_content' => get_bloginfo('name'),
 	'home_slogan_background_url' => '',
 	'footer_content' => '&copy; ' . date('Y') . get_bloginfo('name'),
@@ -381,27 +384,27 @@ $ng_options = array(
 	'footer_background_link' => ''
 );
 
-function ng_admin_init()
+function ngwp_admin_init()
 {
-	register_setting( 'ng_theme_options', 'ng_options', 'ng_validate_options' );
+	register_setting( 'ngwp_theme_options', 'ngwp_options', 'ngwp_validate_options' );
 	add_editor_style( 'style.css' );
 }
-add_action( 'admin_init', 'ng_admin_init' );
+add_action( 'admin_init', 'ngwp_admin_init' );
 
-function ng_admin_menu() {
-	add_theme_page( 'Theme Options', 'Theme Options', 'edit_theme_options', 'theme_options', 'ng_theme_options_page' );
+function ngwp_admin_menu() {
+	add_theme_page( __('Theme Options', 'ngwp'), __('Theme Options', 'ngwp'), 'edit_theme_options', 'theme_options', 'ngwp_theme_options_page' );
 }
-add_action( 'admin_menu', 'ng_admin_menu' );
+add_action( 'admin_menu', 'ngwp_admin_menu' );
 
-function ng_theme_options_page() {
-	global $ng_options;
+function ngwp_theme_options_page() {
+	global $ngwp_options;
 
 	if ( ! isset( $_REQUEST['updated'] ) )
 		$_REQUEST['updated'] = false; // This checks whether the form has just been submitted. ?>
 
 	<div class="wrap">
 
-		<?php screen_icon(); echo "<h2>" . get_current_theme() . __( ' Theme Options' ) . "</h2>";
+		<?php screen_icon(); echo "<h2>" . get_current_theme() . ' ' . __( 'Theme Options', 'ngwp' ) . "</h2>";
 		// This shows the page's name and an icon if one has been provided ?>
 
 		<?php if ( false !== $_REQUEST['updated'] ) : ?>
@@ -416,38 +419,38 @@ function ng_theme_options_page() {
 
 		<form method="post" action="options.php">
 
-			<?php $settings = get_option( 'ng_options', $ng_options ); ?>
+			<?php $settings = get_option( 'ngwp_options', $ngwp_options ); ?>
 
-			<?php settings_fields( 'ng_theme_options' ); ?>
+			<?php settings_fields( 'ngwp_theme_options' ); ?>
 
 			<?php if ($active_tab == 'home_slogan_options'): ?>
 
-			<div><?php wp_editor($settings['home_slogan_content'], 'ng_options[home_slogan_content]'); ?></div>
+			<div><?php wp_editor($settings['home_slogan_content'], 'ngwp_options[home_slogan_content]'); ?></div>
 
 			<p>
 				<?php _e('Home slogan background image URL:', 'ngwp') ?>
-				<input id="home_slogan_background_url" name="ng_options[home_slogan_background_url]" type="text" value="<?php  esc_attr_e($settings['home_slogan_background_url']); ?>"/>
-				<a href="" data-select-image="home_slogan_background_url"><?php _e('Choose image') ?></a>
+				<input id="home_slogan_background_url" name="ngwp_options[home_slogan_background_url]" type="text" value="<?php  esc_attr_e($settings['home_slogan_background_url']); ?>"/>
+				<a href="" data-select-image="home_slogan_background_url"><?php _e('Choose image', 'ngwp') ?></a>
 			</p>
 
 			<?php elseif ($active_tab == 'footer_options') : ?>
 
-			<div><?php wp_editor($settings['footer_content'], 'ng_options[footer_content]'); ?></div>
+			<div><?php wp_editor($settings['footer_content'], 'ngwp_options[footer_content]'); ?></div>
 
 			<p>
 				<?php _e('Footer background map image URL:', 'ngwp') ?>
-				<input id="footer_background_url" name="ng_options[footer_background_url]" type="text" value="<?php  esc_attr_e($settings['footer_background_url']); ?>"/>
-				<a href="" data-select-image="footer_background_url"><?php _e('Choose image') ?></a>
+				<input id="footer_background_url" name="ngwp_options[footer_background_url]" type="text" value="<?php  esc_attr_e($settings['footer_background_url']); ?>"/>
+				<a href="" data-select-image="footer_background_url"><?php _e('Choose image', 'ngwp') ?></a>
 			</p>
 
 			<p>
 				<?php _e('Footer background map link URL:', 'ngwp') ?>
-				<input id="footer_background_link" name="ng_options[footer_background_link]" type="text" value="<?php  esc_attr_e($settings['footer_background_link']); ?>"/>
+				<input id="footer_background_link" name="ngwp_options[footer_background_link]" type="text" value="<?php  esc_attr_e($settings['footer_background_link']); ?>"/>
 			</p>
 
 			<?php endif; ?>
 
-			<?php submit_button( __("Save Options"), "primary" ); ?>
+			<?php submit_button( __('Save Options', 'ngwp'), "primary" ); ?>
 
 		</form>
 
@@ -468,10 +471,10 @@ function ng_theme_options_page() {
 <?php
 }
 
-function ng_validate_options( $input ) {
-	global $ng_options;
+function ngwp_validate_options( $input ) {
+	global $ngwp_options;
 
-	$settings = get_option( 'ng_options', $ng_options );
+	$settings = get_option( 'ngwp_options', $ngwp_options );
 
 	// Keep previous values
 	foreach ($settings as $key => $value) {

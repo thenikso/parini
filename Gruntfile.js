@@ -232,7 +232,8 @@ module.exports = function (grunt) {
             'images/{,*/}*.{png,gif,webp,svg}',
             'styles/fonts/*',
             'styles/{,*/}*.css',
-            'views/*.php'
+            'views/*.php',
+            'languages/*.{po,mo}'
           ]
         }, {
           expand: true,
