@@ -82,14 +82,14 @@
 				<?php
 				if (($path = ngwp_crawler_path()) !== null) {
 					switch (ngwp_template_for_path($path)) {
-						case 'post':
-							get_template_part('/views/post');
+						case 'home':
+							get_template_part('/views/home');
 							break;
 						case 'page':
 							get_template_part('/views/page');
 							break;
-						default: // home
-							get_template_part('/views/home');
+						default: // post
+							get_template_part('/views/post');
 							break;
 					}
 				} ?>

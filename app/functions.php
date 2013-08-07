@@ -55,6 +55,23 @@ function ngwp_get_permastructs($transform=null)
 	return $rules;
 }
 
+function _ngwp_matchPath($template, $permastructs, $path)
+{
+	foreach ($permastructs as $regexp => $rewrite)
+	{
+		if (is_array($rewrite))
+		{
+			$m = _ngwp_matchPath($regexp, $rewrite, $path);
+			if ($m) return $m;
+		}
+		elseif (preg_match('['.$regexp.']', $path) >= 1)
+		{
+			return $template;
+		}
+	}
+	return null;
+}
+
 function ngwp_template_for_path($path)
 {
 	if (strpos($path, '/') === 0)
@@ -65,28 +82,12 @@ function ngwp_template_for_path($path)
 	{
 		return "home";
 	}
-	function matchPath($template, $permastructs, $path)
-	{
-		foreach ($permastructs as $regexp => $rewrite)
-		{
-			if (is_array($rewrite))
-			{
-				$m = matchPath($regexp, $rewrite, $path);
-				if ($m) return $m;
-			}
-			elseif (preg_match('['.$regexp.']', $path) >= 1)
-			{
-				return $template;
-			}
-		}
-		return null;
-	}
 	foreach (ngwp_get_permastructs(function($p) {
 		global $wp_rewrite;
 		return $wp_rewrite->generate_rewrite_rule($p);
 	}) as $name => $rr)
 	{
-		$m = matchPath($name, $rr, $path);
+		$m = _ngwp_matchPath($name, $rr, $path);
 		if ($m) return $m;
 	}
 	return null;

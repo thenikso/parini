@@ -15,18 +15,23 @@ require_once (dirname(__FILE__).'/../prepare-view.php');
 		<header class="post-header">
 			<div class="post-meta">
 				<div class="post-category-icon" ng-if="post.categories.length" ng-class="'category-icon-'+post.categories[0].slug"></div>
-				<span class="post-date" ng-bind="post.date|date:'dd/MM/yyyy'"></span>
+				<span class="post-date" ng-bind="post.date|date:'dd/MM/yyyy'"><?php ngwp_call('the_date'); ?></span>
 				<span class="post-categories" ng-if="post.categories.length">&ndash;
 					<span ng-repeat="category in post.categories">
 						<a href="<?php echo ngwp_call('the_permalink'); ?>" ng-href="/topics/{{category.slug}}" ng-bind="category.title"></a><span class="sep" ng-if="!$last">,</span>
 					</span>
 				</span>
 			</div>
-			<h2 class="post-title"><a ng-href="{{post.url}}" ng-bind="post.title"><?php ngwp_call('the_title'); ?></a></h2>
+			<h2 class="post-title"><a ng-href="{{post.url}}" href="<?php ngwp_call('the_permalink'); ?>" ng-bind="post.title"><?php ngwp_call('the_title'); ?></a></h2>
 		</header>
 		<a class="post-link" ng-href="{{post.url}}" href="<?php echo ngwp_call('the_permalink'); ?>">
-			<img class="post-thumbnail" ng-src="{{post.thumbnail_images.large.url}}" ng-if="post.thumbnail_images" masonry-layout-on="post.thumbnail_images.large.url" alt="{{post.title}}">
-			<?php ngwp_call('the_post_thumbnail'); ?>
+			<img
+				class="post-thumbnail"
+				src="<?php echo ngwp_call('wp_get_attachment_url', ngwp_call('get_post_thumbnail_id') ); ?>"
+				ng-src="{{post.thumbnail_images.large.url}}"
+				ng-if="post.thumbnail_images"
+				masonry-layout-on="post.thumbnail_images.large.url"
+				alt="{{post.title}}">
 			<div class="post-content" ng-bind-html="post.excerpt"><?php ngwp_call('the_excerpt'); ?></div>
 		</a>
 	</article>
