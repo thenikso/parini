@@ -13,17 +13,6 @@ app.controller 'MainCtrl', ($scope, $rootScope, $location, wordpress, wordpressA
 	$rootScope.document =
 		title: ''
 
-	# Language
-	# The current language code is extrapolated from the current location path
-	# as the first 2 letters of the path component.
-	$scope.lang = null
-	$scope.$on '$routeChangeSuccess', ->
-		path = $location.path()
-		if (lang = path.substr(1,2)) in wordpress.language?.others and (path.length is 3 or path.substr(3,1) is '/')
-			$scope.lang = lang
-		else
-			$scope.lang = null
-
 	# Loading animations control
 	$rootScope.loading = yes
 	$rootScope.$on '$routeChangeStart', ->

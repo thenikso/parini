@@ -92,6 +92,49 @@ function ngwp_template_for_path($path)
 	return null;
 }
 
+/** Localized urls */
+
+global $sitepress;
+
+if ( $sitepress && $sitepress->get_default_language() != ICL_LANGUAGE_CODE) {
+	// Echoes a `<base>` tag used by AngularJS to estrapolate the base url for routing.
+	// Includes the language code.
+	function ngwp_echo_base_tag($prefix = '')
+	{
+		echo '<base href="' . $prefix . '/' . ICL_LANGUAGE_CODE . '/" />';
+	}
+
+	// Add a filter to `site_url` to return an url with the language code embedded in
+	// the right position.
+	function ngwp_sitepress_site_url()
+	{
+		// $url, $path, $scheme, $blog_id
+		$args = func_get_args();
+		if ( $path && is_string( $path ) )
+			return rtrim( substr( $args[0], 0, strlen($args[0]) - strlen($args[1]) ), '/' ) . '/' . ICL_LANGUAGE_CODE . '/' . ltrim( $args[1], '/' );
+		return rtrim( $args[0], '/' ) . '/' . ICL_LANGUAGE_CODE;
+	}
+	add_filter('site_url', 'ngwp_sitepress_site_url');
+
+	// Returns `get_template_directory_uri` with the language code in the right position.
+	function ngwp_get_localized_template_directory_uri()
+	{
+		$siteurl = get_option('siteurl');
+		$templateurl = get_template_directory_uri();
+		return site_url() . substr($templateurl, strpos($templateurl, $siteurl) + strlen($siteurl));
+	}
+} else {
+	function ngwp_echo_base_tag($prefix = '')
+	{
+		echo '<base href="' . $prefix . '/" />';
+	}
+
+	function ngwp_get_localized_template_directory_uri()
+	{
+		return get_template_directory_uri();
+	}
+}
+
 /** JSON Data builders */
 
 // Rewrite rules to build angular routing
@@ -103,26 +146,6 @@ function ngwp_routes_object_json() {
 	return json_encode(ngwp_get_permastructs(function($p) {
 		return addLeadingSlash(preg_replace('/%([a-z\-]+)%/i', ':$1', $p));
 	}));
-}
-
-//
-function ngwp_sitepress_languages_json() {
-	global $sitepress;
-	if (!$sitepress)
-	{
-		return 'null';
-	}
-	$default = $sitepress->get_default_language();
-	$languages = array();
-	foreach ($sitepress->get_active_languages() as $lang)
-	{
-		if ($lang['code'] == $default) continue;
-		$languages[] = $lang['code'];
-	}
-	return json_encode(array(
-		'default' => $default,
-		'others' => $languages
-	));
 }
 
 // Output data only if JSON API plugin is installed and active

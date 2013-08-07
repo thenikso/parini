@@ -13,7 +13,7 @@ wordpressApi = ($resource, $q, $sce, wordpress) ->
 	# Optional:
 	# `children` - set to a non-empty value to include a recursive hierarchy of child pages
 	# `post_type` - used to retrieve custom post types
-	Page = $resource "#{siteUrl}/:lang/api/get_page", lang: null
+	Page = $resource "#{siteUrl}/api/get_page"
 
 	# Post
 	# Requires one of:
@@ -21,21 +21,21 @@ wordpressApi = ($resource, $q, $sce, wordpress) ->
 	# - `slug` or `post_slug` - set to the post's URL slug
 	# Optional:
 	# `post_type` - used to retrieve custom post types
-	Post = $resource "#{siteUrl}/:lang/api/get_post", lang: null
+	Post = $resource "#{siteUrl}/api/get_post"
 
 	# Posts
 	# Optional:
 	# `count` - determines how many posts per page are returned (default value is 10)
 	# `page` - return a specific page number from the results
 	# `post_type` - used to retrieve custom post types
-	Posts = $resource "#{siteUrl}/:lang/api/get_posts", lang: null
+	Posts = $resource "#{siteUrl}/api/get_posts"
 
 	# RecentPosts
 	# Optional:
 	# `count` - determines how many posts per page are returned (default value is 10)
 	# `page` - return a specific page number from the results
 	# `post_type` - used to retrieve custom post types
-	RecentPosts = $resource "#{siteUrl}/:lang/api/get_recent_posts", lang: null
+	RecentPosts = $resource "#{siteUrl}/api/get_recent_posts"
 
 	# DatePosts
 	# Requires one of:
@@ -45,7 +45,7 @@ wordpressApi = ($resource, $q, $sce, wordpress) ->
 	# `count` - determines how many posts per page are returned (default value is 10)
 	# `page` - return a specific page number from the results
 	# `post_type` - used to retrieve custom post types
-	DatePosts = $resource "#{siteUrl}/:lang/api/get_date_posts", lang: null
+	DatePosts = $resource "#{siteUrl}/api/get_date_posts"
 
 	# CategoryPosts
 	# Requires one of:
@@ -55,7 +55,7 @@ wordpressApi = ($resource, $q, $sce, wordpress) ->
 	# `count` - determines how many posts per page are returned (default value is 10)
 	# `page` - return a specific page number from the results
 	# `post_type` - used to retrieve custom post types
-	CategoryPosts = $resource "#{siteUrl}/:lang/api/get_category_posts", lang: null
+	CategoryPosts = $resource "#{siteUrl}/api/get_category_posts"
 
 	# TagPosts
 	# Required one of:
@@ -65,7 +65,7 @@ wordpressApi = ($resource, $q, $sce, wordpress) ->
 	# `count` - determines how many posts per page are returned (default value is 10)
 	# `page` - return a specific page number from the results
 	# `post_type` - used to retrieve custom post types
-	TagPosts = $resource "#{siteUrl}/:lang/api/get_tag_posts", lang: null
+	TagPosts = $resource "#{siteUrl}/api/get_tag_posts"
 
 	# AuthorPosts
 	# Required one of:
@@ -75,7 +75,7 @@ wordpressApi = ($resource, $q, $sce, wordpress) ->
 	# `count` - determines how many posts per page are returned (default value is 10)
 	# `page` - return a specific page number from the results
 	# `post_type` - used to retrieve custom post types
-	AuthorPosts = $resource "#{siteUrl}/:lang/api/get_author_posts", lang: null
+	AuthorPosts = $resource "#{siteUrl}/api/get_author_posts"
 
 	# SearchPosts
 	# Required one of:
@@ -84,7 +84,7 @@ wordpressApi = ($resource, $q, $sce, wordpress) ->
 	# `count` - determines how many posts per page are returned (default value is 10)
 	# `page` - return a specific page number from the results
 	# `post_type` - used to retrieve custom post types
-	SearchPosts = $resource "#{siteUrl}/:lang/api/get_search_results", lang: null
+	SearchPosts = $resource "#{siteUrl}/api/get_search_results"
 
 	# Prepare single post
 	preparePost = (post) ->

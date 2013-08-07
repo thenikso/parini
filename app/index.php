@@ -2,7 +2,7 @@
 <!--[if lte IE 8]>     <html id="ng-app" ng-app="WordpressApp" class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html ng-app="WordpressApp" class="no-js"> <!--<![endif]-->
 	<head>
-		<?php if ($_SERVER['HTTP_HOST'] != 'localhost'): ?><base href="/parini/" /><?php endif; ?>
+		<?php ngwp_echo_base_tag( ($_SERVER['HTTP_HOST'] != 'localhost') ? '/parini' : '' ); ?>
 
 		<title ng-bind-template="<?php bloginfo( 'name' ); ?>{{document.title&&(' | '+document.title)}}"><?php wp_title( '|', true, 'right' ); ?></title>
 
@@ -27,7 +27,7 @@
 
 		<?php wp_head(); ?>
 	</head>
-	<body ng-controller="MainCtrl" wp-href-lang="{{lang}}" ng-class="body.classes">
+	<body ng-controller="MainCtrl" ng-class="body.classes">
 		<!--[if lt IE 8]>
 			<p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
 		<![endif]-->
@@ -38,7 +38,7 @@
 				<nav class="top-bar">
 					<ul class="title-area">
 						<li class="name">
-							<h1 id="site-title"><a wp-href="<?php echo site_url(); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+							<h1 id="site-title"><a href="<?php echo site_url(); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 						</li>
 						<li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
 					</ul>
@@ -56,7 +56,7 @@
 
 							foreach ( (array) $menu_items as $key => $menu_item ) {
 								$url = $menu_item->url;
-								$menu_list .= '<li wp-href-active-class><a wp-href="' . $url . '" class="' . join(' ', $menu_item->classes) . '">' . $menu_item->title . '</a></li>';
+								$menu_list .= '<li wp-href-active-class><a href="' . $url . '" class="' . join(' ', $menu_item->classes) . '">' . $menu_item->title . '</a></li>';
 							}
 							$menu_list .= '</ul>';
 						} else {
@@ -69,8 +69,12 @@
 						<li class="hide-for-small"><a href="" class="social-link twitter">Twitter</a></li>
 						<li class="hide-for-small"><a href="" class="social-link facebook">Facebook</a></li>
 						<li class="hide-for-small"><a href="" class="social-link instagram">Instagram</a></li>
-						<li><a wp-href-change lang="en" ng-if="lang!='en'" target="_self">Eng</a></li>
-						<li><a wp-href-change lang="" ng-if="lang" target="_self">Ita</a></li>
+						<?php
+						if (function_exists( 'icl_get_languages' )) :
+							$languages = icl_get_languages('skip_missing=0&orderby=code');
+							foreach($languages as $l): if($l['active']) continue; ?>
+							<li><a href="<?php echo $l['url']; ?>" target="_self"><?php echo substr( $l['native_name'], 0, 3 ); ?></a></li>
+						<?php endforeach; endif; ?>
 					</ul>
 					</section>
 				</nav>
@@ -137,9 +141,8 @@
 				name: "<?php bloginfo( 'name' ); ?>"
 			},
 			siteUrl: "<?php echo site_url(); ?>",
-			templatePath: "<?php echo substr(get_template_directory_uri(), strlen(site_url())) ?>",
+			templateUrl: "<?php echo ngwp_get_localized_template_directory_uri(); ?>",
 			routes: <?php echo ngwp_routes_object_json(); ?>,
-			language: <?php echo ngwp_sitepress_languages_json(); ?>,
 			data: <?php echo ngwp_query_data_json(); ?>
 		});
 		</script>
