@@ -11,7 +11,9 @@ require_once (dirname(__FILE__).'/../prepare-view.php');
 <section
 	id="page-wall"
 	ng-if="wall.data"
-	ng-include="wordpress.templateUrl+'/views/'+wall.type+'-wall.php'"></section>
+	ng-include="wordpress.templateUrl+'/views/'+wall.type+'-wall.php'">
+	<?php ngwp_call('ngwp_echo_page_wall'); ?>
+</section>
 
 <div class="row" ng-if="!data||!data.page" ng-cloak>
 	<div class="small-12 columns">

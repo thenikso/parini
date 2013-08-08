@@ -419,6 +419,53 @@ function ngwp_meta_box_save( $post_id )
 }
 add_action( 'save_post', 'ngwp_meta_box_save' );
 
+// Mirrors the front end request to generate a WP query for the post wall meta box settings
+function ngwp_echo_page_wall()
+{
+	global $post;
+	$values = array(
+		'type' => get_post_meta( $post->ID, 'ngwpPageWallType', true ),
+		'posts' => get_post_meta( $post->ID, 'ngwpPageWallPosts', true ),
+		'count' => get_post_meta( $post->ID, 'ngwpPageWallCount', true ),
+		'postsType' => get_post_meta( $post->ID, 'ngwpPageWallPostsType', true ),
+		'date' => get_post_meta( $post->ID, 'ngwpPageWallDate', true ),
+		'category' => get_post_meta( $post->ID, 'ngwpPageWallCategory', true ),
+		'tag' => get_post_meta( $post->ID, 'ngwpPageWallTag', true ),
+		'author' => get_post_meta( $post->ID, 'ngwpPageWallAuthor', true ),
+		'search' => get_post_meta( $post->ID, 'ngwpPageWallSearch', true )
+	);
+	if (!$values['type']) return;
+
+	$q = array(
+		'posts_per_page' => $values['count'],
+		'paged' => 1
+	);
+	if ($values['postsType'])
+		$q['post_type'] = $values['postsType'];
+	switch ($values['posts']) {
+		case 'author':
+			$q['author_name'] = $values['author'];
+			break;
+
+		case 'category':
+			$q['category_name'] = $values['category'];
+			break;
+
+		case 'tag':
+			$q['tag'] = $values['tag'];
+			break;
+
+		case 'search':
+			$q['s'] = $values['search'];
+			break;
+
+		// TODO date
+	}
+	query_posts( $q );
+	get_template_part( 'views/' . $values['type'] . '-wall' );
+	wp_reset_query();
+}
+
 
 /** Wordpress Administration Setup */
 
