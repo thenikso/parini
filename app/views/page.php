@@ -10,6 +10,7 @@ require_once (dirname(__FILE__).'/../prepare-view.php');
 
 <section
 	id="page-wall"
+	class="fade-animation"
 	ng-if="wall.data"
 	ng-include="wordpress.templateUrl+'/views/'+wall.type+'-wall.php'">
 	<?php ngwp_call('ngwp_echo_page_wall'); ?>
