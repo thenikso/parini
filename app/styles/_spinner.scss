@@ -43,7 +43,7 @@
   margin:-34% 0 0 -34%;
   width:68%;
   height:68%;
-  background-color:#fff;
+  background-color:$body-bg;
   border-radius:100%;
   z-index:3;
 }
@@ -76,7 +76,7 @@
   top:-1px;
   bottom:-1px;
   margin-left:-3.75px;
-  background-color:#fff;
+  background-color:$body-bg;
   width:7.5px;
 }
 .loader .r1 {
