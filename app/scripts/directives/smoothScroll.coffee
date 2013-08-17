@@ -19,7 +19,7 @@ angular.module('WordpressApp')
   .directive 'smoothScroll', ->
     restrict: 'AC'
     link: (scope, element, attr) ->
-      classes = attr.class.split(' ')
+      classes = attr.class?.split(' ')
       target = attr.smoothScroll or getValueFromClass(classes, 'smooth-scroll-to-')
       return unless target
       target = t unless isNaN(t = parseInt(target))
