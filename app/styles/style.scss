@@ -17,6 +17,14 @@ This theme is build to work with Wordpress JSON API and use AngularJS in the fro
 @import "foundation/scss/normalize";
 @import "foundation/scss/foundation";
 @import "compass";
+@import "animate";
+
+.no-animations .animated {
+	-webkit-animation: none;
+	   -moz-animation: none;
+	     -o-animation: none;
+	        animation: none;
+}
 
 /** Sprites */
 
