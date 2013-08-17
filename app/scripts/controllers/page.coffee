@@ -9,6 +9,19 @@ app.controller 'PageCtrl', ($scope, wordpressData) ->
 		"page-#{$scope.data.page?.id}"
 	]
 	$scope.document.title = $scope.data.page?.title
+	$scope.pageSettings = {}
+
+	# Page children
+	if $scope.data.page?.custom_fields?.ngwpPageChildren?[0]
+		# Load children if not already present
+		unless $scope.data.page.children
+			$scope.load.page {
+				slug: $scope.data.page.slug
+				children: yes
+			}, (data) -> $scope.data = data
+		# Setup additional display properties
+		$scope.pageSettings.showChildrenDots = !!$scope.data.page.custom_fields.ngwpPageChildrenDots?[0]
+		$scope.pageSettings.animateChildrenInView = !!$scope.data.page.custom_fields.ngwpPageChildrenAnimateWhenInView?[0]
 
 	# Custom posts for included post wall
 	if $scope.data.page?.custom_fields?.ngwpPageWallType?[0]

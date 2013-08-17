@@ -9,6 +9,39 @@ require_once (dirname(__FILE__).'/../prepare-view.php');
 </div>
 
 <section
+	id="page-children"
+	class="fade-animation"
+	ng-if="data.page.children">
+
+	<ul
+		class="page-children-dots"
+		ng-if="pageSettings.showChildrenDots"
+		ng-style="{ height:data.page.children.length*20 }">
+		<li
+			ng-repeat="page in data.page.children track by page.id"
+			ng-class="{ 'is-active':page.isCurrent }">
+			<a href="" smooth-scroll="page-child-{{$index}}" speed="1000" offset="45"></a>
+		</li>
+	</ul>
+
+	<article
+		ng-repeat="page in data.page.children track by page.id"
+		id="page-child-{{$index}}"
+		class="no-animations page-child page-child-{{$index}} page-{{page.slug}} page-{{page.id}}"
+		ng-class="{ 'no-animations':!(pageSettings.animateChildrenInView&&page.enteredView) }"
+		in-view="page.enteredView = page.enteredView||$inview">
+
+		<div class="page-child-current-marker" in-view="page.isCurrent = $inview"></div>
+
+		<div class="row">
+			<div class="small-12 columns" ng-bind-html="page.content"></div>
+		</div>
+
+	</article>
+
+</section>
+
+<section
 	id="page-wall"
 	class="fade-animation"
 	ng-if="wall.data"

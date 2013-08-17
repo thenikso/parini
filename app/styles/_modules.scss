@@ -293,3 +293,41 @@ a.wall-load-more-link {
 		.thumbnails-wall-open-label { opacity: 1; }
 	}
 }
+
+/** Page children */
+.page-children-dots {
+	list-style: none;
+	margin: auto 10px;
+	padding: 0;
+	position: fixed;
+	top: $topbar-height; bottom: 0; right: 0;
+
+	li {
+		margin: 5px 0;
+		padding: 0;
+	}
+
+	a {
+		@include border-radius(5px);
+		display: block;
+		width: 10px;
+		height: 10px;
+		background-color: #BEBEBE;
+		overflow: hidden;
+	}
+
+	li.is-active a,
+	a:hover {
+		background-color: #7B7B7B;
+	}
+}
+
+.page-child {
+	position: relative;
+}
+
+.page-child-current-marker {
+	position: absolute;
+	top: 50%;
+	visibility: hidden;
+}
