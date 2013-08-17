@@ -1,10 +1,5 @@
 // Generated on 2013-07-06 using generator-angular 0.3.0
 'use strict';
-var LIVERELOAD_PORT = 35729;
-var lrSnippet = require('connect-livereload')({ port: LIVERELOAD_PORT });
-var mountFolder = function (connect, dir) {
-  return connect.static(require('path').resolve(dir));
-};
 
 // # Globbing
 // for performance reasons we're only matching one level down:
@@ -41,17 +36,6 @@ module.exports = function (grunt) {
         files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
         tasks: ['compass']
       },
-      livereload: {
-        options: {
-          livereload: LIVERELOAD_PORT
-        },
-        files: [
-          '<%= yeoman.app %>/{,*/}*.{html,php}',
-          '{.tmp,<%= yeoman.app %>}/styles/{,*/}*.{css,scss}',
-          '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.{js,coffee}',
-          '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
-        ]
-      },
       wordpress: {
         files: [
           '<%= yeoman.app %>/{,*/}*.{html,php}',
@@ -60,48 +44,6 @@ module.exports = function (grunt) {
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ],
         tasks: ['concurrent:dist', 'concat']
-      }
-    },
-    connect: {
-      options: {
-        port: 9000,
-        // Change this to '0.0.0.0' to access the server from outside.
-        hostname: 'localhost'
-      },
-      livereload: {
-        options: {
-          middleware: function (connect) {
-            return [
-              lrSnippet,
-              mountFolder(connect, '.tmp'),
-              mountFolder(connect, yeomanConfig.app)
-            ];
-          }
-        }
-      },
-      test: {
-        options: {
-          middleware: function (connect) {
-            return [
-              mountFolder(connect, '.tmp'),
-              mountFolder(connect, 'test')
-            ];
-          }
-        }
-      },
-      dist: {
-        options: {
-          middleware: function (connect) {
-            return [
-              mountFolder(connect, yeomanConfig.dist)
-            ];
-          }
-        }
-      }
-    },
-    open: {
-      server: {
-        url: 'http://localhost:<%= connect.options.port %>'
       }
     },
     clean: {
