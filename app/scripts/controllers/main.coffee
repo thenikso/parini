@@ -25,8 +25,8 @@ app.controller 'MainCtrl', ($scope, $rootScope, $location, wordpress, wordpressA
 		$rootScope.loading = no unless secondaryLoadInProgress
 
 	# API access
-	# This can be used in pages like so:
-	# <div ng-init="myposts=load.posts()">{{myposts.status}}</div>
+	# This APIs are usable like wordpressApi sevice but enables the loading
+	# indicator.
 	secondaryLoadInProgress = no
 	loadFactory = (wpApi) -> (opts, callback) ->
 		$rootScope.loading = secondaryLoadInProgress = yes
@@ -34,6 +34,7 @@ app.controller 'MainCtrl', ($scope, $rootScope, $location, wordpress, wordpressA
 			$rootScope.loading = secondaryLoadInProgress = no
 			callback?(data, resp)
 	$scope.load =
+		page: loadFactory 'getPage'
 		posts: loadFactory 'getPosts'
 		categoryPosts: loadFactory 'getCategoryPosts'
 		datePosts: loadFactory 'getDatePosts'
