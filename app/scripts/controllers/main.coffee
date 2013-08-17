@@ -30,7 +30,7 @@ app.controller 'MainCtrl', ($scope, $rootScope, $location, wordpress, wordpressA
 	secondaryLoadInProgress = no
 	loadFactory = (wpApi) -> (opts, callback) ->
 		$rootScope.loading = secondaryLoadInProgress = yes
-		wordpressApi[wpApi] angular.extend({ lang: $scope.lang }, opts), (data, resp) ->
+		wordpressApi[wpApi] opts, (data, resp) ->
 			$rootScope.loading = secondaryLoadInProgress = no
 			callback?(data, resp)
 	$scope.load =
