@@ -95,6 +95,7 @@ wordpressApi = ($resource, $q, $sce, wordpress) ->
 				d = new Date Date.UTC(d...)
 			post.date = d
 		post.content = $sce.trustAsHtml(post.content) if post?.content?
+		if post?.children then child.content = $sce.trustAsHtml(child.content) for child in post?.children
 		post
 
 	# Preparing data
@@ -110,7 +111,7 @@ wordpressApi = ($resource, $q, $sce, wordpress) ->
 	preparePostsData = (data, Api, opts) ->
 		count = data.count
 		# Prepare every single post
-		data.posts = data.posts.map(preparePost)
+		data.posts = data.posts?.map(preparePost)
 		# Add facility methods to retrieve more posts
 		data.currentPage = 1
 		data.hasMore = ->
