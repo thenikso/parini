@@ -413,8 +413,16 @@ function ngwp_meta_box_save( $post_id )
 	// if our nonce isn't there, or we can't verify it, bail
 	if( !isset( $_POST['ngwp_page_wall_meta_box_nonce_name'] ) || !wp_verify_nonce( $_POST['ngwp_page_wall_meta_box_nonce_name'], 'ngwp_page_wall_meta_box_nonce' ) ) return;
 
-	foreach ($_POST['ngwp-page-wall-box'] as $key => $value) {
-		update_post_meta( $post_id, 'ngwpPageWall'.ucfirst($key), $value );
+	if ($_POST['ngwp-page-wall-box']['update_post_meta']) {
+		// Add meta for page wall
+		foreach ($_POST['ngwp-page-wall-box'] as $key => $value) {
+			update_post_meta( $post_id, 'ngwpPageWall'.ucfirst($key), $value );
+		}
+	} else {
+		// remove all page wall related meta
+		foreach ($_POST['ngwp-page-wall-box'] as $key => $value) {
+			delete_post_meta( $post_id, 'ngwpPageWall'.ucfirst($key) );
+		}
 	}
 }
 add_action( 'save_post', 'ngwp_meta_box_save' );
