@@ -10,3 +10,19 @@ a {
 [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none;
 }
+
+.body-font {
+	font-family: $body-font-family;
+	font-weight: $body-font-weight;
+	font-style: $body-font-style;
+}
+
+.header-font {
+	font-family: $header-font-family;
+	font-weight: $header-font-weight;
+	font-style: $header-font-style;
+}
+
+em {
+	color: $primary-color;
+}

@@ -301,9 +301,10 @@ a.wall-load-more-link {
 	padding: 0;
 	position: fixed;
 	top: $topbar-height; bottom: 0; right: 0;
+	z-index: 2;
 
 	li {
-		margin: 5px 0;
+		margin: 10px 0;
 		padding: 0;
 	}
 

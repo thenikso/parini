@@ -19,6 +19,10 @@ This theme is build to work with Wordpress JSON API and use AngularJS in the fro
 @import "compass";
 @import "animate";
 
+.no-animations {
+	visibility: hidden;
+}
+
 .no-animations .animated {
 	-webkit-animation: none;
 	   -moz-animation: none;
