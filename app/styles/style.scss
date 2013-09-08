@@ -30,6 +30,15 @@ This theme is build to work with Wordpress JSON API and use AngularJS in the fro
 	        animation: none;
 }
 
+@for $i from 1 through 10 {
+	.animated.delay-#{$i} {
+		-webkit-animation-delay: 0.25s * $i;
+		   -moz-animation-delay: 0.25s * $i;
+		     -o-animation-delay: 0.25s * $i;
+		        animation-delay: 0.25s * $i;
+	}
+}
+
 /** Sprites */
 
 $category-icon-spacing: 1px;
