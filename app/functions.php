@@ -478,6 +478,7 @@ function ngwp_echo_page_wall()
 /** Wordpress Administration Setup */
 
 $ngwp_options = array(
+	'header_logo_url' => '',
 	'home_slogan_content' => get_bloginfo('name'),
 	'home_slogan_background_url' => '',
 	'footer_content' => '&copy; ' . date('Y') . get_bloginfo('name'),
@@ -512,8 +513,9 @@ function ngwp_theme_options_page() {
 		<div class="updated"><p><strong><?php _e( 'Options saved' ); ?></strong></p></div>
 		<?php endif; // If the form has just been submitted, this shows the notification ?>
 
-		<?php $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'home_slogan_options'; ?>
+		<?php $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'header_options'; ?>
 		<h2 class="nav-tab-wrapper">
+			<a href="?page=theme_options&amp;tab=header_options" class="nav-tab <?php echo $active_tab == 'header_options' ? 'nav-tab-active' : ''; ?>">Header</a>
 			<a href="?page=theme_options&amp;tab=home_slogan_options" class="nav-tab <?php echo $active_tab == 'home_slogan_options' ? 'nav-tab-active' : ''; ?>">Home Slogan</a>
 			<a href="?page=theme_options&amp;tab=footer_options" class="nav-tab <?php echo $active_tab == 'footer_options' ? 'nav-tab-active' : ''; ?>">Footer</a>
 		</h2>
@@ -524,7 +526,15 @@ function ngwp_theme_options_page() {
 
 			<?php settings_fields( 'ngwp_theme_options' ); ?>
 
-			<?php if ($active_tab == 'home_slogan_options'): ?>
+			<?php if ($active_tab == 'header_options'): ?>
+
+			<p>
+				<?php _e('Logo image URL:', 'ngwp') ?>
+				<input id="header_logo_url" name="ngwp_options[header_logo_url]" type="text" value="<?php  esc_attr_e($settings['header_logo_url']); ?>"/>
+				<a href="" data-select-image="header_logo_url"><?php _e('Choose image', 'ngwp') ?></a>
+			</p>
+
+			<?php elseif ($active_tab == 'home_slogan_options'): ?>
 
 			<div><?php wp_editor($settings['home_slogan_content'], 'ngwp_options[home_slogan_content]'); ?></div>
 

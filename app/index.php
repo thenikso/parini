@@ -28,6 +28,11 @@
 		<?php wp_head(); ?>
 	</head>
 	<body ng-controller="MainCtrl" ng-class="body.classes">
+		<?php
+		global $ngwp_options;
+		$ng_settings = get_option( 'ngwp_options', $ngwp_options );
+		?>
+
 		<!--[if lt IE 8]>
 			<p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
 		<![endif]-->
@@ -38,7 +43,15 @@
 				<nav class="top-bar">
 					<ul class="title-area">
 						<li class="name">
-							<h1 id="site-title"><a href="<?php echo site_url(); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+							<h1 id="site-title">
+								<a href="<?php echo site_url(); ?>" rel="home">
+									<?php if ($ng_settings['header_logo_url']): ?>
+										<img src="<?php echo $ng_settings['header_logo_url']; ?>" alt="<?php get_bloginfo( 'name' ); ?>">
+									<?php else: ?>
+										<?php bloginfo( 'name' ); ?>
+									<?php endif; ?>
+								</a>
+							</h1>
 						</li>
 						<li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
 					</ul>
@@ -99,10 +112,6 @@
 
 		</div><!-- #site -->
 
-		<?php
-		global $ngwp_options;
-		$ng_settings = get_option( 'ngwp_options', $ngwp_options );
-		?>
 		<footer reveal-sheet-stack id="site-footer">
 			<a reveal-sheet="reference" id="footer-map" href="<?php echo $ng_settings['footer_background_link']; ?>" target="_blank" style="background-image:url('<?php echo $ng_settings['footer_background_url']; ?>')"></a>
 			<div reveal-sheet id="footer-content">
