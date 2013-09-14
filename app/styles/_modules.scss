@@ -46,7 +46,7 @@
 
 .slogan-title {
 	@include text-shadow(rgba(black, 0.5) 0 0 5px);
-	color: white;
+	color: $primary-color;
 	text-align: center;
 	font-size: 2.3em;
 
@@ -59,7 +59,7 @@
 
 			&:after {
 				@include box-shadow(rgba(black, 0.5) 0 0 5px);
-				background: white;
+				background: $primary-color;
 				bottom: 0;
 				content: '';
 				display: inline-block;
@@ -297,7 +297,7 @@ a.wall-load-more-link {
 /** Page children */
 .page-children-dots {
 	list-style: none;
-	margin: auto 10px;
+	margin: auto 20px;
 	padding: 0;
 	position: fixed;
 	top: $topbar-height; bottom: 0; right: 0;
