@@ -85,12 +85,10 @@ a.slogan-scroll-link {
 	width: 100%;
 
 	&:after {
-		@include theme-sprite(scroll-arrow-white);
+		@extend .theme-scroll-arrow-white;
 		content: '';
 		display: block;
-		height: theme-sprite-height(scroll-arrow-white);
 		margin: 0.5em auto;
-		width: theme-sprite-width(scroll-arrow-white);
 	}
 }
 
@@ -102,7 +100,7 @@ a.wall-load-more-link {
 	position: relative;
 
 	&:after {
-		@include theme-sprite(scroll-arrow-black);
+		@extend .theme-scroll-arrow-black;
 		margin-bottom: 0;
 	}
 
@@ -133,10 +131,14 @@ a.wall-load-more-link {
 		width: 100%;
 
 		@media #{$small} {
-			width: 33.333%;
+			width: 50%;
 		}
 
 		@media #{$medium} {
+			width: 33.333%;
+		}
+
+		@media #{$large} {
 			width: 25%;
 		}
 	}

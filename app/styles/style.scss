@@ -25,29 +25,51 @@ This theme is build to work with Wordpress JSON API and use AngularJS in the fro
 
 .no-animations .animated {
 	-webkit-animation: none;
-	   -moz-animation: none;
-	     -o-animation: none;
-	        animation: none;
+		 -moz-animation: none;
+			 -o-animation: none;
+					animation: none;
 }
 
 @for $i from 1 through 10 {
 	.animated.delay-#{$i} {
 		-webkit-animation-delay: 0.25s * $i;
-		   -moz-animation-delay: 0.25s * $i;
-		     -o-animation-delay: 0.25s * $i;
-		        animation-delay: 0.25s * $i;
+			 -moz-animation-delay: 0.25s * $i;
+				 -o-animation-delay: 0.25s * $i;
+						animation-delay: 0.25s * $i;
 	}
 }
 
 /** Sprites */
 
+@mixin retina-sprite($folder) {
+	$spacing: 1px;
+	$sprites: sprite-map("#{$folder}/*.png");
+	$sprites-2x: sprite-map("#{$folder}@2x/*.png");
+
+	@each $sprite in sprite-names($sprites) {
+		.#{$folder}-#{$sprite} {
+			background-image: sprite-url($sprites);
+			background-position: sprite-position($sprites, $sprite);
+			height: image-height(sprite-file($sprites, $sprite));
+			width: image-width(sprite-file($sprites, $sprite));
+		}
+	}
+	@media (min-resolution: 2dppx), (min-device-pixel-ratio: 2), (-o-min-device-pixel-ratio: 2/1), (-webkit-min-device-pixel-ratio: 2) {
+		@each $sprite in sprite-names($sprites-2x) {
+			.#{$folder}-#{$sprite} {
+				background-image: sprite-url($sprites-2x);
+				background-position: nth(sprite-position($sprites-2x, $sprite), 1) nth(sprite-position($sprites-2x, $sprite), 2) / 2;
+				@include background-size(100% auto);
+			}
+		}
+	}
+}
+
 $category-icon-spacing: 1px;
 @import "category-icon/*.png";
 @include all-category-icon-sprites;
 
-$theme-spacing: 1px;
-@import "theme/*.png";
-@include all-theme-sprites;
+@include retina-sprite(theme);
 
 /** Parts */
 @import "base";

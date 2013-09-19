@@ -78,22 +78,19 @@
 		text-indent: -2000px;
 
 		&.twitter {
-			@include theme-sprite(topbar-twitter);
-			width: $topbar-height;
+			@extend .theme-topbar-twitter;
 			background-color: #414141;
 			&:hover { background-color: #27A9E1; }
 		}
 
 		&.instagram {
-			@include theme-sprite(topbar-instagram);
-			width: $topbar-height;
+			@extend .theme-topbar-instagram;
 			background-color: #414141;
 			&:hover { background-color: #917470; }
 		}
 
 		&.facebook {
-			@include theme-sprite(topbar-facebook);
-			width: $topbar-height;
+			@extend .theme-topbar-facebook;
 			background-color: #414141;
 			&:hover { background-color: #3C5A99; }
 		}
