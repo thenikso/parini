@@ -39,6 +39,7 @@
 
 #site-header {
 	@extend .fixed;
+	-webkit-backface-visibility: hidden;
 
 	.top-bar {
 		@include transition-property(max-height);
