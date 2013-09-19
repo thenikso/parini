@@ -54,19 +54,38 @@
 
 	.top-bar-section {
 		overflow: auto;
+
+		ul {
+			background: $topbar-link-bg-hover;
+
+			&#menu-secondary {
+				background: #d1ceb8;
+			}
+
+			@media #{$small} {
+				background: $topbar-dropdown-bg !important;
+			}
+		}
 	}
+
 
 	li > a {
 		text-transform: uppercase;
 		color: $topbar-link-color;
+		background: transparent;
 
 		&:hover {
 			color: $topbar-link-color-hover;
 		}
 	}
+
+	li.active > a {
+		background: $topbar-link-bg-active;
+	}
 }
 
-#secondary-menu {
+#menu-secondary {
+
 	li > a {
 		color: #414141;
 		font-weight: bold;

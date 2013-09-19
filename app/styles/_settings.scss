@@ -23,7 +23,7 @@ $default-transition-speed: 0.25s;
 $default-transition-ease: ease-in-out;
 
 $body-bg: #f8f5ee;
-// $body-font-color: #222;
+$body-font-color: #222;
 $body-font-family: 'Quicksand', sans-serif;
 // $body-font-weight: 300;
 // $body-font-style: normal;
@@ -1178,12 +1178,12 @@ $topbar-link-color-active: #fff;
 $topbar-link-weight: bold;
 // $topbar-link-font-size: emCalc(13px);
 // $topbar-link-hover-lightness: -30%; /* Darken by 30% */
-$topbar-link-bg-hover: darken($topbar-bg, 5%);
-$topbar-link-bg-active: darken($topbar-bg, 5%);
+$topbar-link-bg-hover: #b7b391;
+$topbar-link-bg-active: lighten($topbar-bg, 5%);
 
 // Top bar dropdown elements
 
-// $topbar-dropdown-bg: #333;
+$topbar-dropdown-bg: $topbar-bg;
 // $topbar-dropdown-link-color: #fff;
 // $topbar-dropdown-toggle-size: 5px;
 // $topbar-dropdown-toggle-color: #fff;
@@ -1196,7 +1196,7 @@ $topbar-link-bg-active: darken($topbar-bg, 5%);
 // $topbar-menu-link-font-size: emCalc(13px);
 // $topbar-menu-link-weight: bold;
 // $topbar-menu-link-color: #fff;
-// $topbar-menu-icon-color: #fff;
+$topbar-menu-icon-color: $body-font-color;
 // $topbar-menu-link-color-toggled: #888;
 // $topbar-menu-icon-color-toggled: #888;
 

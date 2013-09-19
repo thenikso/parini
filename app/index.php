@@ -63,7 +63,7 @@
 							'menu_class' => 'left wp-nav-menu'
 						));
 					?>
-					<ul id="secondary-menu" class="right">
+					<ul id="menu-secondary" class="right">
 						<li class="hide-for-small"><a href="" class="social-link twitter">Twitter</a></li>
 						<li class="hide-for-small"><a href="" class="social-link facebook">Facebook</a></li>
 						<li class="hide-for-small"><a href="" class="social-link instagram">Instagram</a></li>
