@@ -10,7 +10,7 @@ require_once (dirname(__FILE__).'/../prepare-view.php');
 			<header>
 				<h1 class="post-title" ng-bind="data.post.title"><?php ngwp_call('the_title'); ?></h1>
 			</header>
-			<div class="post-content" ng-bind-html="data.post.content"><?php ngwp_call('the_content'); ?></div>
+			<div class="post-content" bind-html-compile="data.post.content"><?php ngwp_call('the_content'); ?></div>
 		</article>
 		<div ng-if="!data||!data.post" class="no-result not-found" ng-cloak>
 			<?php _e('Nothing found.', 'ngwp'); ?> <a href="<?php echo get_site_url(); ?>"><?php _e('Back to home', 'ngwp'); ?></a>

@@ -334,3 +334,17 @@ a.wall-load-more-link {
 	top: 50%;
 	visibility: hidden;
 }
+
+/** Slideshow */
+.slideshow-wrapper {
+	margin: 0 (-$column-gutter/2);
+	max-height: 700px;
+
+	.orbit-container {
+		max-height: inherit;
+	}
+
+	img {
+		width: 100%;
+	}
+}
