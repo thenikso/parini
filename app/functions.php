@@ -30,7 +30,7 @@ function ngwp_get_permastructs($transform=null)
 {
 	if (!$transform)
 	{
-		$transform = function($x) { return $x; };
+		return $transform = '_ngwp_get_permastructs_id';
 	}
 	global $wp_rewrite;
 	$rules = array();
@@ -53,6 +53,11 @@ function ngwp_get_permastructs($transform=null)
 	// Page
 	$rules['page'] = $transform($wp_rewrite->get_page_permastruct());
 	return $rules;
+}
+
+function _ngwp_get_permastructs_id($value)
+{
+	return $value;
 }
 
 function _ngwp_matchPath($template, $permastructs, $path)
@@ -82,15 +87,17 @@ function ngwp_template_for_path($path)
 	{
 		return "home";
 	}
-	foreach (ngwp_get_permastructs(function($p) {
-		global $wp_rewrite;
-		return $wp_rewrite->generate_rewrite_rule($p);
-	}) as $name => $rr)
+	foreach (ngwp_get_permastructs('_ngwp_template_for_path_transf') as $name => $rr)
 	{
 		$m = _ngwp_matchPath($name, $rr, $path);
 		if ($m) return $m;
 	}
 	return null;
+}
+
+function _ngwp_template_for_path_transf($p) {
+	global $wp_rewrite;
+	return $wp_rewrite->generate_rewrite_rule($p);
 }
 
 /** Localized urls */
@@ -166,9 +173,11 @@ function ngwp_routes_object_json() {
 		if (substr($value, 0, 1) != '/') $value = '/' . $value;
 		return $value;
 	}
-	return json_encode(ngwp_get_permastructs(function($p) {
-		return addLeadingSlash(preg_replace('/%([a-z\-]+)%/i', ':$1', $p));
-	}));
+	return json_encode(ngwp_get_permastructs('_ngwp_routes_object_json_transf'));
+}
+
+function _ngwp_routes_object_json_transf($p) {
+	return addLeadingSlash(preg_replace('/%([a-z\-]+)%/i', ':$1', $p));
 }
 
 // Output data only if JSON API plugin is installed and active
