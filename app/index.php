@@ -2,7 +2,7 @@
 <!--[if lte IE 8]>     <html id="ng-app" ng-app="WordpressApp" class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html ng-app="WordpressApp" class="no-js"> <!--<![endif]-->
 	<head>
-		<?php ngwp_echo_base_tag( ($_SERVER['HTTP_HOST'] != 'localhost') ? '/parini' : '' ); ?>
+		<?php ngwp_echo_base_tag(''); ?>
 
 		<title ng-bind-template="<?php bloginfo( 'name' ); ?>{{document.title&&(' | '+document.title)}}"><?php wp_title( '|', true, 'right' ); ?></title>
 
