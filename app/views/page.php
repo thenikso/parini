@@ -5,7 +5,7 @@ require_once (dirname(__FILE__).'/../prepare-view.php');
 <?php ngwp_call('the_post'); ?>
 
 <div class="row">
-	<div class="small-12 columns" ng-bind-html="data.page.content"><?php ngwp_call('the_content'); ?></div>
+	<div class="small-12 columns" bind-html-compile="data.page.content"><?php ngwp_call('the_content'); ?></div>
 </div>
 
 <section
@@ -34,7 +34,7 @@ require_once (dirname(__FILE__).'/../prepare-view.php');
 		<div class="page-child-current-marker" in-view="page.isCurrent = $inview"></div>
 
 		<div class="row">
-			<div class="small-12 columns" ng-bind-html="page.content"></div>
+			<div class="small-12 columns" bind-html-compile="page.content"></div>
 		</div>
 
 	</article>
