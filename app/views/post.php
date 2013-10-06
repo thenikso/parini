@@ -8,7 +8,7 @@ require_once (dirname(__FILE__).'/../prepare-view.php');
 	<div class="small-12 columns">
 		<article class="post">
 			<header>
-				<h1 class="post-title" ng-bind="data.post.title"><?php ngwp_call('the_title'); ?></h1>
+				<h1 class="post-title" ng-bind-html="data.post.title"><?php ngwp_call('the_title'); ?></h1>
 			</header>
 			<div class="post-content" bind-html-compile="data.post.content"><?php ngwp_call('the_content'); ?></div>
 		</article>

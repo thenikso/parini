@@ -22,7 +22,7 @@ require_once (dirname(__FILE__).'/../prepare-view.php');
 					</span>
 				</span>
 			</div>
-			<h2 class="post-title"><a ng-href="{{post.url}}" href="<?php ngwp_call('the_permalink'); ?>" ng-bind="post.title"><?php ngwp_call('the_title'); ?></a></h2>
+			<h2 class="post-title"><a ng-href="{{post.url}}" href="<?php ngwp_call('the_permalink'); ?>" ng-bind-html="post.title"><?php ngwp_call('the_title'); ?></a></h2>
 		</header>
 		<a class="post-link" ng-href="{{post.url}}" href="<?php echo ngwp_call('the_permalink'); ?>">
 			<img
