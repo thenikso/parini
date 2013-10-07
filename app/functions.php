@@ -488,6 +488,7 @@ function ngwp_echo_page_wall()
 
 $ngwp_options = array(
 	'header_logo_url' => '',
+	'header_logo_small_url' => '',
 	'home_slogan_content' => get_bloginfo('name'),
 	'home_slogan_background_url' => '',
 	'footer_content' => '&copy; ' . date('Y') . get_bloginfo('name'),
@@ -541,6 +542,12 @@ function ngwp_theme_options_page() {
 				<?php _e('Logo image URL:', 'ngwp') ?>
 				<input id="header_logo_url" name="ngwp_options[header_logo_url]" type="text" value="<?php  esc_attr_e($settings['header_logo_url']); ?>"/>
 				<a href="" data-select-image="header_logo_url"><?php _e('Choose image', 'ngwp') ?></a>
+			</p>
+
+			<p>
+				<?php _e('Logo image for small screens URL:', 'ngwp') ?>
+				<input id="header_logo_small_url" name="ngwp_options[header_logo_small_url]" type="text" value="<?php  esc_attr_e($settings['header_logo_small_url']); ?>"/>
+				<a href="" data-select-image="header_logo_small_url"><?php _e('Choose image', 'ngwp') ?></a>
 			</p>
 
 			<?php elseif ($active_tab == 'home_slogan_options'): ?>

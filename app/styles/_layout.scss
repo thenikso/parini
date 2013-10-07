@@ -49,6 +49,10 @@
 
 		.name h1 {
 			line-height: ($topbar-height - 5px);
+
+			> a {
+				display: inline-block;
+			}
 		}
 
 		&.expanded {

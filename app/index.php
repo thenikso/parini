@@ -46,7 +46,10 @@
 							<h1 id="site-title">
 								<a href="<?php echo site_url(); ?>" rel="home">
 									<?php if ($ng_settings['header_logo_url']): ?>
-										<img src="<?php echo $ng_settings['header_logo_url']; ?>" alt="<?php get_bloginfo( 'name' ); ?>">
+										<img src="<?php echo $ng_settings['header_logo_url']; ?>" alt="<?php get_bloginfo( 'name' ); ?>"<?php if ($ng_settings['header_logo_small_url']) echo 'class="show-for-large-up"' ?>>
+										<?php if ($ng_settings['header_logo_small_url']): ?>
+										<img src="<?php echo $ng_settings['header_logo_small_url']; ?>" alt="<?php get_bloginfo( 'name' ); ?>" class="show-for-medium-down">
+										<?php endif; ?>
 									<?php else: ?>
 										<?php bloginfo( 'name' ); ?>
 									<?php endif; ?>
