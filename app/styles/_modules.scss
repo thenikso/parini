@@ -317,12 +317,17 @@ a.wall-load-more-link {
 }
 
 /** Slideshow */
-.slideshow-wrapper {
+.horizontal-slideshow-wrapper {
 	margin: 0 (-$column-gutter/2);
-	max-height: 700px;
+	overflow: auto;
+}
 
-	.orbit-container {
-		max-height: inherit;
+.horizontal-slideshow-list {
+	list-style: none;
+	margin: 0;
+
+	> li {
+		float: left;
 	}
 
 	img {

@@ -1,20 +1,22 @@
 # Quick directive to add a slideshow, currently using zurb orbit
 angular.module('WordpressApp')
-	.directive 'slideshow', ->
+	.directive 'slideshow', ($timeout) ->
 		restrict: 'EA'
 		replace: yes
 		transclude: yes
+		scope: yes
 		template: '
-			<div class="slideshow-wrapper">
-				<div class="preloader"></div>
-				<ul data-orbit ng-transclude></ul>
+			<div class="horizontal-slideshow-wrapper">
+				<ul class="horizontal-slideshow-list" ng-style="{width:(slideCount*100)+\'%\'}" ng-transclude></ul>
 			</div>'
 		link: (scope, element, attrs) ->
-			setTimeout ->
-				$(document).foundation 'orbit', {
-					animation: 'slide'
-					bullets: no
-					timer: no
-					timer_speed: 5000
-					variable_height: yes
-				}
+			$window = angular.element(window)
+			$timeout ->
+				items = element.find('li')
+				scope.slideCount = items.length
+				resizeItems = ->
+					items.css 'width', $window.width()
+				$window.bind 'resize', resizeItems
+				do resizeItems
+				scope.$on '$destroy', ->
+					$window.unbind 'resize', resizeItems
