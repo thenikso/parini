@@ -47,6 +47,10 @@
 		max-height: $topbar-height;
 		height: auto;
 
+		.name h1 {
+			line-height: ($topbar-height - 5px);
+		}
+
 		&.expanded {
 			max-height: 600px;
 		}
@@ -98,19 +102,19 @@
 		text-indent: -2000px;
 
 		&.twitter {
-			@extend .theme-topbar-twitter;
+			@extend .topbar-social-twitter;
 			background-color: #414141;
 			&:hover { background-color: #27A9E1; }
 		}
 
 		&.instagram {
-			@extend .theme-topbar-instagram;
+			@extend .topbar-social-instagram;
 			background-color: #414141;
 			&:hover { background-color: #917470; }
 		}
 
 		&.facebook {
-			@extend .theme-topbar-facebook;
+			@extend .topbar-social-facebook;
 			background-color: #414141;
 			&:hover { background-color: #3C5A99; }
 		}

@@ -46,6 +46,7 @@ This theme is build to work with Wordpress JSON API and use AngularJS in the fro
 	$spacing: 1px;
 	$sprites: sprite-map("#{$folder}/*.png");
 	$sprites-2x: sprite-map("#{$folder}@2x/*.png");
+	$sprites-width: 0;
 
 	@each $sprite in sprite-names($sprites) {
 		.#{$folder}-#{$sprite} {
@@ -54,23 +55,24 @@ This theme is build to work with Wordpress JSON API and use AngularJS in the fro
 			height: image-height(sprite-file($sprites, $sprite));
 			width: image-width(sprite-file($sprites, $sprite));
 		}
+		@if $sprites-width < image-width(sprite-file($sprites, $sprite)) {
+			$sprites-width: ceil(image-width(sprite-file($sprites, $sprite)));
+		}
 	}
 	@media (min-resolution: 2dppx), (min-device-pixel-ratio: 2), (-o-min-device-pixel-ratio: 2/1), (-webkit-min-device-pixel-ratio: 2) {
 		@each $sprite in sprite-names($sprites-2x) {
 			.#{$folder}-#{$sprite} {
 				background-image: sprite-url($sprites-2x);
 				background-position: nth(sprite-position($sprites-2x, $sprite), 1) nth(sprite-position($sprites-2x, $sprite), 2) / 2;
-				@include background-size(100% auto);
+				@include background-size($sprites-width auto);
 			}
 		}
 	}
 }
 
-$category-icon-spacing: 1px;
-@import "category-icon/*.png";
-@include all-category-icon-sprites;
-
 @include retina-sprite(theme);
+@include retina-sprite(category-icon);
+@include retina-sprite(topbar-social);
 
 /** Parts */
 @import "base";
