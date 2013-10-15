@@ -14,7 +14,7 @@ require_once (dirname(__FILE__).'/../prepare-view.php');
 	ng-if="data.page.children">
 
 	<ul
-		class="page-children-dots"
+		class="page-children-dots hide-for-small"
 		ng-if="pageSettings.showChildrenDots"
 		ng-style="{ height:data.page.children.length*20 }">
 		<li

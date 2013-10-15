@@ -142,7 +142,6 @@ a.wall-load-more-link {
 
 	.post-meta {
 		color: $subheader-font-color;
-		font-size: 0.9em;
 		font-family: $header-font-family;
 		font-style: $header-font-style;
 
@@ -280,7 +279,7 @@ a.wall-load-more-link {
 /** Page children */
 .page-children-dots {
 	list-style: none;
-	margin: auto 20px;
+	margin: auto 10px;
 	padding: 0;
 	position: fixed;
 	top: $topbar-height; bottom: 0; right: 0;
@@ -314,6 +313,26 @@ a.wall-load-more-link {
 	position: absolute;
 	top: 50%;
 	visibility: hidden;
+}
+
+/** Single post */
+.single {
+	.post-title {
+		text-transform: uppercase;
+	}
+
+	.post-meta {
+		margin: 30px 0 0;
+	}
+
+	.post-categories {
+		margin-bottom: 10px;
+		text-transform: lowercase;
+
+		a {
+			color: $body-font-color;
+		}
+	}
 }
 
 /** Slideshow */

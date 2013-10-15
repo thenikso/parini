@@ -26,3 +26,8 @@ a {
 em {
 	color: $primary-color;
 }
+
+.top-bar .toggle-topbar.menu-icon a span {
+	@include box-shadow(0 8px 0 3px $topbar-link-color, 0 17px 0 3px $topbar-link-color, 0 26px 0 3px $topbar-link-color);
+	width: 19px;
+}
