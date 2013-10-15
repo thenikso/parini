@@ -316,13 +316,19 @@ a.wall-load-more-link {
 }
 
 /** Single post */
-.single {
+.post-format-standard {
 	.post-title {
 		text-transform: uppercase;
+		font-family: $body-font-family;
+		font-weight: bold;
+		font-size: 1.3em;
+		margin-bottom: ($column-gutter/2);
 	}
 
 	.post-meta {
-		margin: 30px 0 0;
+		margin-top: ($column-gutter/2);
+		font-family: $header-font-family;
+		font-style: $header-font-style;
 	}
 
 	.post-categories {
@@ -331,6 +337,23 @@ a.wall-load-more-link {
 
 		a {
 			color: $body-font-color;
+		}
+	}
+
+	.post-content {
+		margin-bottom: ($column-gutter/2);
+	}
+
+	[data-post-slideshow], [post-slideshow], .post-slideshow {
+		list-style: none;
+
+		> li {
+			margin-bottom: $column-gutter;
+		}
+
+		img {
+			display: block;
+			width: 100%;
 		}
 	}
 }

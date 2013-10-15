@@ -6,13 +6,9 @@ require_once (dirname(__FILE__).'/../prepare-view.php');
 
 <div class="row">
 	<div class="small-12 columns">
-		<article class="post">
+		<article class="post post-format-standard">
 			<header class="post-header">
 				<div class="post-meta">
-					<div class="post-categories" ng-if="data.post.categories.length">
-						<a ng-repeat-start="category in data.post.categories" href="<?php echo ngwp_call('the_permalink'); ?>" ng-href="/topics/{{category.slug}}" ng-bind="category.title"></a>
-						<span ng-repeat-end class="sep" ng-bind="($first||$middle)&&'&ndash;'||''"></span>
-					</div>
 					<div class="post-date" ng-bind="data.post.date|date:'dd/MM/yyyy'"><?php ngwp_call('the_date'); ?></div>
 				</div>
 				<h1 class="post-title" ng-bind-html="data.post.title"><?php ngwp_call('the_title'); ?></h1>
