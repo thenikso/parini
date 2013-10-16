@@ -141,8 +141,7 @@
 }
 
 #footer-content {
-	background: $topbar-bg;
-	background: rgba($topbar-bg, 0.8);
+	background: $footer-content-bg;
 	min-height: 350px;
 
 	.widget {
