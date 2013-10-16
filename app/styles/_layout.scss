@@ -193,9 +193,14 @@
 	min-height: 100%;
 	overflow: hidden;
 
-	.post &,
 	.page & {
 		margin-top: $column-gutter/2;
+	}
+
+	.single & {
+		max-width: 960px;
+		margin-left: auto;
+		margin-right: auto;
 	}
 }
 
