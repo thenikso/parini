@@ -48,10 +48,14 @@
 	@include text-shadow(rgba(black, 0.5) 0 0 5px);
 	color: $primary-color;
 	text-align: center;
-	font-size: 2.3em;
+	font-size: 2.6em;
 
-	@media #{$medium} {
-		font-size: 4.3em;
+	@media #{$small} {
+		font-size: 5em;
+	}
+
+	@media #{$large} {
+		font-size: 7em;
 	}
 }
 
