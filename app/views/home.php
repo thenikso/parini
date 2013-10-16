@@ -13,7 +13,7 @@ $ng_settings = get_option( 'ngwp_options', $ngwp_options );
 	<article class="slogan-content">
 		<div class="row">
 			<div class="small-12 columns">
-				<h1 class="slogan-title"><?php echo $ng_settings['home_slogan_content']; ?></h1>
+				<?php echo $ng_settings['home_slogan_content']; ?>
 			</div>
 		</div>
 	</article>
