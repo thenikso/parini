@@ -25,7 +25,7 @@
 	background-size: cover;
 	left: 0;
 	max-width: none;
-	min-height: 120%;
+	min-height: 110%;
 	min-width: 100%;
 	position: absolute;
 	text-align: center;
@@ -34,15 +34,10 @@
 
 .slogan-content {
 	left: 0;
-	margin-top: -6.5em;
 	position: absolute;
-	top: 50%;
-	width: 100%;
 	text-align: center;
-
-	@media #{$small} {
-		margin-top: -9.5em;
-	}
+	top: 0;
+	width: 100%;
 }
 
 a.slogan-scroll-link {
@@ -312,7 +307,7 @@ a.wall-load-more-link {
 		font-family: $body-font-family;
 		font-weight: bold;
 		font-size: 1.3em;
-		margin-bottom: ($column-gutter/2);
+		margin-bottom: ($column-gutter/4);
 	}
 
 	.post-meta {
