@@ -28,7 +28,9 @@ angular.module('WordpressApp')
       speed = s unless isNaN(s = parseInt(speed))
       element.on 'click', ->
         if angular.isString(target)
-          $('html,body').stop().animate({scrollTop: $("##{target}").offset().top - offset}, speed)
+          targetOffset = $("##{target}").offset()
+          return no unless targetOffset?
+          $('html,body').stop().animate({scrollTop: targetOffset.top - offset}, speed)
         else
           $('html,body').stop().animate({scrollTop: target}, speed)
         no
