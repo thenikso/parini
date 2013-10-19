@@ -89,7 +89,7 @@
 				</center>
 			</div>
 
-			<div id="site-content" ng-view class="view-animation">
+			<div id="site-content" ng-view ng-cloak class="view-animation">
 				<?php
 				if (($path = ngwp_crawler_path()) !== null) {
 					switch (ngwp_template_for_path($path)) {

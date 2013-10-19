@@ -4,7 +4,7 @@ require_once (dirname(__FILE__).'/../prepare-view.php');
 ?>
 <?php ngwp_call('the_post'); ?>
 
-<div class="row">
+<div class="row" ng-cloak>
 	<div class="small-12 columns">
 		<article class="post post-format-standard">
 			<header class="post-header">
