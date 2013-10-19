@@ -301,7 +301,7 @@ a.wall-load-more-link {
 }
 
 /** Single post */
-.post-format-standard {
+.single.post {
 	.post-title {
 		text-transform: uppercase;
 		font-family: $body-font-family;
@@ -343,9 +343,28 @@ a.wall-load-more-link {
 	}
 }
 
+/** Post type works*/
+.single.post.type-works {
+	.post-header {
+		padding-left: ($column-gutter/2);
+		padding-right: ($column-gutter/2);
+	}
+
+	.post-header,
+	.post-content > .row {
+		max-width: 960px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.horizontal-slideshow-list > li:first-child {
+		padding-left: ($column-gutter/2);
+	}
+}
+
 /** Slideshow */
 .horizontal-slideshow-wrapper {
-	margin: 0 (-$column-gutter/2);
+	margin: 0 (-$column-gutter/2) ($column-gutter/2);
 	overflow: auto;
 }
 
@@ -355,9 +374,7 @@ a.wall-load-more-link {
 
 	> li {
 		float: left;
-	}
-
-	img {
-		width: 100%;
+		padding-right: 10px;
 	}
 }
+
