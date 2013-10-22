@@ -31,3 +31,13 @@ em {
 	@include box-shadow(0 8px 0 3px $topbar-link-color, 0 17px 0 3px $topbar-link-color, 0 26px 0 3px $topbar-link-color);
 	width: 19px;
 }
+
+.chromeframe {
+	background: $body-bg;
+	height: 100%;
+	padding: 3em 1em;
+	position: fixed;
+	text-align: center;
+	width: 100%;
+	z-index: 1000;
+}

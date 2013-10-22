@@ -1,6 +1,5 @@
 <!doctype html>
-<!--[if lte IE 8]>     <html id="ng-app" ng-app="WordpressApp" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html ng-app="WordpressApp" class="no-js"> <!--<![endif]-->
+<html ng-app="WordpressApp" class="no-js">
 	<head>
 		<?php ngwp_echo_base_tag(''); ?>
 
@@ -14,17 +13,6 @@
 
 		<script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
 
-		<!--[if lte IE 8]>
-		<style type="text/css" src="<?php echo get_template_directory_uri(); ?>/styles/ie.css"></style>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/json3/3.2.4/json3.min.js"></script>
-		<script type="text/javascript">
-		// Add every element directvie to the array here to have it available in IE8
-		for (d in ['ng-view'])
-			document.createElement(d);
-		</script>
-		<![endif]-->
-
 		<?php wp_head(); ?>
 	</head>
 	<body ng-controller="MainCtrl" ng-class="body.classes">
@@ -33,8 +21,12 @@
 		$ng_settings = get_option( 'ngwp_options', $ngwp_options );
 		?>
 
-		<!--[if lt IE 8]>
-			<p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+		<!--[if lte IE 8]>
+			<div class="chromeframe">
+				<h1><?php echo($ng_settings['header_logo_content'] ? $ng_settings['header_logo_content'] : get_bloginfo( 'name' )); ?></h1>
+				<p>Il tuo browser è troppo vecchio. <a href="http://browsehappy.com/">Aggiorna il tuo browser oggi</a> o <a href="http://www.google.com/chromeframe/?redirect=true">installa Google Chrome Frame</a> per navigare meglio questo sito.</p>
+				<p>You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+			</div>
 		<![endif]-->
 
 		<div id="site">
