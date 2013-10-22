@@ -7,16 +7,18 @@ angular.module('WordpressApp')
 		scope:
 			centerForWidth: '@'
 		template: '
-			<div class="horizontal-slideshow-wrapper">
-				<ul class="horizontal-slideshow-list" ng-transclude></ul>
+			<div class="horizontal-slideshow-wrapper" ng-class="{ \'loading\':!loaded }">
+				<ul class="horizontal-slideshow-list" ng-style="{ \'visibility\':(loaded&&\'visible\'||\'hidden\') }" ng-transclude></ul>
 			</div>'
 		link: (scope, element, attrs) -> $timeout ->
+			scope.loaded = no
 			list = element.find('ul')
 			items = element.find('li')
 			element.imagesLoaded ->
 				width = 0
 				width += i.offsetWidth for i in items
 				list.css 'width', "#{width}px"
+				scope.$apply -> scope.loaded = yes
 
 			# Center for width currently hardcoded default to 960
 			centerForWidth = scope.centerForWidth or 960
