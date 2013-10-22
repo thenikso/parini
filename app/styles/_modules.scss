@@ -197,6 +197,14 @@ a.wall-load-more-link {
 		@media #{$small} {
 			@include grid-column(6);
 		}
+
+		@media #{$medium} {
+			@include grid-column(4);
+		}
+
+		@media #{$large} {
+			@include grid-column(3);
+		}
 	}
 
 	.thumbnails-wall-content {
