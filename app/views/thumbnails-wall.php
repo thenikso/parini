@@ -17,11 +17,9 @@ require_once (dirname(__FILE__).'/../prepare-view.php');
 				<h2 class="post-title" ng-bind="post.title"><?php ngwp_call('the_title'); ?></h2>
 				<div class="post-excerpt subheader" ng-bind-html="post.excerpt"><?php ngwp_call('the_excerpt'); ?></div>
 			</header>
-			<img
+			<div
 				class="post-thumbnail"
-				src="<?php echo ngwp_call('wp_get_attachment_url', ngwp_call('get_post_thumbnail_id') ); ?>"
-				ng-src="{{post.thumbnail_images.large.url||'http://placehold.it/300'}}"
-				alt="{{post.title}}">
+				ng-style="{ 'background-image':'url('+(post.thumbnail_images.large.url||'http://placehold.it/300')+')' }"></div>
 			<a class="post-link" ng-href="{{post.url}}" href="<?php echo ngwp_call('the_permalink'); ?>"><?php ngwp_call('the_title'); ?></a>
 		</div>
 	</article>
