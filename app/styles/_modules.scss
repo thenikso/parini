@@ -224,9 +224,13 @@ a.wall-load-more-link {
 	.post-thumbnail {
 		@include transition(top 0.25s ease-in-out);
 		min-height: 110%;
-		min-width: 100%;
+		min-width: 110%;
+		margin-left: -5%;
 		position: absolute;
 		top: 0;
+		left: 0;
+		background-size: cover;
+		background-position: center center;
 	}
 
 	.post-header {
@@ -246,12 +250,6 @@ a.wall-load-more-link {
 	.post-title {
 		color: inherit;
 		text-transform: uppercase;
-	}
-
-	.post-excerpt {
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
 	}
 
 	.post-link {
