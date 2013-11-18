@@ -146,7 +146,6 @@ a.wall-load-more-link {
 
 	.post-title {
 		font-family: inherit;
-		font-size: 1.2em;
 		font-style: normal;
 		font-weight: bold;
 		text-transform: uppercase;
@@ -200,10 +199,6 @@ a.wall-load-more-link {
 
 		@media #{$medium} {
 			@include grid-column(4);
-		}
-
-		@media #{$large} {
-			@include grid-column(3);
 		}
 	}
 
