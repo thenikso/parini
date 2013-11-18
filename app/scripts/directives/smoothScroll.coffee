@@ -29,7 +29,7 @@ angular.module('WordpressApp')
       element.on 'click', ->
         if angular.isString(target)
           targetOffset = $("##{target}").offset()
-          return no unless targetOffset?
+          return yes unless targetOffset?
           $('html,body').stop().animate({scrollTop: targetOffset.top - offset}, speed)
         else
           $('html,body').stop().animate({scrollTop: target}, speed)
