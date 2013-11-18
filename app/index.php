@@ -45,25 +45,25 @@
 					</ul>
 
 					<section class="top-bar-section">
-					<?php wp_nav_menu(array(
-							'location' => 'primary',
-							'container' => false,
-							'menu_class' => 'left wp-nav-menu'
-						));
-					?>
-					<ul id="menu-secondary" class="right">
-						<li class="hide-for-small"><a href="" class="social-link twitter">Twitter</a></li>
-						<li class="hide-for-small"><a href="" class="social-link facebook">Facebook</a></li>
-						<li class="hide-for-small"><a href="" class="social-link instagram">Instagram</a></li>
-						<?php
-						if (function_exists( 'icl_get_languages' )) :
-							$languages = icl_get_languages('skip_missing=0&orderby=code');
-							foreach($languages as $l): if($l['active']) continue; ?>
-							<li><a ng-href="<?php echo ngwp_site_root_url_for_lang($l['language_code']); ?>{{document.locationPath}}" target="_self" href="<?php $l['url']; ?>">
-								<?php echo substr( $l['native_name'], 0, 3 ); ?>
-							</a></li>
-						<?php endforeach; endif; ?>
-					</ul>
+						<ul id="menu-secondary" class="right">
+							<li class="hide-for-small"><a href="" class="social-link twitter">Twitter</a></li>
+							<li class="hide-for-small"><a href="" class="social-link facebook">Facebook</a></li>
+							<li class="hide-for-small"><a href="" class="social-link instagram">Instagram</a></li>
+							<?php
+							if (function_exists( 'icl_get_languages' )) :
+								$languages = icl_get_languages('skip_missing=0&orderby=code');
+								foreach($languages as $l): if($l['active']) continue; ?>
+								<li><a ng-href="<?php echo ngwp_site_root_url_for_lang($l['language_code']); ?>{{document.locationPath}}" target="_self" href="<?php $l['url']; ?>">
+									<?php echo substr( $l['native_name'], 0, 3 ); ?>
+								</a></li>
+							<?php endforeach; endif; ?>
+						</ul>
+						<?php wp_nav_menu(array(
+								'location' => 'primary',
+								'container' => false,
+								'menu_class' => 'right wp-nav-menu'
+							));
+						?>
 					</section>
 				</nav>
 			</header>
