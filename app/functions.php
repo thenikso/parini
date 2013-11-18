@@ -292,6 +292,11 @@ function ngwp_widgets_init()
 }
 add_action( 'widgets_init', 'ngwp_widgets_init' );
 
+function ngwp_custom_excerpt_length( $length ) {
+	return 22;
+}
+add_filter( 'excerpt_length', 'ngwp_custom_excerpt_length', 999 );
+
 /** Meta Boxes */
 
 function ngwp_add_meta_boxes()
