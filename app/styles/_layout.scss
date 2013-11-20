@@ -58,18 +58,6 @@
 
 	.top-bar-section {
 		overflow: auto;
-
-		ul {
-			background: $topbar-link-bg-hover;
-
-			&#menu-secondary {
-				background: #d1ceb8;
-			}
-
-			@media #{$small} {
-				background: $topbar-dropdown-bg !important;
-			}
-		}
 	}
 
 
@@ -97,7 +85,6 @@
 #menu-secondary {
 
 	li > a {
-		color: #414141;
 		font-weight: bold;
 	}
 
@@ -109,19 +96,19 @@
 
 		&.twitter {
 			@extend .topbar-social-twitter;
-			background-color: #414141;
+			background-color: $topbar-link-color;
 			&:hover { background-color: #27A9E1; }
 		}
 
 		&.instagram {
 			@extend .topbar-social-instagram;
-			background-color: #414141;
+			background-color: $topbar-link-color;
 			&:hover { background-color: #917470; }
 		}
 
 		&.facebook {
 			@extend .topbar-social-facebook;
-			background-color: #414141;
+			background-color: $topbar-link-color;
 			&:hover { background-color: #3C5A99; }
 		}
 	}
