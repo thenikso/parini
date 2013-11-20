@@ -64,7 +64,7 @@ a.slogan-scroll-link {
 
 a.wall-load-more-link {
 	@extend a.slogan-scroll-link;
-	color: $topbar-bg;
+	color: $primary-color;
 	position: relative;
 
 	&:after {
