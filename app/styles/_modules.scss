@@ -7,6 +7,25 @@
 	min-width: 36px;
 }
 
+/** Back button */
+.go-back {
+	position: absolute;
+	top: $topbar-height;
+	left: 0;
+	margin: ($column-gutter / 2);
+	color: $header-font-color;
+	font-weight: bold;
+
+	&:before {
+		@extend .theme-go-back-arrow;
+		content: '';
+		display: inline-block;
+		margin-right: 0.5em;
+		position: relative;
+		top: 3px;
+	}
+}
+
 /** Slogan */
 
 .slogan {

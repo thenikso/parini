@@ -20,3 +20,4 @@ require_once (dirname(__FILE__).'/../prepare-view.php');
 		</div>
 	</div>
 </div>
+<a href="" class="go-back show-for-large" ng-click="goBack()">Home</a>

@@ -14,6 +14,9 @@ app.controller 'MainCtrl', ($scope, $rootScope, $location, wordpress, wordpressA
 		title: ''
 		locationPath: ''
 
+	# Utility to go back
+	$scope.goBack = -> window.history.back()
+
 	# Loading animations control
 	$rootScope.loading = yes
 	$rootScope.$on '$routeChangeStart', ->
