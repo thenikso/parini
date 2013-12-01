@@ -19,7 +19,7 @@ angular.module('WordpressApp')
 			parallaxItems.push parallaxItem
 			scope.$on '$destroy', ->
 				removeParallaxItem parallaxItem
-			updateParallax()
+			setTimeout updateParallax
 
 parallaxItems = []
 removeParallaxItem = (parallaxItem) ->
