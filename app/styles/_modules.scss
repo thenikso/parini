@@ -125,7 +125,7 @@ a.wall-load-more-link {
 			width: 33.333%;
 		}
 
-		@media #{$large} {
+		@media only screen and (min-width: #{($large-screen - 20)}) {
 			width: 25%;
 		}
 	}
