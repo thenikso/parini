@@ -60,9 +60,8 @@
 }
 
 a.slogan-scroll-link {
-	@include text-shadow(rgba(black, 0.5) 0 0 5px);
 	bottom: 0;
-	color: #EDE290;
+	color: $primary-color;
 	display: block;
 	font-size: 1.5em;
 	left: 0;
@@ -72,7 +71,7 @@ a.slogan-scroll-link {
 	width: 100%;
 
 	&:after {
-		@extend .theme-scroll-arrow-white;
+		@extend .theme-scroll-arrow;
 		content: '';
 		display: block;
 		margin: 0.5em auto;
@@ -87,7 +86,7 @@ a.wall-load-more-link {
 	position: relative;
 
 	&:after {
-		@extend .theme-scroll-arrow-black;
+		@extend .theme-scroll-arrow;
 		margin-bottom: 0;
 	}
 
@@ -137,7 +136,7 @@ a.wall-load-more-link {
 
 	.post {
 		&:after {
-			color: $header-font-color;
+			color: $primary-color;
 			content: '•';
 			display: block;
 			font-size: 1.5em;
@@ -168,7 +167,7 @@ a.wall-load-more-link {
 		font-size: 1.4em;
 		font-family: inherit;
 		font-style: normal;
-		font-weight: bold;
+		font-weight: 800;
 		text-transform: uppercase;
 
 		a { color: inherit; }

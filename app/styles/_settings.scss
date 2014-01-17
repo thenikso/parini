@@ -22,9 +22,9 @@
 $default-transition-speed: 0.25s;
 $default-transition-ease: ease-in-out;
 
-$body-bg: #f8f5ee;
-$body-font-color: #2A2A2A;
-$body-font-family: 'Quicksand', sans-serif;
+$body-bg: white;
+$body-font-color: #7c7c7c;
+$body-font-family: 'Open Sans', sans-serif;
 // $body-font-weight: 300;
 // $body-font-style: normal;
 
@@ -38,7 +38,7 @@ $body-font-family: 'Quicksand', sans-serif;
 
 // Colors
 
-$primary-color: #efe9c5;
+$primary-color: #ed1b2f;
 // $secondary-color: #e9e9e9;
 // $alert-color: #c60f13;
 // $success-color: #5da423;
@@ -120,10 +120,10 @@ $column-gutter: 60px;
 
 // Heading font styles
 
-$header-font-family: 'Arapey', serif;
+$header-font-family: 'Tinos', serif;
 $header-font-weight: normal;
 $header-font-style: italic;
-$header-font-color: #666;
+$header-font-color: #2c2c2c;
 $header-line-height: 1.2;
 // $header-top-margin: .2em;
 // $header-bottom-margin: .5em;
@@ -1154,7 +1154,7 @@ $subheader-font-color: lighten($header-font-color, 40%);
 
 // Background color for the top bar
 
-$topbar-bg: #f1edc7;
+$topbar-bg: $primary-color;
 
 // Height and margin
 
@@ -1172,13 +1172,13 @@ $topbar-margin-bottom: 0;
 
 // Link colors and styles for top-level nav
 
-$topbar-link-color: #2c2c2c;
-$topbar-link-color-hover: #B7B391;
+$topbar-link-color: white;
+$topbar-link-color-hover: #F68E99;
 $topbar-link-color-active: #fff;
 $topbar-link-weight: bold;
 // $topbar-link-font-size: emCalc(13px);
 // $topbar-link-hover-lightness: -30%; /* Darken by 30% */
-$topbar-link-bg-hover: #D1CEB8;
+$topbar-link-bg-hover: darken($topbar-bg, 5%);
 $topbar-link-bg-active: lighten($topbar-bg, 5%);
 
 // Top bar dropdown elements
@@ -1209,4 +1209,5 @@ $topbar-breakpoint: 768px; // Change to 9999px for always mobile layout
 //
 // Footer
 //
-$footer-content-bg: rgba(#D1CEB8, .8);
+$footer-content-bg: rgba($primary-color, .8);
+$footer-font-color: white;

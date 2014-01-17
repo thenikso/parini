@@ -63,7 +63,7 @@
 			background: $topbar-link-bg-hover;
 
 			&#menu-secondary {
-				background: #d1ceb8;
+				background: darken($topbar-link-bg-hover, 5%);
 			}
 
 			@media #{$small} {
@@ -96,11 +96,6 @@
 
 #menu-secondary {
 
-	li > a {
-		color: #414141;
-		font-weight: bold;
-	}
-
 	.social-link {
 		@include transition-property(background-color);
 		@include transition-duration(0.25s);
@@ -109,19 +104,19 @@
 
 		&.twitter {
 			@extend .topbar-social-twitter;
-			background-color: #414141;
+			background-color: $topbar-link-color;
 			&:hover { background-color: #27A9E1; }
 		}
 
 		&.instagram {
 			@extend .topbar-social-instagram;
-			background-color: #414141;
+			background-color: $topbar-link-color;
 			&:hover { background-color: #917470; }
 		}
 
 		&.facebook {
 			@extend .topbar-social-facebook;
-			background-color: #414141;
+			background-color: $topbar-link-color;
 			&:hover { background-color: #3C5A99; }
 		}
 	}
@@ -130,15 +125,15 @@
 /** Footer */
 
 #site-footer {
-	color: $body-font-color;
+	color: $footer-font-color;
 	text-align: center;
 
 	h1, h2, h3, h4, p, a {
-		color: $body-font-color;
+		color: $footer-font-color;
 	}
 
 	.title {
-		border-bottom: 2px solid $body-font-color;
+		border-bottom: 2px solid $footer-font-color;
 	}
 }
 
@@ -162,7 +157,7 @@
 			@include box-shadow(none);
 			background: none;
 			border: none;
-			border-bottom: 1px solid $body-font-color;
+			border-bottom: 1px solid $footer-font-color;
 			color: inherit;
 			font-size: 1.2em;
 		}
