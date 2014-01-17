@@ -88,7 +88,7 @@
 
 	// Centering main menu in desktop
 	@media #{$small} {
-		#menu-main {
+		ul.primary-menu {
 			position: absolute;
 			float: none !important;
 			overflow: auto;
@@ -110,7 +110,7 @@
 	}
 
 	@media #{$medium} {
-		#menu-main > li {
+		ul.primary-menu > li {
 			&:first-child:before {
 				content: '●';
 				position: absolute;
