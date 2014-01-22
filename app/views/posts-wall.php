@@ -39,7 +39,9 @@ require_once (dirname(__FILE__).'/../prepare-view.php');
 	<?php endwhile; ?>
 
 </div>
-<a href="" class="wall-load-more-link" ng-class="{ 'loading': theData.isLoadingMore }" ng-if="theData.hasMore()" ng-click="theData.loadMore()" ng-cloak>Mostra pi&ugrave; articoli</a>
+<a href="" class="wall-load-more-link" ng-class="{ 'loading': theData.isLoadingMore }" ng-if="theData.hasMore()" ng-click="theData.loadMore()" ng-cloak>
+	<?php _e('Mostra più articoli', 'ngwp'); ?>
+</a>
 
 <div ng-if="!theData||!theData.posts||!theData.posts.length" class="wall-no-results no-result not-found" ng-cloak>
 	<?php _e('Nothing found.', 'ngwp'); ?> <a href="<?php echo get_site_url(); ?>"><?php _e('Back to home', 'ngwp'); ?></a>

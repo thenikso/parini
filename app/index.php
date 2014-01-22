@@ -7,7 +7,7 @@
 
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<link href='http://fonts.googleapis.com/css?family=Tinos:400,400italic|Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Tinos:400,400italic|Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css" />
 		<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 

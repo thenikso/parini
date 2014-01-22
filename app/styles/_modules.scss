@@ -67,7 +67,6 @@ a.slogan-scroll-link {
 	left: 0;
 	position: absolute;
 	text-align: center;
-	text-transform: uppercase;
 	width: 100%;
 
 	&:after {
@@ -167,7 +166,7 @@ a.wall-load-more-link {
 		font-size: 1.4em;
 		font-family: inherit;
 		font-style: normal;
-		font-weight: 800;
+		font-weight: bold;
 		text-transform: uppercase;
 
 		a { color: inherit; }

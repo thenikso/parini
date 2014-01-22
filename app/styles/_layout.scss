@@ -118,7 +118,7 @@
 	@media #{$medium} {
 		ul.primary-menu > li {
 			&:first-child:before {
-				content: '●';
+				content: '•';
 				position: absolute;
 				color: $topbar-link-color;
 				top: 0.7em;
@@ -126,7 +126,7 @@
 			}
 
 			&:last-child:after {
-				content: '●';
+				content: '•';
 				position: absolute;
 				color: $topbar-link-color;
 				top: 0.7em;
