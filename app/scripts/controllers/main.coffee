@@ -13,6 +13,7 @@ app.controller 'MainCtrl', ($scope, $rootScope, $location, wordpress, wordpressA
 	$rootScope.document =
 		title: ''
 		locationPath: ''
+		topBarExpanded: no
 
 	# Utility to go back
 	$scope.goBack = -> window.history.back()
@@ -21,6 +22,7 @@ app.controller 'MainCtrl', ($scope, $rootScope, $location, wordpress, wordpressA
 	$rootScope.loading = yes
 	$rootScope.$on '$routeChangeStart', ->
 		$rootScope.loading = yes
+		$rootScope.document.topBarExpanded = no
 	$rootScope.$on '$routeChangeSuccess', ->
 		$rootScope.document.title = ''
 		$rootScope.document.locationPath = $location.path()

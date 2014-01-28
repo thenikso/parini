@@ -32,7 +32,7 @@
 		<div id="site">
 
 			<header id="site-header">
-				<nav class="top-bar">
+				<nav class="top-bar" ng-class="{'expanded': document.topBarExpanded}">
 					<ul class="title-area">
 						<li class="name">
 							<h1 id="site-title">
@@ -41,7 +41,7 @@
 								</a>
 							</h1>
 						</li>
-						<li class="toggle-topbar menu-icon"><a href=""><span></span></a></li>
+						<li class="toggle-topbar menu-icon"><a href="" ng-click="document.topBarExpanded = !document.topBarExpanded"><span></span></a></li>
 					</ul>
 
 					<section class="top-bar-section">
@@ -114,7 +114,6 @@
 
 		<!-- Cleanup start -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/foundation/4.3.1/js/foundation.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/masonry/3.0.0/masonry.pkgd.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/2.1.0/jquery.imagesloaded.min.js"></script>
 		<!-- Cleanup end -->

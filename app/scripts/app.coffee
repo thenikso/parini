@@ -48,6 +48,3 @@ app.config ($routeProvider, $locationProvider, wordpress) ->
 
 	# Setup HTML5 push state
 	$locationProvider.html5Mode(yes).hashPrefix('!')
-
-# Run foundation
-$(document).foundation('topbar')
