@@ -14,7 +14,10 @@ require_once (dirname(__FILE__).'/../prepare-view.php');
 	<article masonry-brick class="post" ng-repeat="post in theData.posts track by post.id">
 		<header class="post-header">
 			<div class="post-meta">
-				<div class="post-category-icon" ng-if="post.categories.length" ng-class="'category-icon-'+post.categories[0].slug"></div>
+				<a class="post-category-icon"
+					ng-if="post.categories.length"
+					ng-class="'category-icon-'+post.categories[0].slug"
+					ng-href="/topics/{{post.categories[0].slug}}"></a>
 				<span class="post-date" ng-bind="post.date|date:'dd/MM/yyyy'"><?php ngwp_call('the_date'); ?></span>
 				<span class="post-categories" ng-if="post.categories.length">&ndash;
 					<span ng-repeat="category in post.categories">
