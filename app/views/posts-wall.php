@@ -27,14 +27,14 @@ require_once (dirname(__FILE__).'/../prepare-view.php');
 			</div>
 			<h2 class="post-title"><a ng-href="{{post.url}}" href="<?php ngwp_call('the_permalink'); ?>" ng-bind-html="post.title"><?php ngwp_call('the_title'); ?></a></h2>
 		</header>
+		<img
+			class="post-thumbnail"
+			src="<?php echo ngwp_call('wp_get_attachment_url', ngwp_call('get_post_thumbnail_id') ); ?>"
+			ng-src="{{post.thumbnail_images.large.url}}"
+			ng-if="post.thumbnail_images"
+			masonry-layout-on="post.thumbnail_images.large.url"
+			alt="{{post.title}}">
 		<a class="post-link" ng-href="{{post.url}}" href="<?php echo ngwp_call('the_permalink'); ?>">
-			<img
-				class="post-thumbnail"
-				src="<?php echo ngwp_call('wp_get_attachment_url', ngwp_call('get_post_thumbnail_id') ); ?>"
-				ng-src="{{post.thumbnail_images.large.url}}"
-				ng-if="post.thumbnail_images"
-				masonry-layout-on="post.thumbnail_images.large.url"
-				alt="{{post.title}}">
 			<div class="post-content" ng-bind-html="post.excerpt"><?php ngwp_call('the_excerpt'); ?></div>
 		</a>
 	</article>
