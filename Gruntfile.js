@@ -208,11 +208,6 @@ module.exports = function (grunt) {
         singleRun: true
       }
     },
-    cdnify: {
-      dist: {
-        html: ['<%= yeoman.dist %>/*.{html,php}']
-      }
-    },
     ngmin: {
       dist: {
         files: [{
