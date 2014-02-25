@@ -92,6 +92,7 @@ wordpressApi = ($resource, $q, $sce, wordpress) ->
 			d = new Date(post.date)
 			if isNaN(d) and d = dateRegExp.exec(post.date)
 				d = d[1..].map (i) -> parseInt i, 10
+				d[1] -= 1 # Months start from 0
 				d = new Date Date.UTC(d...)
 			post.date = d
 		post.content = $sce.trustAsHtml(post.content) if post?.content?
